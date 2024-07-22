@@ -432,8 +432,8 @@ importers:
   packages/turbo-codemod:
     dependencies:
       axios:
-        specifier: 0.27.2
-        version: 0.27.2
+        specifier: 0.28.0
+        version: 0.28.0
       chalk:
         specifier: 2.4.2
         version: 2.4.2
@@ -4367,11 +4367,12 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios@0.27.2:
-    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+  /axios@0.28.0:
+    resolution: {integrity: sha512-Tu7NYoGY4Yoc7I+Npf9HhUMtEEpV7ZiLH9yndTCoNhcpBH0kwcvFbzYN9/u5QKI5A6uefjsNNWaz5olJVYS62Q==}
     dependencies:
       follow-redirects: 1.15.1
       form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: false
