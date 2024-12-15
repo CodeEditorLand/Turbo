@@ -1,8 +1,6 @@
-use std::{
-    backtrace::Backtrace,
-    collections::{BTreeMap, HashMap, HashSet},
-};
+use std::collections::{BTreeMap, HashMap, HashSet};
 
+use miette::{Diagnostic, Report};
 use petgraph::graph::{Graph, NodeIndex};
 use tracing::{warn, Instrument};
 use turbopath::{
@@ -33,13 +31,11 @@ pub struct PackageGraphBuilder<'a, T> {
     package_discovery: T,
 }
 
-#[derive(Debug, thiserror::Error)]
+#[derive(Debug, Diagnostic, thiserror::Error)]
 pub enum Error {
-    #[error("could not resolve workspaces: {0}")]
-    PackageManager(
-        #[from] crate::package_manager::Error,
-        #[backtrace] Backtrace,
-    ),
+    #[error("could not resolve workspaces")]
+    #[diagnostic(transparent)]
+    PackageManager(#[from] crate::package_manager::Error),
     #[error(
         "Failed to add workspace \"{name}\" from \"{path}\", it already exists at \
          \"{existing_path}\""
@@ -51,7 +47,8 @@ pub enum Error {
     },
     #[error("path error: {0}")]
     Path(#[from] turbopath::PathError),
-    #[error("unable to parse workspace package.json: {0}")]
+    #[diagnostic(transparent)]
+    #[error(transparent)]
     PackageJson(#[from] crate::package_json::Error),
     #[error("package.json must have a name field:\n{0}")]
     PackageJsonMissingName(AbsoluteSystemPathBuf),
@@ -77,6 +74,12 @@ impl<'a> PackageGraphBuilder<'a, LocalPackageDiscoveryBuilder> {
             package_jsons: None,
             lockfile: None,
         }
+    }
+
+    pub fn with_allow_no_package_manager(mut self, allow_no_package_manager: bool) -> Self {
+        self.package_discovery
+            .with_allow_no_package_manager(allow_no_package_manager);
+        self
     }
 }
 
@@ -347,10 +350,10 @@ impl<'a, T: PackageDiscovery> BuildState<'a, ResolvedWorkspaces, T> {
     #[tracing::instrument(skip(self))]
     fn connect_internal_dependencies(
         &mut self,
-        package_manager: PackageManager,
+        package_manager: &PackageManager,
     ) -> Result<(), Error> {
         let npmrc = match package_manager {
-            PackageManager::Pnpm | PackageManager::Pnpm6 => {
+            PackageManager::Pnpm | PackageManager::Pnpm6 | PackageManager::Pnpm9 => {
                 let npmrc_path = self.repo_root.join_component(".npmrc");
                 match npmrc_path.read_existing_to_string().ok().flatten() {
                     Some(contents) => NpmRc::from_reader(contents.as_bytes()).ok(),
@@ -441,15 +444,15 @@ impl<'a, T: PackageDiscovery> BuildState<'a, ResolvedWorkspaces, T> {
             .discover_packages()
             .await?
             .package_manager;
-        self.connect_internal_dependencies(package_manager)?;
+        self.connect_internal_dependencies(&package_manager)?;
 
         let lockfile = match self.populate_lockfile().await {
             Ok(lockfile) => Some(lockfile),
             Err(e) => {
                 warn!(
                     "Issues occurred when constructing package graph. Turbo will function, but \
-                     some features may not be available: {}",
-                    e
+                     some features may not be available:\n {:?}",
+                    Report::new(e)
                 );
                 None
             }
@@ -562,7 +565,7 @@ impl Dependencies {
         repo_root: &AbsoluteSystemPath,
         workspace_json_path: &AnchoredSystemPathBuf,
         workspaces: &HashMap<PackageName, PackageInfo>,
-        package_manager: PackageManager,
+        package_manager: &PackageManager,
         npmrc: Option<&NpmRc>,
         dependencies: I,
     ) -> Self {
