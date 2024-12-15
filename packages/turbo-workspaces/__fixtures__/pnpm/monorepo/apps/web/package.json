@@ -1,11 +1,9 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "ui": "workspace:*"
-  },
-  "devDependencies": {
-    "tsconfig": "workspace:*"
-  }
+	"name": "web",
+	"dependencies": {
+		"ui": "workspace:*"
+	},
+	"devDependencies": {
+		"tsconfig": "workspace:*"
+	}
 }

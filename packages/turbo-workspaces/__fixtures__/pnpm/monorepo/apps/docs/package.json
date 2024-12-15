@@ -1,11 +1,9 @@
 {
-  "name": "docs",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "ui": "workspace:*"
-  },
-  "devDependencies": {
-    "tsconfig": "workspace:*"
-  }
+	"name": "docs",
+	"dependencies": {
+		"ui": "workspace:*"
+	},
+	"devDependencies": {
+		"tsconfig": "workspace:*"
+	}
 }

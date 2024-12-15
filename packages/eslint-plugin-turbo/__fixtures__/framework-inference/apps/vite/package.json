@@ -1,10 +1,7 @@
 {
-  "name": "vite",
-  "dependencies": {
-    "vite": "*"
-  },
-  "devDependencies": {
-    "eslint": "8.57.0",
-    "eslint-plugin-turbo": "../../../../"
-  }
+	"name": "vite",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint-plugin-turbo": "../../../../"
+	}
 }

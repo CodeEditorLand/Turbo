@@ -1,0 +1,7 @@
+{
+	"name": "stacktrace-parser",
+	"main": "index.js",
+	"types": "index.d.ts",
+	"dependencies": {},
+	"devDependencies": {}
+}

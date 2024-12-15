@@ -1,8 +1,9 @@
 {
-  "name": "@turbo/exe-stub",
-  "description": "Stub for turbo.exe",
-  "private": true,
-  "scripts": {
-    "build": "bash build.sh"
-  }
+	"name": "@turbo/exe-stub",
+	"description": "Stub for turbo.exe",
+	"scripts": {
+		"build": "bash build.sh"
+	},
+	"dependencies": {},
+	"devDependencies": {}
 }

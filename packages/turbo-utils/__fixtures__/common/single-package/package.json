@@ -1,3 +1,5 @@
 {
-  "name": "single-package"
+	"name": "single-package",
+	"dependencies": {},
+	"devDependencies": {}
 }

@@ -1,11 +1,9 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "ui": "*"
-  },
-  "devDependencies": {
-    "tsconfig": "*"
-  }
+	"name": "web",
+	"dependencies": {
+		"ui": "*"
+	},
+	"devDependencies": {
+		"tsconfig": "*"
+	}
 }

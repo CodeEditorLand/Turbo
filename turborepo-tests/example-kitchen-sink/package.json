@@ -1,10 +1,9 @@
 {
-  "name": "@turborepo-examples-tests/kitchen-sink",
-  "scripts": {
-    "test": "bash ./node_modules/turborepo-tests-helpers/setup_example_test.sh kitchen-sink pnpm"
-  },
-  "dependencies": {
-    "turborepo-tests-helpers": "workspace:*",
-    "turborepo-examples": "workspace:*"
-  }
+	"name": "@turborepo-examples-tests/kitchen-sink",
+	"scripts": {},
+	"dependencies": {
+		"turborepo-examples": "workspace:*",
+		"turborepo-tests-helpers": "workspace:*"
+	},
+	"devDependencies": {}
 }

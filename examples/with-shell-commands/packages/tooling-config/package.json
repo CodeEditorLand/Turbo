@@ -1,4 +1,6 @@
 {
-  "name": "tooling-config",
-  "description": "A package used by every other package."
+	"name": "tooling-config",
+	"description": "A package used by every other package.",
+	"dependencies": {},
+	"devDependencies": {}
 }

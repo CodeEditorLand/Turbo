@@ -1,8 +1,0 @@
-{
-  "extends": ["//"],
-
-  "tasks": {
-    "omit-keys-task": {},
-    "omit-keys-task-with-deps": {}
-  }
-}

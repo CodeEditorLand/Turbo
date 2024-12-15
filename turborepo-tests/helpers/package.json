@@ -1,9 +1,8 @@
 {
-  "name": "turborepo-tests-helpers",
-  "scripts": {
-    "test": ""
-  },
-  "dependencies": {
-    "@turbo/workspaces": "workspace:*"
-  }
+	"name": "turborepo-tests-helpers",
+	"scripts": {},
+	"dependencies": {
+		"@turbo/workspaces": "workspace:*"
+	},
+	"devDependencies": {}
 }

@@ -1,6 +1,7 @@
 {
-  "name": "prysk",
-  "description": "Wraps the python test runner prysk",
-  "private": true,
-  "bin": "index.mjs"
+	"name": "prysk",
+	"description": "Wraps the python test runner prysk",
+	"bin": "index.mjs",
+	"dependencies": {},
+	"devDependencies": {}
 }

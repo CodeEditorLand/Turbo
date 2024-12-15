@@ -1,9 +1,0 @@
-{
-  "extends": ["//"],
-
-  "tasks": {
-    "added-task": {
-      "outputs": ["out/**"]
-    }
-  }
-}

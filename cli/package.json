@@ -1,10 +1,10 @@
 {
-  "name": "cli",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "clean": "cargo clean --package turbo",
-    "build": "cargo build --package turbo",
-    "build:release": "cargo build --package turbo --profile release-turborepo"
-  }
+	"name": "cli",
+	"scripts": {
+		"build": "cargo build --package turbo",
+		"build:release": "cargo build --package turbo --profile release-turborepo",
+		"clean": "cargo clean --package turbo"
+	},
+	"dependencies": {},
+	"devDependencies": {}
 }
