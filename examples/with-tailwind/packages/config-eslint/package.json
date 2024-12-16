@@ -2,7 +2,7 @@
 	"name": "@repo/eslint-config",
 	"dependencies": {},
 	"devDependencies": {
-		"@vercel/style-guide": "^5.2.0",
-		"eslint-config-turbo": "^2.0.0"
+		"@vercel/style-guide": "5.2.0",
+		"eslint-config-turbo": "2.0.0"
 	}
 }

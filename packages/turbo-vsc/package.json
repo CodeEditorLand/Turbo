@@ -56,12 +56,12 @@
 		"workspaceContains:**/turbo.json"
 	],
 	"dependencies": {
-		"jsonc-parser": "^3.2.0"
+		"jsonc-parser": "3.2.0"
 	},
 	"devDependencies": {
 		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "^20.9.0",
-		"esbuild": "^0.15.0"
+		"@types/node": "20.9.0",
+		"esbuild": "0.15.0"
 	},
 	"icon": "resources/icon.png",
 	"capabilities": {

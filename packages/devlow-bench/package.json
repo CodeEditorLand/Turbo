@@ -21,20 +21,20 @@
 		"prerelease": "pnpm run build:ts"
 	},
 	"dependencies": {
-		"@datadog/datadog-api-client": "^1.13.0",
+		"@datadog/datadog-api-client": "1.13.0",
 		"chalk": "2.4.2",
-		"inquirer": "^9.2.7",
-		"minimist": "^1.2.8",
-		"pidusage-tree": "^2.0.5",
-		"playwright-chromium": "^1.39.0",
-		"split2": "^4.2.0",
-		"tree-kill": "^1.2.2"
+		"inquirer": "9.2.7",
+		"minimist": "1.2.8",
+		"pidusage-tree": "2.0.5",
+		"playwright-chromium": "1.39.0",
+		"split2": "4.2.0",
+		"tree-kill": "1.2.2"
 	},
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
-		"@types/inquirer": "^9.0.3",
-		"@types/minimist": "^1.2.2",
-		"@types/node": "^20.3.0",
-		"@types/split2": "^4.2.0"
+		"@types/inquirer": "9.0.3",
+		"@types/minimist": "1.2.2",
+		"@types/node": "20.3.0",
+		"@types/split2": "4.2.0"
 	}
 }

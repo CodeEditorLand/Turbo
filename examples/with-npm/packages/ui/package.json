@@ -11,7 +11,7 @@
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@turbo/gen": "^1.12.4",
-		"@types/node": "^20.11.24"
+		"@turbo/gen": "1.12.4",
+		"@types/node": "20.11.24"
 	}
 }

@@ -8,12 +8,12 @@
 	"dependencies": {
 		"@repo/typeorm-service": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"next": "^14.1.1",
-		"typeorm": "^0.3.20"
+		"next": "14.1.1",
+		"typeorm": "0.3.20"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^20.11.24"
+		"@types/node": "20.11.24"
 	}
 }

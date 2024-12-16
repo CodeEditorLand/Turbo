@@ -6,10 +6,10 @@
 	},
 	"scripts": {},
 	"dependencies": {
-		"loader-runner": "^4.3.0"
+		"loader-runner": "4.3.0"
 	},
 	"devDependencies": {
-		"@types/loader-runner": "^2.2.4",
-		"@types/node": "^18.11.11"
+		"@types/loader-runner": "2.2.4",
+		"@types/node": "18.11.11"
 	}
 }

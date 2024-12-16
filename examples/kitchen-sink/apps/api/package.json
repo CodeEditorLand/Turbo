@@ -11,20 +11,20 @@
 	},
 	"dependencies": {
 		"@repo/logger": "workspace:*",
-		"body-parser": "^1.20.2",
-		"cors": "^2.8.5",
-		"morgan": "^1.10.0"
+		"body-parser": "1.20.2",
+		"cors": "2.8.5",
+		"morgan": "1.10.0"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-presets": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/body-parser": "^1.19.5",
-		"@types/cors": "^2.8.17",
-		"@types/morgan": "^1.9.9",
-		"@types/node": "^20.11.24",
-		"@types/supertest": "^6.0.2",
-		"supertest": "^6.3.4",
-		"tsup": "^8.0.2"
+		"@types/body-parser": "1.19.5",
+		"@types/cors": "2.8.17",
+		"@types/morgan": "1.9.9",
+		"@types/node": "20.11.24",
+		"@types/supertest": "6.0.2",
+		"supertest": "6.3.4",
+		"tsup": "8.0.2"
 	}
 }

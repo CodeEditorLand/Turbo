@@ -7,11 +7,11 @@
 	},
 	"dependencies": {
 		"@repo/ui": "*",
-		"next": "^14.1.1"
+		"next": "14.1.1"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@types/node": "^20.11.24"
+		"@types/node": "20.11.24"
 	}
 }

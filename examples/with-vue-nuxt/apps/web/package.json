@@ -11,11 +11,11 @@
 		"ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@rushstack/eslint-patch": "^1.7.2",
-		"@tsconfig/node18": "^18.2.2",
-		"@types/node": "^20.11.24",
+		"@rushstack/eslint-patch": "1.7.2",
+		"@tsconfig/node18": "18.2.2",
+		"@types/node": "20.11.24",
 		"eslint-config-custom": "workspace:*",
-		"npm-run-all2": "^6.1.2",
+		"npm-run-all2": "6.1.2",
 		"tsconfig": "workspace:*"
 	}
 }

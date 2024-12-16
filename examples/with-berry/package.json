@@ -11,6 +11,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"eslint-config-custom": "*",
-		"turbo": "^2.0.3"
+		"turbo": "2.0.3"
 	}
 }

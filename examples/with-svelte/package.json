@@ -6,6 +6,6 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"turbo": "^2.0.8"
+		"turbo": "2.0.8"
 	}
 }

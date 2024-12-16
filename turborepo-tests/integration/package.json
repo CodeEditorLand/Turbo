@@ -12,6 +12,6 @@
 		"turborepo-tests-helpers": "workspace:*"
 	},
 	"devDependencies": {
-		"cross-env": "^7.0.3"
+		"cross-env": "7.0.3"
 	}
 }
