@@ -1,13 +1,13 @@
 #[macro_export]
 macro_rules! register {
-    () => {
-        lazy_static::lazy_static! {
-            static ref REGISTER: () = {
-                turbo_tasks::register();
-                include!(concat!(env!("OUT_DIR"), "/register_test_", module_path!(), ".rs"));
-            };
-        }
-    };
+	() => {
+		lazy_static::lazy_static! {
+			static ref REGISTER: () = {
+				turbo_tasks::register();
+				include!(concat!(env!("OUT_DIR"), "/register_test_", module_path!(), ".rs"));
+			};
+		}
+	};
 }
 
 #[macro_export]

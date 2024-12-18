@@ -23,13 +23,13 @@ mod root_query;
 mod tests;
 mod uppers;
 
-pub use aggregation_data::{aggregation_data, prepare_aggregation_data, AggregationDataGuard};
+pub use aggregation_data::{AggregationDataGuard, aggregation_data, prepare_aggregation_data};
 use balance_edge::balance_edge;
 use increase::increase_aggregation_number_internal;
 pub use new_edge::handle_new_edge;
 use notify_lost_follower::notify_lost_follower;
 use notify_new_follower::notify_new_follower;
-pub use root_query::{query_root_info, RootQuery};
+pub use root_query::{RootQuery, query_root_info};
 
 use self::balance_queue::BalanceQueue;
 
@@ -38,198 +38,187 @@ type StackVec<I> = SmallVec<[I; 16]>;
 /// The aggregation node structure. This stores the aggregation number, the
 /// aggregation edges to uppers and followers and the aggregated data.
 pub enum AggregationNode<I, D> {
-    Leaf {
-        aggregation_number: u8,
-        uppers: CountHashSet<I>,
-    },
-    Aggegating(Box<AggegatingNode<I, D>>),
+	Leaf { aggregation_number:u8, uppers:CountHashSet<I> },
+	Aggegating(Box<AggegatingNode<I, D>>),
 }
 
 impl<I, D> AggregationNode<I, D> {
-    pub fn new() -> Self {
-        Self::Leaf {
-            aggregation_number: 0,
-            uppers: CountHashSet::new(),
-        }
-    }
+	pub fn new() -> Self { Self::Leaf { aggregation_number:0, uppers:CountHashSet::new() } }
 }
 
 /// The aggregation node structure for aggregating nodes.
 pub struct AggegatingNode<I, D> {
-    aggregation_number: u32,
-    uppers: CountHashSet<I>,
-    followers: CountHashSet<I>,
-    data: D,
-    enqueued_balancing: Vec<(I, u32, I, u32)>,
+	aggregation_number:u32,
+	uppers:CountHashSet<I>,
+	followers:CountHashSet<I>,
+	data:D,
+	enqueued_balancing:Vec<(I, u32, I, u32)>,
 }
 
 impl<I, A> AggregationNode<I, A> {
-    /// Returns the aggregation number of the node.
-    pub fn aggregation_number(&self) -> u32 {
-        match self {
-            AggregationNode::Leaf {
-                aggregation_number, ..
-            } => *aggregation_number as u32,
-            AggregationNode::Aggegating(aggegating) => aggegating.aggregation_number,
-        }
-    }
+	/// Returns the aggregation number of the node.
+	pub fn aggregation_number(&self) -> u32 {
+		match self {
+			AggregationNode::Leaf { aggregation_number, .. } => *aggregation_number as u32,
+			AggregationNode::Aggegating(aggegating) => aggegating.aggregation_number,
+		}
+	}
 
-    fn is_leaf(&self) -> bool {
-        matches!(self, AggregationNode::Leaf { .. })
-    }
+	fn is_leaf(&self) -> bool { matches!(self, AggregationNode::Leaf { .. }) }
 
-    fn uppers(&self) -> &CountHashSet<I> {
-        match self {
-            AggregationNode::Leaf { uppers, .. } => uppers,
-            AggregationNode::Aggegating(aggegating) => &aggegating.uppers,
-        }
-    }
+	fn uppers(&self) -> &CountHashSet<I> {
+		match self {
+			AggregationNode::Leaf { uppers, .. } => uppers,
+			AggregationNode::Aggegating(aggegating) => &aggegating.uppers,
+		}
+	}
 
-    fn uppers_mut(&mut self) -> &mut CountHashSet<I> {
-        match self {
-            AggregationNode::Leaf { uppers, .. } => uppers,
-            AggregationNode::Aggegating(aggegating) => &mut aggegating.uppers,
-        }
-    }
+	fn uppers_mut(&mut self) -> &mut CountHashSet<I> {
+		match self {
+			AggregationNode::Leaf { uppers, .. } => uppers,
+			AggregationNode::Aggegating(aggegating) => &mut aggegating.uppers,
+		}
+	}
 
-    fn followers(&self) -> Option<&CountHashSet<I>> {
-        match self {
-            AggregationNode::Leaf { .. } => None,
-            AggregationNode::Aggegating(aggegating) => Some(&aggegating.followers),
-        }
-    }
+	fn followers(&self) -> Option<&CountHashSet<I>> {
+		match self {
+			AggregationNode::Leaf { .. } => None,
+			AggregationNode::Aggegating(aggegating) => Some(&aggegating.followers),
+		}
+	}
 }
 
 /// A prepared operation. Must be applied outside of node locks.
 #[must_use]
-pub trait PreparedOperation<C: AggregationContext> {
-    type Result;
-    fn apply(self, ctx: &C) -> Self::Result;
+pub trait PreparedOperation<C:AggregationContext> {
+	type Result;
+	fn apply(self, ctx:&C) -> Self::Result;
 }
 
-impl<C: AggregationContext, T: PreparedOperation<C>> PreparedOperation<C> for Option<T> {
-    type Result = Option<T::Result>;
-    fn apply(self, ctx: &C) -> Self::Result {
-        self.map(|prepared| prepared.apply(ctx))
-    }
+impl<C:AggregationContext, T:PreparedOperation<C>> PreparedOperation<C> for Option<T> {
+	type Result = Option<T::Result>;
+
+	fn apply(self, ctx:&C) -> Self::Result { self.map(|prepared| prepared.apply(ctx)) }
 }
 
-impl<C: AggregationContext, T: PreparedOperation<C>> PreparedOperation<C> for Vec<T> {
-    type Result = ();
-    fn apply(self, ctx: &C) -> Self::Result {
-        for prepared in self {
-            prepared.apply(ctx);
-        }
-    }
+impl<C:AggregationContext, T:PreparedOperation<C>> PreparedOperation<C> for Vec<T> {
+	type Result = ();
+
+	fn apply(self, ctx:&C) -> Self::Result {
+		for prepared in self {
+			prepared.apply(ctx);
+		}
+	}
 }
 
-impl<C: AggregationContext, T: PreparedOperation<C>, const N: usize> PreparedOperation<C>
-    for SmallVec<[T; N]>
+impl<C:AggregationContext, T:PreparedOperation<C>, const N: usize> PreparedOperation<C>
+	for SmallVec<[T; N]>
 {
-    type Result = ();
-    fn apply(self, ctx: &C) -> Self::Result {
-        for prepared in self {
-            prepared.apply(ctx);
-        }
-    }
+	type Result = ();
+
+	fn apply(self, ctx:&C) -> Self::Result {
+		for prepared in self {
+			prepared.apply(ctx);
+		}
+	}
 }
 
 /// A prepared internal operation. Must be applied inside of node locks and with
 /// a balance queue.
 #[must_use]
-trait PreparedInternalOperation<C: AggregationContext> {
-    type Result;
-    fn apply(self, ctx: &C, balance_queue: &mut BalanceQueue<C::NodeRef>) -> Self::Result;
+trait PreparedInternalOperation<C:AggregationContext> {
+	type Result;
+	fn apply(self, ctx:&C, balance_queue:&mut BalanceQueue<C::NodeRef>) -> Self::Result;
 }
 
-impl<C: AggregationContext, T: PreparedInternalOperation<C>> PreparedInternalOperation<C>
-    for Option<T>
+impl<C:AggregationContext, T:PreparedInternalOperation<C>> PreparedInternalOperation<C>
+	for Option<T>
 {
-    type Result = Option<T::Result>;
-    fn apply(self, ctx: &C, balance_queue: &mut BalanceQueue<C::NodeRef>) -> Self::Result {
-        self.map(|prepared| prepared.apply(ctx, balance_queue))
-    }
+	type Result = Option<T::Result>;
+
+	fn apply(self, ctx:&C, balance_queue:&mut BalanceQueue<C::NodeRef>) -> Self::Result {
+		self.map(|prepared| prepared.apply(ctx, balance_queue))
+	}
 }
 
-impl<C: AggregationContext, T: PreparedInternalOperation<C>> PreparedInternalOperation<C>
-    for Vec<T>
-{
-    type Result = ();
-    fn apply(self, ctx: &C, balance_queue: &mut BalanceQueue<C::NodeRef>) -> Self::Result {
-        for prepared in self {
-            prepared.apply(ctx, balance_queue);
-        }
-    }
+impl<C:AggregationContext, T:PreparedInternalOperation<C>> PreparedInternalOperation<C> for Vec<T> {
+	type Result = ();
+
+	fn apply(self, ctx:&C, balance_queue:&mut BalanceQueue<C::NodeRef>) -> Self::Result {
+		for prepared in self {
+			prepared.apply(ctx, balance_queue);
+		}
+	}
 }
 
-impl<C: AggregationContext, T: PreparedInternalOperation<C>, const N: usize>
-    PreparedInternalOperation<C> for SmallVec<[T; N]>
+impl<C:AggregationContext, T:PreparedInternalOperation<C>, const N: usize>
+	PreparedInternalOperation<C> for SmallVec<[T; N]>
 {
-    type Result = ();
-    fn apply(self, ctx: &C, balance_queue: &mut BalanceQueue<C::NodeRef>) -> Self::Result {
-        for prepared in self {
-            prepared.apply(ctx, balance_queue);
-        }
-    }
+	type Result = ();
+
+	fn apply(self, ctx:&C, balance_queue:&mut BalanceQueue<C::NodeRef>) -> Self::Result {
+		for prepared in self {
+			prepared.apply(ctx, balance_queue);
+		}
+	}
 }
 
 /// Context for aggregation operations.
 pub trait AggregationContext {
-    type NodeRef: Clone + Eq + Hash + Debug;
-    type Guard<'l>: AggregationNodeGuard<
-        NodeRef = Self::NodeRef,
-        Data = Self::Data,
-        DataChange = Self::DataChange,
-    >
-    where
-        Self: 'l;
-    type Data;
-    type DataChange;
+	type NodeRef: Clone + Eq + Hash + Debug;
+	type Guard<'l>: AggregationNodeGuard<
+			NodeRef = Self::NodeRef,
+			Data = Self::Data,
+			DataChange = Self::DataChange,
+		>
+	where
+		Self: 'l;
+	type Data;
+	type DataChange;
 
-    /// Gets mutable access to an item.
-    fn node<'l>(&'l self, id: &Self::NodeRef) -> Self::Guard<'l>;
+	/// Gets mutable access to an item.
+	fn node<'l>(&'l self, id:&Self::NodeRef) -> Self::Guard<'l>;
 
-    /// Get the atomic in progress counter for a node.
-    fn atomic_in_progress_counter<'l>(&self, id: &'l Self::NodeRef) -> &'l AtomicU32
-    where
-        Self: 'l;
+	/// Get the atomic in progress counter for a node.
+	fn atomic_in_progress_counter<'l>(&self, id:&'l Self::NodeRef) -> &'l AtomicU32
+	where
+		Self: 'l;
 
-    /// Apply a changeset to an aggregated data object. Returns a new changeset
-    /// that should be applied to the next aggregation level. Might return None,
-    /// if no change should be applied to the next level.
-    fn apply_change(
-        &self,
-        data: &mut Self::Data,
-        change: &Self::DataChange,
-    ) -> Option<Self::DataChange>;
+	/// Apply a changeset to an aggregated data object. Returns a new changeset
+	/// that should be applied to the next aggregation level. Might return None,
+	/// if no change should be applied to the next level.
+	fn apply_change(
+		&self,
+		data:&mut Self::Data,
+		change:&Self::DataChange,
+	) -> Option<Self::DataChange>;
 
-    /// Creates a changeset from an aggregated data object, that represents
-    /// adding the aggregated node to an aggregated node of the next level.
-    fn data_to_add_change(&self, data: &Self::Data) -> Option<Self::DataChange>;
-    /// Creates a changeset from an aggregated data object, that represents
-    /// removing the aggregated node from an aggregated node of the next level.
-    fn data_to_remove_change(&self, data: &Self::Data) -> Option<Self::DataChange>;
+	/// Creates a changeset from an aggregated data object, that represents
+	/// adding the aggregated node to an aggregated node of the next level.
+	fn data_to_add_change(&self, data:&Self::Data) -> Option<Self::DataChange>;
+	/// Creates a changeset from an aggregated data object, that represents
+	/// removing the aggregated node from an aggregated node of the next level.
+	fn data_to_remove_change(&self, data:&Self::Data) -> Option<Self::DataChange>;
 }
 
 /// A guard for a node that allows to access the aggregation node, children and
 /// data.
 pub trait AggregationNodeGuard:
-    DerefMut<Target = AggregationNode<Self::NodeRef, Self::Data>>
-{
-    type NodeRef: Clone + Eq + Hash;
-    type Data;
-    type DataChange;
+	DerefMut<Target = AggregationNode<Self::NodeRef, Self::Data>> {
+	type NodeRef: Clone + Eq + Hash;
+	type Data;
+	type DataChange;
 
-    type ChildrenIter<'a>: Iterator<Item = Self::NodeRef> + 'a
-    where
-        Self: 'a;
+	type ChildrenIter<'a>: Iterator<Item = Self::NodeRef> + 'a
+	where
+		Self: 'a;
 
-    /// Returns an iterator over the children.
-    fn children(&self) -> Self::ChildrenIter<'_>;
-    /// Returns a changeset that represents the addition of the node.
-    fn get_add_change(&self) -> Option<Self::DataChange>;
-    /// Returns a changeset that represents the removal of the node.
-    fn get_remove_change(&self) -> Option<Self::DataChange>;
-    /// Returns the aggregated data which contains only that node
-    fn get_initial_data(&self) -> Self::Data;
+	/// Returns an iterator over the children.
+	fn children(&self) -> Self::ChildrenIter<'_>;
+	/// Returns a changeset that represents the addition of the node.
+	fn get_add_change(&self) -> Option<Self::DataChange>;
+	/// Returns a changeset that represents the removal of the node.
+	fn get_remove_change(&self) -> Option<Self::DataChange>;
+	/// Returns the aggregated data which contains only that node
+	fn get_initial_data(&self) -> Self::Data;
 }

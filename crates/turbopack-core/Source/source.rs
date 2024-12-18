@@ -6,9 +6,9 @@ use crate::{asset::Asset, ident::AssetIdent};
 /// [AssetContext]. All [Source]s have content and an identifier.
 #[turbo_tasks::value_trait]
 pub trait Source: Asset {
-    /// The identifier of the [Source]. It's expected to be unique and capture
-    /// all properties of the [Source].
-    fn ident(&self) -> Vc<AssetIdent>;
+	/// The identifier of the [Source]. It's expected to be unique and capture
+	/// all properties of the [Source].
+	fn ident(&self) -> Vc<AssetIdent>;
 }
 
 #[turbo_tasks::value(transparent)]

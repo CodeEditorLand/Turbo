@@ -1,4 +1,4 @@
-use swc_core::common::{source_map::SourceMapGenConfig, FileName};
+use swc_core::common::{FileName, source_map::SourceMapGenConfig};
 use turbopack_core::SOURCE_MAP_PREFIX;
 
 /// A config to generate a source map which includes the source content of every
@@ -7,14 +7,12 @@ use turbopack_core::SOURCE_MAP_PREFIX;
 pub struct InlineSourcesContentConfig {}
 
 impl SourceMapGenConfig for InlineSourcesContentConfig {
-    fn file_name_to_source(&self, f: &FileName) -> String {
-        match f {
-            FileName::Custom(s) => format!("{SOURCE_MAP_PREFIX}{s}"),
-            _ => f.to_string(),
-        }
-    }
+	fn file_name_to_source(&self, f:&FileName) -> String {
+		match f {
+			FileName::Custom(s) => format!("{SOURCE_MAP_PREFIX}{s}"),
+			_ => f.to_string(),
+		}
+	}
 
-    fn inline_sources_content(&self, _f: &FileName) -> bool {
-        true
-    }
+	fn inline_sources_content(&self, _f:&FileName) -> bool { true }
 }

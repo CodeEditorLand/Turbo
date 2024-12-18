@@ -8,12 +8,12 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct JestRunResult {
-    pub test_results: Vec<JestTestResult>,
+	pub test_results:Vec<JestTestResult>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct JestTestResult {
-    pub test_path: Vec<String>,
-    pub errors: Vec<String>,
+	pub test_path:Vec<String>,
+	pub errors:Vec<String>,
 }

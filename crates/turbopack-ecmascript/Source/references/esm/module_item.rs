@@ -2,20 +2,30 @@ use std::mem::replace;
 
 use anyhow::Result;
 use swc_core::{
-    common::DUMMY_SP,
-    ecma::ast::{
-        ClassDecl, Decl, DefaultDecl, ExportDecl, ExportDefaultDecl, ExportDefaultExpr, FnDecl,
-        Ident, ModuleDecl, ModuleItem, Stmt,
-    },
-    quote,
+	common::DUMMY_SP,
+	ecma::ast::{
+		ClassDecl,
+		Decl,
+		DefaultDecl,
+		ExportDecl,
+		ExportDefaultDecl,
+		ExportDefaultExpr,
+		FnDecl,
+		Ident,
+		ModuleDecl,
+		ModuleItem,
+		Stmt,
+	},
+	quote,
 };
 use turbo_tasks::Vc;
 use turbopack_core::chunk::ChunkingContext;
 
 use crate::{
-    code_gen::{CodeGenerateable, CodeGeneration},
-    create_visitor, magic_identifier,
-    references::AstPath,
+	code_gen::{CodeGenerateable, CodeGeneration},
+	create_visitor,
+	magic_identifier,
+	references::AstPath,
 };
 
 /// Makes code changes to remove export/import declarations and places the
@@ -24,28 +34,26 @@ use crate::{
 #[turbo_tasks::value]
 #[derive(Hash, Debug)]
 pub struct EsmModuleItem {
-    pub path: Vc<AstPath>,
+	pub path:Vc<AstPath>,
 }
 
 #[turbo_tasks::value_impl]
 impl EsmModuleItem {
-    #[turbo_tasks::function]
-    pub fn new(path: Vc<AstPath>) -> Vc<Self> {
-        Self::cell(EsmModuleItem { path })
-    }
+	#[turbo_tasks::function]
+	pub fn new(path:Vc<AstPath>) -> Vc<Self> { Self::cell(EsmModuleItem { path }) }
 }
 
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for EsmModuleItem {
-    #[turbo_tasks::function]
-    async fn code_generation(
-        &self,
-        _context: Vc<Box<dyn ChunkingContext>>,
-    ) -> Result<Vc<CodeGeneration>> {
-        let mut visitors = Vec::new();
+	#[turbo_tasks::function]
+	async fn code_generation(
+		&self,
+		_context:Vc<Box<dyn ChunkingContext>>,
+	) -> Result<Vc<CodeGeneration>> {
+		let mut visitors = Vec::new();
 
-        let path = &self.path.await?;
-        visitors.push(
+		let path = &self.path.await?;
+		visitors.push(
             create_visitor!(path, visit_mut_module_item(module_item: &mut ModuleItem) {
                 let item = replace(module_item, ModuleItem::Stmt(quote!(";" as Stmt)));
                 if let ModuleItem::ModuleDecl(module_decl) = item {
@@ -103,6 +111,6 @@ impl CodeGenerateable for EsmModuleItem {
             }),
         );
 
-        Ok(CodeGeneration { visitors }.into())
-    }
+		Ok(CodeGeneration { visitors }.into())
+	}
 }

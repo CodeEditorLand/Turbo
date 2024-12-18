@@ -23,7 +23,7 @@
 
 use std::{future::Future, marker::PhantomData, pin::Pin};
 
-use anyhow::{bail, Context, Result};
+use anyhow::{Context, Result, bail};
 
 use super::{TaskInput, TaskOutput};
 use crate::{ConcreteTaskInput, RawVc, Vc, VcRead, VcValueType};
@@ -32,51 +32,47 @@ pub type NativeTaskFuture = Pin<Box<dyn Future<Output = Result<RawVc>> + Send>>;
 pub type NativeTaskFn = Box<dyn Fn() -> NativeTaskFuture + Send + Sync>;
 
 pub trait TaskFn: Send + Sync + 'static {
-    fn functor(&self, inputs: &[ConcreteTaskInput]) -> Result<NativeTaskFn>;
+	fn functor(&self, inputs:&[ConcreteTaskInput]) -> Result<NativeTaskFn>;
 }
 
 pub trait IntoTaskFn<Mode, Inputs> {
-    type TaskFn: TaskFn;
+	type TaskFn: TaskFn;
 
-    fn into_task_fn(self) -> Self::TaskFn;
+	fn into_task_fn(self) -> Self::TaskFn;
 }
 
 impl<F, Mode, Inputs> IntoTaskFn<Mode, Inputs> for F
 where
-    F: TaskFnInputFunction<Mode, Inputs>,
-    Mode: TaskFnMode,
-    Inputs: TaskInputs,
+	F: TaskFnInputFunction<Mode, Inputs>,
+	Mode: TaskFnMode,
+	Inputs: TaskInputs,
 {
-    type TaskFn = FunctionTaskFn<F, Mode, Inputs>;
+	type TaskFn = FunctionTaskFn<F, Mode, Inputs>;
 
-    fn into_task_fn(self) -> Self::TaskFn {
-        FunctionTaskFn {
-            task_fn: self,
-            mode: PhantomData,
-            inputs: PhantomData,
-        }
-    }
+	fn into_task_fn(self) -> Self::TaskFn {
+		FunctionTaskFn { task_fn:self, mode:PhantomData, inputs:PhantomData }
+	}
 }
 
-pub struct FunctionTaskFn<F, Mode: TaskFnMode, Inputs: TaskInputs> {
-    task_fn: F,
-    mode: PhantomData<Mode>,
-    inputs: PhantomData<Inputs>,
+pub struct FunctionTaskFn<F, Mode:TaskFnMode, Inputs:TaskInputs> {
+	task_fn:F,
+	mode:PhantomData<Mode>,
+	inputs:PhantomData<Inputs>,
 }
 
 impl<F, Mode, Inputs> TaskFn for FunctionTaskFn<F, Mode, Inputs>
 where
-    F: TaskFnInputFunction<Mode, Inputs>,
-    Mode: TaskFnMode,
-    Inputs: TaskInputs,
+	F: TaskFnInputFunction<Mode, Inputs>,
+	Mode: TaskFnMode,
+	Inputs: TaskInputs,
 {
-    fn functor(&self, inputs: &[ConcreteTaskInput]) -> Result<NativeTaskFn> {
-        TaskFnInputFunction::functor(&self.task_fn, inputs)
-    }
+	fn functor(&self, inputs:&[ConcreteTaskInput]) -> Result<NativeTaskFn> {
+		TaskFnInputFunction::functor(&self.task_fn, inputs)
+	}
 }
 
-trait TaskFnInputFunction<Mode: TaskFnMode, Inputs: TaskInputs>: Send + Sync + Clone + 'static {
-    fn functor(&self, inputs: &[ConcreteTaskInput]) -> Result<NativeTaskFn>;
+trait TaskFnInputFunction<Mode:TaskFnMode, Inputs:TaskInputs>: Send + Sync + Clone + 'static {
+	fn functor(&self, inputs:&[ConcreteTaskInput]) -> Result<NativeTaskFn>;
 }
 
 pub trait TaskInputs: Send + Sync + 'static {}
@@ -110,9 +106,9 @@ macro_rules! task_inputs_impl {
 }
 
 macro_rules! as_concrete_task_input {
-    ( $arg:ident ) => {
-        ConcreteTaskInput
-    };
+	($arg:ident) => {
+		ConcreteTaskInput
+	};
 }
 
 macro_rules! task_fn_impl {
@@ -335,130 +331,107 @@ task_inputs_impl! { A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 A14 A15 A16 }
 task_inputs_impl! { A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 A14 A15 A16 A17 }
 
 fn next_arg<'a>(
-    iter: &mut std::slice::Iter<'a, ConcreteTaskInput>,
-    arg_name: &'static str,
+	iter:&mut std::slice::Iter<'a, ConcreteTaskInput>,
+	arg_name:&'static str,
 ) -> Result<&'a ConcreteTaskInput> {
-    iter.next()
-        .with_context(move || format!("task is missing argument {}", arg_name))
+	iter.next()
+		.with_context(move || format!("task is missing argument {}", arg_name))
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use crate::{RcStr, VcCellNewMode, VcDefaultRead};
+	use super::*;
+	use crate::{RcStr, VcCellNewMode, VcDefaultRead};
 
-    #[test]
-    fn test_task_fn() {
-        fn no_args() -> crate::Vc<i32> {
-            todo!()
-        }
+	#[test]
+	fn test_task_fn() {
+		fn no_args() -> crate::Vc<i32> { todo!() }
 
-        fn one_arg(_a: i32) -> crate::Vc<i32> {
-            todo!()
-        }
+		fn one_arg(_a:i32) -> crate::Vc<i32> { todo!() }
 
-        async fn async_one_arg(_a: i32) -> crate::Vc<i32> {
-            todo!()
-        }
+		async fn async_one_arg(_a:i32) -> crate::Vc<i32> { todo!() }
 
-        fn with_recv(_a: &i32) -> crate::Vc<i32> {
-            todo!()
-        }
+		fn with_recv(_a:&i32) -> crate::Vc<i32> { todo!() }
 
-        async fn async_with_recv(_a: &i32) -> crate::Vc<i32> {
-            todo!()
-        }
+		async fn async_with_recv(_a:&i32) -> crate::Vc<i32> { todo!() }
 
-        fn with_recv_and_str(_a: &i32, _s: RcStr) -> crate::Vc<i32> {
-            todo!()
-        }
+		fn with_recv_and_str(_a:&i32, _s:RcStr) -> crate::Vc<i32> { todo!() }
 
-        async fn async_with_recv_and_str(_a: &i32, _s: RcStr) -> crate::Vc<i32> {
-            todo!()
-        }
+		async fn async_with_recv_and_str(_a:&i32, _s:RcStr) -> crate::Vc<i32> { todo!() }
 
-        async fn async_with_recv_and_str_and_result(_a: &i32, _s: RcStr) -> Result<crate::Vc<i32>> {
-            todo!()
-        }
+		async fn async_with_recv_and_str_and_result(_a:&i32, _s:RcStr) -> Result<crate::Vc<i32>> {
+			todo!()
+		}
 
-        fn accepts_task_fn<F>(_task_fn: F)
-        where
-            F: TaskFn,
-        {
-        }
+		fn accepts_task_fn<F>(_task_fn:F)
+		where
+			F: TaskFn, {
+		}
 
-        struct Struct;
-        impl Struct {
-            async fn inherent_method(&self) {}
-        }
+		struct Struct;
+		impl Struct {
+			async fn inherent_method(&self) {}
+		}
 
-        unsafe impl VcValueType for Struct {
-            type Read = VcDefaultRead<Struct>;
+		unsafe impl VcValueType for Struct {
+			type CellMode = VcCellNewMode<Struct>;
+			type Read = VcDefaultRead<Struct>;
 
-            type CellMode = VcCellNewMode<Struct>;
+			fn get_value_type_id() -> crate::ValueTypeId { todo!() }
+		}
 
-            fn get_value_type_id() -> crate::ValueTypeId {
-                todo!()
-            }
-        }
+		trait AsyncTrait {
+			async fn async_method(&self);
+		}
 
-        trait AsyncTrait {
-            async fn async_method(&self);
-        }
+		impl AsyncTrait for Struct {
+			async fn async_method(&self) { todo!() }
+		}
 
-        impl AsyncTrait for Struct {
-            async fn async_method(&self) {
-                todo!()
-            }
-        }
+		// async fn async_with_recv_and_str_and_lf(
+		// _a: &i32,
+		// _s: String,
+		// ) -> Result<crate::Vc<i32>, crate::Vc<i32>> {
+		// todo!()
+		// }
+		//
+		// #[async_trait::async_trait]
+		// trait BoxAsyncTrait {
+		// async fn box_async_method(&self);
+		// }
+		//
+		// #[async_trait::async_trait]
+		// impl BoxAsyncTrait for Struct {
+		// async fn box_async_method(&self) {
+		// todo!()
+		// }
+		// }
 
-        /*
-        async fn async_with_recv_and_str_and_lf(
-            _a: &i32,
-            _s: String,
-        ) -> Result<crate::Vc<i32>, crate::Vc<i32>> {
-            todo!()
-        }
+		let _task_fn = no_args.into_task_fn();
+		accepts_task_fn(no_args.into_task_fn());
+		let _task_fn = one_arg.into_task_fn();
+		accepts_task_fn(one_arg.into_task_fn());
+		let _task_fn = async_one_arg.into_task_fn();
+		accepts_task_fn(async_one_arg.into_task_fn());
+		let task_fn = with_recv.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = async_with_recv.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = with_recv_and_str.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = async_with_recv_and_str.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = async_with_recv_and_str_and_result.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = <Struct as AsyncTrait>::async_method.into_task_fn();
+		accepts_task_fn(task_fn);
+		let task_fn = Struct::inherent_method.into_task_fn();
+		accepts_task_fn(task_fn);
 
-        #[async_trait::async_trait]
-        trait BoxAsyncTrait {
-            async fn box_async_method(&self);
-        }
-
-        #[async_trait::async_trait]
-        impl BoxAsyncTrait for Struct {
-            async fn box_async_method(&self) {
-                todo!()
-            }
-        }
-        */
-
-        let _task_fn = no_args.into_task_fn();
-        accepts_task_fn(no_args.into_task_fn());
-        let _task_fn = one_arg.into_task_fn();
-        accepts_task_fn(one_arg.into_task_fn());
-        let _task_fn = async_one_arg.into_task_fn();
-        accepts_task_fn(async_one_arg.into_task_fn());
-        let task_fn = with_recv.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = async_with_recv.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = with_recv_and_str.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = async_with_recv_and_str.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = async_with_recv_and_str_and_result.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = <Struct as AsyncTrait>::async_method.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = Struct::inherent_method.into_task_fn();
-        accepts_task_fn(task_fn);
-
-        /*
-        let task_fn = <Struct as BoxAsyncTrait>::box_async_method.into_task_fn();
-        accepts_task_fn(task_fn);
-        let task_fn = async_with_recv_and_str_and_lf.into_task_fn();
-        accepts_task_fn(task_fn);
-        */
-    }
+		// let task_fn = <Struct as
+		// BoxAsyncTrait>::box_async_method.into_task_fn();
+		// accepts_task_fn(task_fn);
+		// let task_fn = async_with_recv_and_str_and_lf.into_task_fn();
+		// accepts_task_fn(task_fn);
+	}
 }

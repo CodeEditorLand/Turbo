@@ -42,19 +42,19 @@ pub mod virtual_output;
 pub mod virtual_source;
 
 pub mod virtual_fs {
-    pub use turbo_tasks_fs::VirtualFileSystem;
+	pub use turbo_tasks_fs::VirtualFileSystem;
 }
 
-pub const PROJECT_FILESYSTEM_NAME: &str = "project";
-pub const SOURCE_MAP_PREFIX: &str = "turbopack://";
+pub const PROJECT_FILESYSTEM_NAME:&str = "project";
+pub const SOURCE_MAP_PREFIX:&str = "turbopack://";
 
 #[doc(hidden)]
 pub mod __private {
-    pub use indexmap::IndexMap;
+	pub use indexmap::IndexMap;
 }
 
 pub fn register() {
-    turbo_tasks::register();
-    turbo_tasks_fs::register();
-    include!(concat!(env!("OUT_DIR"), "/register.rs"));
+	turbo_tasks::register();
+	turbo_tasks_fs::register();
+	include!(concat!(env!("OUT_DIR"), "/register.rs"));
 }

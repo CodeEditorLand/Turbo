@@ -2,13 +2,13 @@ use once_cell::sync::OnceCell;
 
 use crate::{Log, LogCategory};
 
-static LOG_INSTANCE: OnceCell<Log> = OnceCell::new();
+static LOG_INSTANCE:OnceCell<Log> = OnceCell::new();
 
 #[doc(hidden)]
 pub fn global_log() -> &'static Log {
-    LOG_INSTANCE.get_or_init(|| {
-        Log::new_with_subsystem_and_category("com.global.Global", LogCategory::PointsOfInterest)
-    })
+	LOG_INSTANCE.get_or_init(|| {
+		Log::new_with_subsystem_and_category("com.global.Global", LogCategory::PointsOfInterest)
+	})
 }
 
 #[macro_export]

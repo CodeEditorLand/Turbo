@@ -14,50 +14,45 @@ use super::bump_timeout::BumpTimeout;
 pub struct BumpTimeoutLayer(Arc<BumpTimeout>);
 
 impl BumpTimeoutLayer {
-    #[allow(dead_code)]
-    pub fn new(timeout: Arc<BumpTimeout>) -> Self {
-        Self(timeout)
-    }
+	#[allow(dead_code)]
+	pub fn new(timeout:Arc<BumpTimeout>) -> Self { Self(timeout) }
 }
 
 impl<S> Layer<S> for BumpTimeoutLayer {
-    type Service = BumpTimeoutService<S>;
+	type Service = BumpTimeoutService<S>;
 
-    fn layer(&self, inner: S) -> Self::Service {
-        BumpTimeoutService {
-            inner,
-            timeout: self.0.clone(),
-        }
-    }
+	fn layer(&self, inner:S) -> Self::Service {
+		BumpTimeoutService { inner, timeout:self.0.clone() }
+	}
 }
 
 #[derive(Clone)]
 pub struct BumpTimeoutService<S> {
-    inner: S,
-    timeout: Arc<BumpTimeout>,
+	inner:S,
+	timeout:Arc<BumpTimeout>,
 }
 
 impl<S, Request> Service<Request> for BumpTimeoutService<S>
 where
-    S: Service<Request>,
+	S: Service<Request>,
 {
-    type Response = S::Response;
-    type Error = S::Error;
-    type Future = S::Future;
+	type Error = S::Error;
+	type Future = S::Future;
+	type Response = S::Response;
 
-    fn poll_ready(
-        &mut self,
-        cx: &mut std::task::Context<'_>,
-    ) -> std::task::Poll<Result<(), Self::Error>> {
-        self.inner.poll_ready(cx)
-    }
+	fn poll_ready(
+		&mut self,
+		cx:&mut std::task::Context<'_>,
+	) -> std::task::Poll<Result<(), Self::Error>> {
+		self.inner.poll_ready(cx)
+	}
 
-    fn call(&mut self, req: Request) -> Self::Future {
-        self.timeout.reset();
-        self.inner.call(req)
-    }
+	fn call(&mut self, req:Request) -> Self::Future {
+		self.timeout.reset();
+		self.inner.call(req)
+	}
 }
 
-impl<T: NamedService> NamedService for BumpTimeoutService<T> {
-    const NAME: &'static str = T::NAME;
+impl<T:NamedService> NamedService for BumpTimeoutService<T> {
+	const NAME:&'static str = T::NAME;
 }

@@ -13,63 +13,58 @@ use crate::chunk::containment_tree::{ContainmentTree, ContainmentTreeKey};
 struct FileSystemPathKey(Vc<FileSystemPath>);
 
 impl FileSystemPathKey {
-    async fn new(path: Vc<FileSystemPath>) -> Result<Self> {
-        Ok(Self(path.resolve().await?))
-    }
+	async fn new(path:Vc<FileSystemPath>) -> Result<Self> { Ok(Self(path.resolve().await?)) }
 }
 
 #[async_trait::async_trait]
 impl ContainmentTreeKey for FileSystemPathKey {
-    async fn parent(&self) -> Result<Self> {
-        Ok(FileSystemPathKey::new(self.0.parent()).await?)
-    }
+	async fn parent(&self) -> Result<Self> { Ok(FileSystemPathKey::new(self.0.parent()).await?) }
 }
 
 pub async fn optimize_by_common_parent<T, Acc, GetCommonParent, Optimize>(
-    chunks: &[T],
-    get_common_parent: GetCommonParent,
-    optimize: Optimize,
+	chunks:&[T],
+	get_common_parent:GetCommonParent,
+	optimize:Optimize,
 ) -> Result<Acc>
 where
-    T: Clone,
-    GetCommonParent: Fn(T) -> Vc<FileSystemPathOption> + Clone,
-    Optimize: Fn(Option<Vec<T>>, Vec<Acc>) -> Acc,
-{
-    let tree = ContainmentTree::build(
-        chunks
-            .iter()
-            .map(move |chunk| {
-                let get_common_parent = get_common_parent.clone();
-                async move {
-                    let common_parent = get_common_parent(chunk.clone()).await?;
+	T: Clone,
+	GetCommonParent: Fn(T) -> Vc<FileSystemPathOption> + Clone,
+	Optimize: Fn(Option<Vec<T>>, Vec<Acc>) -> Acc, {
+	let tree = ContainmentTree::build(
+		chunks
+			.iter()
+			.map(move |chunk| {
+				let get_common_parent = get_common_parent.clone();
+				async move {
+					let common_parent = get_common_parent(chunk.clone()).await?;
 
-                    Ok((
-                        if let Some(common_parent) = &*common_parent {
-                            Some(FileSystemPathKey::new(*common_parent).await?)
-                        } else {
-                            None
-                        },
-                        chunk.clone(),
-                    ))
-                }
-            })
-            .try_join()
-            .await?,
-    )
-    .await?;
+					Ok((
+						if let Some(common_parent) = &*common_parent {
+							Some(FileSystemPathKey::new(*common_parent).await?)
+						} else {
+							None
+						},
+						chunk.clone(),
+					))
+				}
+			})
+			.try_join()
+			.await?,
+	)
+	.await?;
 
-    fn optimize_tree<K, V, Acc>(
-        tree: ContainmentTree<K, V>,
-        optimize: &impl Fn(Option<Vec<V>>, Vec<Acc>) -> Acc,
-    ) -> Acc {
-        let children = tree
-            .children
-            .into_iter()
-            .map(|tree| optimize_tree(tree, optimize))
-            .collect::<Vec<_>>();
+	fn optimize_tree<K, V, Acc>(
+		tree:ContainmentTree<K, V>,
+		optimize:&impl Fn(Option<Vec<V>>, Vec<Acc>) -> Acc,
+	) -> Acc {
+		let children = tree
+			.children
+			.into_iter()
+			.map(|tree| optimize_tree(tree, optimize))
+			.collect::<Vec<_>>();
 
-        optimize(tree.values, children)
-    }
+		optimize(tree.values, children)
+	}
 
-    Ok(optimize_tree(tree, &optimize))
+	Ok(optimize_tree(tree, &optimize))
 }

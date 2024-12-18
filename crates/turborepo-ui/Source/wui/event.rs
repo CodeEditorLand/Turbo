@@ -7,28 +7,11 @@ use crate::tui::event::{CacheResult, OutputLogs, TaskResult};
 #[derive(Debug, Clone, Serialize)]
 #[serde(tag = "type", content = "payload")]
 pub enum WebUIEvent {
-    StartTask {
-        task: String,
-        output_logs: OutputLogs,
-    },
-    TaskOutput {
-        task: String,
-        output: Vec<u8>,
-    },
-    EndTask {
-        task: String,
-        result: TaskResult,
-    },
-    CacheStatus {
-        task: String,
-        message: String,
-        result: CacheResult,
-    },
-    UpdateTasks {
-        tasks: Vec<String>,
-    },
-    RestartTasks {
-        tasks: Vec<String>,
-    },
-    Stop,
+	StartTask { task:String, output_logs:OutputLogs },
+	TaskOutput { task:String, output:Vec<u8> },
+	EndTask { task:String, result:TaskResult },
+	CacheStatus { task:String, message:String, result:CacheResult },
+	UpdateTasks { tasks:Vec<String> },
+	RestartTasks { tasks:Vec<String> },
+	Stop,
 }

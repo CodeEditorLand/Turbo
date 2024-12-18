@@ -7,38 +7,33 @@ use turbopack_ecmascript::utils::StringifyJs;
 /// output.
 #[turbo_tasks::value]
 pub struct EmbeddableProcessEnv {
-    prior: Vc<Box<dyn ProcessEnv>>,
+	prior:Vc<Box<dyn ProcessEnv>>,
 }
 
 #[turbo_tasks::value_impl]
 impl EmbeddableProcessEnv {
-    #[turbo_tasks::function]
-    pub fn new(prior: Vc<Box<dyn ProcessEnv>>) -> Vc<Self> {
-        EmbeddableProcessEnv { prior }.cell()
-    }
+	#[turbo_tasks::function]
+	pub fn new(prior:Vc<Box<dyn ProcessEnv>>) -> Vc<Self> { EmbeddableProcessEnv { prior }.cell() }
 }
 
 #[turbo_tasks::value_impl]
 impl ProcessEnv for EmbeddableProcessEnv {
-    #[turbo_tasks::function]
-    async fn read_all(&self) -> Result<Vc<EnvMap>> {
-        let prior = self.prior.read_all().await?;
+	#[turbo_tasks::function]
+	async fn read_all(&self) -> Result<Vc<EnvMap>> {
+		let prior = self.prior.read_all().await?;
 
-        let encoded = prior
-            .iter()
-            .map(|(k, v)| (k.clone(), StringifyJs(v).to_string().into()))
-            .collect();
+		let encoded = prior
+			.iter()
+			.map(|(k, v)| (k.clone(), StringifyJs(v).to_string().into()))
+			.collect();
 
-        Ok(Vc::cell(encoded))
-    }
+		Ok(Vc::cell(encoded))
+	}
 
-    #[turbo_tasks::function]
-    async fn read(&self, name: RcStr) -> Result<Vc<Option<RcStr>>> {
-        let prior = self.prior.read(name).await?;
-        let encoded = prior
-            .as_deref()
-            .map(|s| StringifyJs(s).to_string())
-            .map(RcStr::from);
-        Ok(Vc::cell(encoded))
-    }
+	#[turbo_tasks::function]
+	async fn read(&self, name:RcStr) -> Result<Vc<Option<RcStr>>> {
+		let prior = self.prior.read(name).await?;
+		let encoded = prior.as_deref().map(|s| StringifyJs(s).to_string()).map(RcStr::from);
+		Ok(Vc::cell(encoded))
+	}
 }

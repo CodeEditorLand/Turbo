@@ -15,5 +15,5 @@ use crate::{self as turbo_tasks};
 ///    value.
 #[turbo_tasks::value_trait]
 pub trait ValueDefault {
-    fn value_default() -> Vc<Self>;
+	fn value_default() -> Vc<Self>;
 }

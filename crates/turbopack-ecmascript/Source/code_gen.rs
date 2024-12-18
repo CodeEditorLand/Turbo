@@ -1,63 +1,54 @@
 use serde::{Deserialize, Serialize};
 use swc_core::ecma::visit::{AstParentKind, VisitMut};
-use turbo_tasks::{debug::ValueDebugFormat, trace::TraceRawVcs, Vc};
+use turbo_tasks::{Vc, debug::ValueDebugFormat, trace::TraceRawVcs};
 use turbopack_core::chunk::{AsyncModuleInfo, ChunkingContext};
 
 /// impl of code generation inferred from a ModuleReference.
 /// This is rust only and can't be implemented by non-rust plugins.
-#[turbo_tasks::value(
-    shared,
-    serialization = "none",
-    eq = "manual",
-    into = "new",
-    cell = "new"
-)]
+#[turbo_tasks::value(shared, serialization = "none", eq = "manual", into = "new", cell = "new")]
 pub struct CodeGeneration {
-    /// ast nodes matching the span will be visitor by the visitor
-    #[turbo_tasks(debug_ignore, trace_ignore)]
-    pub visitors: Vec<(Vec<AstParentKind>, Box<dyn VisitorFactory>)>,
+	/// ast nodes matching the span will be visitor by the visitor
+	#[turbo_tasks(debug_ignore, trace_ignore)]
+	pub visitors:Vec<(Vec<AstParentKind>, Box<dyn VisitorFactory>)>,
 }
 
 pub trait VisitorFactory: Send + Sync {
-    fn create<'a>(&'a self) -> Box<dyn VisitMut + Send + Sync + 'a>;
+	fn create<'a>(&'a self) -> Box<dyn VisitMut + Send + Sync + 'a>;
 }
 
 #[turbo_tasks::value_trait]
 pub trait CodeGenerateable {
-    fn code_generation(
-        self: Vc<Self>,
-        chunking_context: Vc<Box<dyn ChunkingContext>>,
-    ) -> Vc<CodeGeneration>;
+	fn code_generation(
+		self: Vc<Self>,
+		chunking_context:Vc<Box<dyn ChunkingContext>>,
+	) -> Vc<CodeGeneration>;
 }
 
 #[turbo_tasks::value_trait]
 pub trait CodeGenerateableWithAsyncModuleInfo {
-    fn code_generation(
-        self: Vc<Self>,
-        chunking_context: Vc<Box<dyn ChunkingContext>>,
-        async_module_info: Option<Vc<AsyncModuleInfo>>,
-    ) -> Vc<CodeGeneration>;
+	fn code_generation(
+		self: Vc<Self>,
+		chunking_context:Vc<Box<dyn ChunkingContext>>,
+		async_module_info:Option<Vc<AsyncModuleInfo>>,
+	) -> Vc<CodeGeneration>;
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Serialize, Deserialize, TraceRawVcs, ValueDebugFormat)]
 pub enum CodeGen {
-    CodeGenerateable(Vc<Box<dyn CodeGenerateable>>),
-    CodeGenerateableWithAsyncModuleInfo(Vc<Box<dyn CodeGenerateableWithAsyncModuleInfo>>),
+	CodeGenerateable(Vc<Box<dyn CodeGenerateable>>),
+	CodeGenerateableWithAsyncModuleInfo(Vc<Box<dyn CodeGenerateableWithAsyncModuleInfo>>),
 }
 
 #[turbo_tasks::value(transparent)]
 pub struct CodeGenerateables(Vec<CodeGen>);
 
-pub fn path_to(
-    path: &[AstParentKind],
-    f: impl FnMut(&AstParentKind) -> bool,
-) -> Vec<AstParentKind> {
-    if let Some(pos) = path.iter().rev().position(f) {
-        let index = path.len() - pos - 1;
-        path[..index].to_vec()
-    } else {
-        path.to_vec()
-    }
+pub fn path_to(path:&[AstParentKind], f:impl FnMut(&AstParentKind) -> bool) -> Vec<AstParentKind> {
+	if let Some(pos) = path.iter().rev().position(f) {
+		let index = path.len() - pos - 1;
+		path[..index].to_vec()
+	} else {
+		path.to_vec()
+	}
 }
 
 /// Creates a single-method visitor that will visit the AST nodes matching the

@@ -18,29 +18,27 @@ use proc_macro::TokenStream;
 use proc_macro_error::proc_macro_error;
 
 #[proc_macro_derive(TraceRawVcs, attributes(turbo_tasks))]
-pub fn derive_trace_raw_vcs_attr(input: TokenStream) -> TokenStream {
-    derive::derive_trace_raw_vcs(input)
+pub fn derive_trace_raw_vcs_attr(input:TokenStream) -> TokenStream {
+	derive::derive_trace_raw_vcs(input)
 }
 
 #[proc_macro_derive(ValueDebug, attributes(turbo_tasks))]
-pub fn derive_value_debug_attr(input: TokenStream) -> TokenStream {
-    derive::derive_value_debug(input)
+pub fn derive_value_debug_attr(input:TokenStream) -> TokenStream {
+	derive::derive_value_debug(input)
 }
 
 #[proc_macro_derive(ValueDebugFormat, attributes(turbo_tasks))]
-pub fn derive_value_debug_format_attr(input: TokenStream) -> TokenStream {
-    derive::derive_value_debug_format(input)
+pub fn derive_value_debug_format_attr(input:TokenStream) -> TokenStream {
+	derive::derive_value_debug_format(input)
 }
 
 #[proc_macro_derive(DeterministicHash, attributes(turbo_tasks))]
-pub fn derive_deterministic_hash(input: TokenStream) -> TokenStream {
-    derive::derive_deterministic_hash(input)
+pub fn derive_deterministic_hash(input:TokenStream) -> TokenStream {
+	derive::derive_deterministic_hash(input)
 }
 
 #[proc_macro_derive(TaskInput, attributes(turbo_tasks))]
-pub fn derive_task_input(input: TokenStream) -> TokenStream {
-    derive::derive_task_input(input)
-}
+pub fn derive_task_input(input:TokenStream) -> TokenStream { derive::derive_task_input(input) }
 
 /// Creates a Vc<Value> struct for a `struct` or `enum` that represent
 /// that type placed into a cell in a Task.
@@ -118,37 +116,33 @@ pub fn derive_task_input(input: TokenStream) -> TokenStream {
 #[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
 #[proc_macro_error]
 #[proc_macro_attribute]
-pub fn value(args: TokenStream, input: TokenStream) -> TokenStream {
-    value_macro::value(args, input)
+pub fn value(args:TokenStream, input:TokenStream) -> TokenStream { value_macro::value(args, input) }
+
+#[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
+#[proc_macro_error]
+#[proc_macro_attribute]
+pub fn value_trait(args:TokenStream, input:TokenStream) -> TokenStream {
+	value_trait_macro::value_trait(args, input)
 }
 
 #[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
 #[proc_macro_error]
 #[proc_macro_attribute]
-pub fn value_trait(args: TokenStream, input: TokenStream) -> TokenStream {
-    value_trait_macro::value_trait(args, input)
+pub fn function(args:TokenStream, input:TokenStream) -> TokenStream {
+	function_macro::function(args, input)
 }
 
 #[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
 #[proc_macro_error]
 #[proc_macro_attribute]
-pub fn function(args: TokenStream, input: TokenStream) -> TokenStream {
-    function_macro::function(args, input)
-}
-
-#[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
-#[proc_macro_error]
-#[proc_macro_attribute]
-pub fn value_impl(args: TokenStream, input: TokenStream) -> TokenStream {
-    value_impl_macro::value_impl(args, input)
+pub fn value_impl(args:TokenStream, input:TokenStream) -> TokenStream {
+	value_impl_macro::value_impl(args, input)
 }
 
 #[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
 #[proc_macro_error]
 #[proc_macro]
-pub fn primitive(input: TokenStream) -> TokenStream {
-    primitive_macro::primitive(input)
-}
+pub fn primitive(input:TokenStream) -> TokenStream { primitive_macro::primitive(input) }
 
 /// Registers a value type that is generic over the `Vc` it contains.
 ///
@@ -171,6 +165,4 @@ pub fn primitive(input: TokenStream) -> TokenStream {
 #[allow_internal_unstable(min_specialization, into_future, trivial_bounds)]
 #[proc_macro_error]
 #[proc_macro]
-pub fn generic_type(input: TokenStream) -> TokenStream {
-    generic_type_macro::generic_type(input)
-}
+pub fn generic_type(input:TokenStream) -> TokenStream { generic_type_macro::generic_type(input) }

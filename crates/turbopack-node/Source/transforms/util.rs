@@ -5,21 +5,23 @@ use serde_json::Value as JsonValue;
 use turbo_tasks::{RcStr, Vc};
 use turbo_tasks_fs::{File, FileContent, FileSystem};
 use turbopack_core::{
-    asset::AssetContent, server_fs::ServerFileSystem, virtual_source::VirtualSource,
+	asset::AssetContent,
+	server_fs::ServerFileSystem,
+	virtual_source::VirtualSource,
 };
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct EmittedAsset {
-    file: RcStr,
-    content: RcStr,
-    source_map: Option<JsonValue>,
+	file:RcStr,
+	content:RcStr,
+	source_map:Option<JsonValue>,
 }
 
 pub fn emitted_assets_to_virtual_sources(
-    assets: Option<Vec<EmittedAsset>>,
+	assets:Option<Vec<EmittedAsset>>,
 ) -> Vec<Vc<VirtualSource>> {
-    assets
+	assets
         .into_iter()
         .flatten()
         .map(

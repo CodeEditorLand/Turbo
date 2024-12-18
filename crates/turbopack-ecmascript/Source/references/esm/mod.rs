@@ -8,11 +8,11 @@ pub(crate) mod module_item;
 pub(crate) mod url;
 
 pub use self::{
-    base::EsmAssetReference,
-    binding::EsmBinding,
-    dynamic::EsmAsyncAssetReference,
-    export::{EsmExport, EsmExports},
-    meta::{ImportMetaBinding, ImportMetaRef},
-    module_item::EsmModuleItem,
-    url::{UrlAssetReference, UrlRewriteBehavior},
+	base::EsmAssetReference,
+	binding::EsmBinding,
+	dynamic::EsmAsyncAssetReference,
+	export::{EsmExport, EsmExports},
+	meta::{ImportMetaBinding, ImportMetaRef},
+	module_item::EsmModuleItem,
+	url::{UrlAssetReference, UrlRewriteBehavior},
 };

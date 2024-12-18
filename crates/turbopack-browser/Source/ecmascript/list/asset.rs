@@ -1,12 +1,12 @@
 use anyhow::Result;
 use turbo_tasks::{RcStr, Value, ValueToString, Vc};
 use turbopack_core::{
-    asset::{Asset, AssetContent},
-    chunk::{ChunkingContext, EvaluatableAssets},
-    ident::AssetIdent,
-    module::Module,
-    output::{OutputAsset, OutputAssets},
-    version::VersionedContent,
+	asset::{Asset, AssetContent},
+	chunk::{ChunkingContext, EvaluatableAssets},
+	ident::AssetIdent,
+	module::Module,
+	output::{OutputAsset, OutputAssets},
+	version::VersionedContent,
 };
 
 use super::content::EcmascriptDevChunkListContent;
@@ -25,121 +25,107 @@ use crate::BrowserChunkingContext;
 /// * changing a chunk's path.
 #[turbo_tasks::value(shared)]
 pub(crate) struct EcmascriptDevChunkList {
-    pub(super) chunking_context: Vc<BrowserChunkingContext>,
-    pub(super) ident: Vc<AssetIdent>,
-    pub(super) evaluatable_assets: Vc<EvaluatableAssets>,
-    pub(super) chunks: Vc<OutputAssets>,
-    pub(super) source: EcmascriptDevChunkListSource,
+	pub(super) chunking_context:Vc<BrowserChunkingContext>,
+	pub(super) ident:Vc<AssetIdent>,
+	pub(super) evaluatable_assets:Vc<EvaluatableAssets>,
+	pub(super) chunks:Vc<OutputAssets>,
+	pub(super) source:EcmascriptDevChunkListSource,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptDevChunkList {
-    /// Creates a new [`Vc<EcmascriptDevChunkList>`].
-    #[turbo_tasks::function]
-    pub fn new(
-        chunking_context: Vc<BrowserChunkingContext>,
-        ident: Vc<AssetIdent>,
-        evaluatable_assets: Vc<EvaluatableAssets>,
-        chunks: Vc<OutputAssets>,
-        source: Value<EcmascriptDevChunkListSource>,
-    ) -> Vc<Self> {
-        EcmascriptDevChunkList {
-            chunking_context,
-            ident,
-            evaluatable_assets,
-            chunks,
-            source: source.into_value(),
-        }
-        .cell()
-    }
+	/// Creates a new [`Vc<EcmascriptDevChunkList>`].
+	#[turbo_tasks::function]
+	pub fn new(
+		chunking_context:Vc<BrowserChunkingContext>,
+		ident:Vc<AssetIdent>,
+		evaluatable_assets:Vc<EvaluatableAssets>,
+		chunks:Vc<OutputAssets>,
+		source:Value<EcmascriptDevChunkListSource>,
+	) -> Vc<Self> {
+		EcmascriptDevChunkList {
+			chunking_context,
+			ident,
+			evaluatable_assets,
+			chunks,
+			source:source.into_value(),
+		}
+		.cell()
+	}
 
-    #[turbo_tasks::function]
-    fn own_content(self: Vc<Self>) -> Vc<EcmascriptDevChunkListContent> {
-        EcmascriptDevChunkListContent::new(self)
-    }
+	#[turbo_tasks::function]
+	fn own_content(self: Vc<Self>) -> Vc<EcmascriptDevChunkListContent> {
+		EcmascriptDevChunkListContent::new(self)
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl ValueToString for EcmascriptDevChunkList {
-    #[turbo_tasks::function]
-    async fn to_string(&self) -> Result<Vc<RcStr>> {
-        Ok(Vc::cell("Ecmascript Dev Chunk List".into()))
-    }
+	#[turbo_tasks::function]
+	async fn to_string(&self) -> Result<Vc<RcStr>> {
+		Ok(Vc::cell("Ecmascript Dev Chunk List".into()))
+	}
 }
 
 #[turbo_tasks::function]
-fn modifier() -> Vc<RcStr> {
-    Vc::cell("ecmascript dev chunk list".into())
-}
+fn modifier() -> Vc<RcStr> { Vc::cell("ecmascript dev chunk list".into()) }
 
 #[turbo_tasks::function]
-fn dynamic_modifier() -> Vc<RcStr> {
-    Vc::cell("dynamic".into())
-}
+fn dynamic_modifier() -> Vc<RcStr> { Vc::cell("dynamic".into()) }
 
 #[turbo_tasks::function]
-fn chunk_list_chunk_reference_description() -> Vc<RcStr> {
-    Vc::cell("chunk list chunk".into())
-}
+fn chunk_list_chunk_reference_description() -> Vc<RcStr> { Vc::cell("chunk list chunk".into()) }
 
 #[turbo_tasks::function]
-fn chunk_key() -> Vc<RcStr> {
-    Vc::cell("chunk".into())
-}
+fn chunk_key() -> Vc<RcStr> { Vc::cell("chunk".into()) }
 
 #[turbo_tasks::value_impl]
 impl OutputAsset for EcmascriptDevChunkList {
-    #[turbo_tasks::function]
-    async fn ident(&self) -> Result<Vc<AssetIdent>> {
-        let mut ident = self.ident.await?.clone_value();
-        for &evaluatable_asset in self.evaluatable_assets.await?.iter() {
-            ident.add_asset(Vc::<RcStr>::default(), evaluatable_asset.ident());
-        }
+	#[turbo_tasks::function]
+	async fn ident(&self) -> Result<Vc<AssetIdent>> {
+		let mut ident = self.ident.await?.clone_value();
+		for &evaluatable_asset in self.evaluatable_assets.await?.iter() {
+			ident.add_asset(Vc::<RcStr>::default(), evaluatable_asset.ident());
+		}
 
-        ident.add_modifier(modifier());
+		ident.add_modifier(modifier());
 
-        match self.source {
-            EcmascriptDevChunkListSource::Entry => {}
-            EcmascriptDevChunkListSource::Dynamic => {
-                ident.add_modifier(dynamic_modifier());
-            }
-        }
+		match self.source {
+			EcmascriptDevChunkListSource::Entry => {},
+			EcmascriptDevChunkListSource::Dynamic => {
+				ident.add_modifier(dynamic_modifier());
+			},
+		}
 
-        // We must not include the actual chunks idents as part of the chunk list's
-        // ident, because it must remain stable whenever a chunk is added or
-        // removed from the list.
+		// We must not include the actual chunks idents as part of the chunk list's
+		// ident, because it must remain stable whenever a chunk is added or
+		// removed from the list.
 
-        let ident = AssetIdent::new(Value::new(ident));
-        Ok(AssetIdent::from_path(
-            self.chunking_context.chunk_path(ident, ".js".into()),
-        ))
-    }
+		let ident = AssetIdent::new(Value::new(ident));
+		Ok(AssetIdent::from_path(self.chunking_context.chunk_path(ident, ".js".into())))
+	}
 
-    #[turbo_tasks::function]
-    async fn references(&self) -> Result<Vc<OutputAssets>> {
-        Ok(self.chunks)
-    }
+	#[turbo_tasks::function]
+	async fn references(&self) -> Result<Vc<OutputAssets>> { Ok(self.chunks) }
 }
 
 #[turbo_tasks::value_impl]
 impl Asset for EcmascriptDevChunkList {
-    #[turbo_tasks::function]
-    fn content(self: Vc<Self>) -> Vc<AssetContent> {
-        self.own_content().content()
-    }
+	#[turbo_tasks::function]
+	fn content(self: Vc<Self>) -> Vc<AssetContent> { self.own_content().content() }
 
-    #[turbo_tasks::function]
-    fn versioned_content(self: Vc<Self>) -> Vc<Box<dyn VersionedContent>> {
-        Vc::upcast(self.own_content())
-    }
+	#[turbo_tasks::function]
+	fn versioned_content(self: Vc<Self>) -> Vc<Box<dyn VersionedContent>> {
+		Vc::upcast(self.own_content())
+	}
 }
 
 #[derive(Debug, Clone, Copy, Ord, PartialOrd, Hash)]
 #[turbo_tasks::value(serialization = "auto_for_input")]
 #[serde(rename_all = "camelCase")]
 pub enum EcmascriptDevChunkListSource {
-    /// The chunk list is from a runtime entry.
-    Entry,
-    /// The chunk list is from a dynamic import.
-    Dynamic,
+	/// The chunk list is from a runtime entry.
+	Entry,
+	/// The chunk list is from a dynamic import.
+	Dynamic,
 }

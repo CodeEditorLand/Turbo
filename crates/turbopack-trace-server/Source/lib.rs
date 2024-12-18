@@ -20,11 +20,11 @@ mod u64_empty_string;
 mod u64_string;
 mod viewer;
 
-pub fn start_turbopack_trace_server(path: PathBuf) {
-    let store = Arc::new(StoreContainer::new());
-    let reader = TraceReader::spawn(store.clone(), path);
+pub fn start_turbopack_trace_server(path:PathBuf) {
+	let store = Arc::new(StoreContainer::new());
+	let reader = TraceReader::spawn(store.clone(), path);
 
-    serve(store);
+	serve(store);
 
-    reader.join().unwrap();
+	reader.join().unwrap();
 }

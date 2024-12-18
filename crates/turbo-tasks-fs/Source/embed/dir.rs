@@ -1,28 +1,29 @@
 pub use ::include_dir::{
-    include_dir, {self},
+	include_dir,
+	{self},
 };
 use anyhow::Result;
 use turbo_tasks::{RcStr, TransientInstance, Vc};
 
-use crate::{embed::EmbeddedFileSystem, DiskFileSystem, FileSystem};
+use crate::{DiskFileSystem, FileSystem, embed::EmbeddedFileSystem};
 
 #[turbo_tasks::function]
 pub async fn directory_from_relative_path(
-    name: RcStr,
-    path: RcStr,
+	name:RcStr,
+	path:RcStr,
 ) -> Result<Vc<Box<dyn FileSystem>>> {
-    let disk_fs = DiskFileSystem::new(name, path, vec![]);
-    disk_fs.await?.start_watching()?;
+	let disk_fs = DiskFileSystem::new(name, path, vec![]);
+	disk_fs.await?.start_watching()?;
 
-    Ok(Vc::upcast(disk_fs))
+	Ok(Vc::upcast(disk_fs))
 }
 
 #[turbo_tasks::function]
 pub async fn directory_from_include_dir(
-    name: RcStr,
-    dir: TransientInstance<&'static include_dir::Dir<'static>>,
+	name:RcStr,
+	dir:TransientInstance<&'static include_dir::Dir<'static>>,
 ) -> Result<Vc<Box<dyn FileSystem>>> {
-    Ok(Vc::upcast(EmbeddedFileSystem::new(name, dir)))
+	Ok(Vc::upcast(EmbeddedFileSystem::new(name, dir)))
 }
 
 /// Returns an embedded [Vc<Box<dyn FileSystem>>] for the given path.
@@ -51,29 +52,29 @@ macro_rules! embed_directory {
 #[macro_export]
 #[doc(hidden)]
 macro_rules! embed_directory_internal {
-    ($name:tt, $path:tt) => {{
-        // make sure the types the `include_dir!` proc macro refers to are in scope
-        use turbo_tasks_fs::embed::include_dir;
+	($name:tt, $path:tt) => {{
+		// make sure the types the `include_dir!` proc macro refers to are in scope
+		use turbo_tasks_fs::embed::include_dir;
 
-        let path = $path.replace("$CARGO_MANIFEST_DIR", env!("CARGO_MANIFEST_DIR"));
+		let path = $path.replace("$CARGO_MANIFEST_DIR", env!("CARGO_MANIFEST_DIR"));
 
-        turbo_tasks_fs::embed::directory_from_relative_path($name.to_string(), path)
-    }};
+		turbo_tasks_fs::embed::directory_from_relative_path($name.to_string(), path)
+	}};
 }
 
 #[cfg(not(feature = "dynamic_embed_contents"))]
 #[macro_export]
 #[doc(hidden)]
 macro_rules! embed_directory_internal {
-    ($name:tt, $path:tt) => {{
-        // make sure the types the `include_dir!` proc macro refers to are in scope
-        use turbo_tasks_fs::embed::include_dir;
+	($name:tt, $path:tt) => {{
+		// make sure the types the `include_dir!` proc macro refers to are in scope
+		use turbo_tasks_fs::embed::include_dir;
 
-        static dir: include_dir::Dir<'static> = turbo_tasks_fs::embed::include_dir!($path);
+		static dir:include_dir::Dir<'static> = turbo_tasks_fs::embed::include_dir!($path);
 
-        turbo_tasks_fs::embed::directory_from_include_dir(
-            $name.into(),
-            turbo_tasks::TransientInstance::new(&dir),
-        )
-    }};
+		turbo_tasks_fs::embed::directory_from_include_dir(
+			$name.into(),
+			turbo_tasks::TransientInstance::new(&dir),
+		)
+	}};
 }

@@ -21,17 +21,14 @@ mod u64_string;
 mod viewer;
 
 fn main() {
-    let args: HashSet<String> = std::env::args().skip(1).collect();
+	let args:HashSet<String> = std::env::args().skip(1).collect();
 
-    let arg = args
-        .iter()
-        .next()
-        .expect("missing argument: trace file path");
+	let arg = args.iter().next().expect("missing argument: trace file path");
 
-    let store = Arc::new(StoreContainer::new());
-    let reader = TraceReader::spawn(store.clone(), arg.into());
+	let store = Arc::new(StoreContainer::new());
+	let reader = TraceReader::spawn(store.clone(), arg.into());
 
-    serve(store);
+	serve(store);
 
-    reader.join().unwrap();
+	reader.join().unwrap();
 }

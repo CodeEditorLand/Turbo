@@ -5,10 +5,10 @@ use crate::ModuleAssetContext;
 
 #[turbo_tasks::value_trait]
 pub trait CustomModuleType {
-    fn create_module(
-        self: Vc<Self>,
-        source: Vc<Box<dyn Source>>,
-        module_asset_context: Vc<ModuleAssetContext>,
-        part: Option<Vc<ModulePart>>,
-    ) -> Vc<Box<dyn Module>>;
+	fn create_module(
+		self: Vc<Self>,
+		source:Vc<Box<dyn Source>>,
+		module_asset_context:Vc<ModuleAssetContext>,
+		part:Option<Vc<ModulePart>>,
+	) -> Vc<Box<dyn Module>>;
 }

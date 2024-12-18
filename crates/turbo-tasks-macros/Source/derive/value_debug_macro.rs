@@ -1,15 +1,15 @@
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, DeriveInput};
+use syn::{DeriveInput, parse_macro_input};
 
 /// This macro generates the implementation of the `ValueDebug` trait for a
 /// given type.
 ///
 /// This requires the type to implement the `ValueDebugFormat` trait.
-pub fn derive_value_debug(input: TokenStream) -> TokenStream {
-    let derive_input = parse_macro_input!(input as DeriveInput);
-    let ident = &derive_input.ident;
-    quote! {
+pub fn derive_value_debug(input:TokenStream) -> TokenStream {
+	let derive_input = parse_macro_input!(input as DeriveInput);
+	let ident = &derive_input.ident;
+	quote! {
         #[turbo_tasks::value_impl]
         impl turbo_tasks::debug::ValueDebug for #ident {
             #[turbo_tasks::function]

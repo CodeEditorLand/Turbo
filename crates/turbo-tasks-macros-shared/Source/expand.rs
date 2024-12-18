@@ -1,8 +1,15 @@
 use proc_macro2::{Ident, TokenStream};
 use quote::quote;
 use syn::{
-    spanned::Spanned, Data, DataEnum, DataStruct, DeriveInput, Field, Fields, FieldsNamed,
-    FieldsUnnamed,
+	Data,
+	DataEnum,
+	DataStruct,
+	DeriveInput,
+	Field,
+	Fields,
+	FieldsNamed,
+	FieldsUnnamed,
+	spanned::Spanned,
 };
 
 /// Handles the expansion of a struct/enum into a match statement that accesses
@@ -20,76 +27,72 @@ use syn::{
 /// These helpers should themselves call [generate_destructuring] to generate
 /// the destructure necessary to access the fields of the value.
 pub fn match_expansion<
-    EN: Fn(&Ident, &FieldsNamed) -> (TokenStream, TokenStream),
-    EU: Fn(&Ident, &FieldsUnnamed) -> (TokenStream, TokenStream),
-    U: Fn(&Ident) -> TokenStream,
+	EN:Fn(&Ident, &FieldsNamed) -> (TokenStream, TokenStream),
+	EU:Fn(&Ident, &FieldsUnnamed) -> (TokenStream, TokenStream),
+	U:Fn(&Ident) -> TokenStream,
 >(
-    derive_input: &DeriveInput,
-    expand_named: &EN,
-    expand_unnamed: &EU,
-    expand_unit: &U,
+	derive_input:&DeriveInput,
+	expand_named:&EN,
+	expand_unnamed:&EU,
+	expand_unit:&U,
 ) -> TokenStream {
-    let ident = &derive_input.ident;
-    let expand_unit = move |ident| (TokenStream::new(), expand_unit(ident));
-    match &derive_input.data {
-        Data::Enum(DataEnum { variants, .. }) => {
-            let (variants_idents, (variants_fields_capture, expansion)): (
-                Vec<_>,
-                (Vec<_>, Vec<_>),
-            ) = variants
-                .iter()
-                .map(|variant| {
-                    (
-                        &variant.ident,
-                        expand_fields(
-                            &variant.ident,
-                            &variant.fields,
-                            expand_named,
-                            expand_unnamed,
-                            expand_unit,
-                        ),
-                    )
-                })
-                .unzip();
+	let ident = &derive_input.ident;
+	let expand_unit = move |ident| (TokenStream::new(), expand_unit(ident));
+	match &derive_input.data {
+		Data::Enum(DataEnum { variants, .. }) => {
+			let (variants_idents, (variants_fields_capture, expansion)):(Vec<_>, (Vec<_>, Vec<_>)) =
+				variants
+					.iter()
+					.map(|variant| {
+						(
+							&variant.ident,
+							expand_fields(
+								&variant.ident,
+								&variant.fields,
+								expand_named,
+								expand_unnamed,
+								expand_unit,
+							),
+						)
+					})
+					.unzip();
 
-            quote! {
-                match self {
-                    #(
-                        #ident::#variants_idents #variants_fields_capture => #expansion,
-                    )*
-                }
-            }
-        }
-        Data::Struct(DataStruct { fields, .. }) => {
-            let (captures, expansion) =
-                expand_fields(ident, fields, expand_named, expand_unnamed, expand_unit);
+			quote! {
+				match self {
+					#(
+						#ident::#variants_idents #variants_fields_capture => #expansion,
+					)*
+				}
+			}
+		},
+		Data::Struct(DataStruct { fields, .. }) => {
+			let (captures, expansion) =
+				expand_fields(ident, fields, expand_named, expand_unnamed, expand_unit);
 
-            if fields.is_empty() {
-                assert!(captures.is_empty());
-                // a match expression here doesn't make sense as there's no fields to capture,
-                // just pass through the inner expression.
-                expansion
-            } else {
-                match fields {
-                    Fields::Named(_) | Fields::Unnamed(_) => quote! {
-                        match self {
-                            #ident #captures => #expansion
-                        }
-                    },
-                    Fields::Unit => unreachable!(),
-                }
-            }
-        }
-        _ => {
-            derive_input
-                .span()
-                .unwrap()
-                .error("unsupported syntax")
-                .emit();
+			if fields.is_empty() {
+				assert!(captures.is_empty());
+				// a match expression here doesn't make sense as there's no fields to capture,
+				// just pass through the inner expression.
+				expansion
+			} else {
+				match fields {
+					Fields::Named(_) | Fields::Unnamed(_) => {
+						quote! {
+							match self {
+								#ident #captures => #expansion
+							}
+						}
+					},
+					Fields::Unit => unreachable!(),
+				}
+			}
+		},
+		_ => {
+			derive_input.span().unwrap().error("unsupported syntax").emit();
 
-            quote! {}
-        }
-    }
+			quote! {}
+		},
+	}
 }
 
 /// Formats the fields of any structure or enum variant.
@@ -98,29 +101,29 @@ pub fn match_expansion<
 /// are semantically identical, and the `expand_unit` codepath can usually
 /// generate better code.
 pub fn expand_fields<
-    'ident,
-    'fields,
-    EN: Fn(&'ident Ident, &'fields FieldsNamed) -> R,
-    EU: Fn(&'ident Ident, &'fields FieldsUnnamed) -> R,
-    U: Fn(&'ident Ident) -> R,
-    R,
+	'ident,
+	'fields,
+	EN:Fn(&'ident Ident, &'fields FieldsNamed) -> R,
+	EU:Fn(&'ident Ident, &'fields FieldsUnnamed) -> R,
+	U:Fn(&'ident Ident) -> R,
+	R,
 >(
-    ident: &'ident Ident,
-    fields: &'fields Fields,
-    expand_named: EN,
-    expand_unnamed: EU,
-    expand_unit: U,
+	ident:&'ident Ident,
+	fields:&'fields Fields,
+	expand_named:EN,
+	expand_unnamed:EU,
+	expand_unit:U,
 ) -> R {
-    if fields.is_empty() {
-        // any empty struct (regardless of the syntax used during declaration) is
-        // equivalent to a unit struct
-        return expand_unit(ident);
-    }
-    match fields {
-        Fields::Named(named) => expand_named(ident, named),
-        Fields::Unnamed(unnamed) => expand_unnamed(ident, unnamed),
-        Fields::Unit => unreachable!(),
-    }
+	if fields.is_empty() {
+		// any empty struct (regardless of the syntax used during declaration) is
+		// equivalent to a unit struct
+		return expand_unit(ident);
+	}
+	match fields {
+		Fields::Named(named) => expand_named(ident, named),
+		Fields::Unnamed(unnamed) => expand_unnamed(ident, unnamed),
+		Fields::Unit => unreachable!(),
+	}
 }
 
 /// Generates a match arm destructuring pattern for the given fields.
@@ -133,12 +136,12 @@ pub fn expand_fields<
 ///
 /// Returns both the capture pattern token stream and the name of the bound
 /// identifiers corresponding to the input fields.
-pub fn generate_destructuring<'a, I: Fn(&Field) -> bool>(
-    fields: impl ExactSizeIterator<Item = &'a Field>,
-    filter_field: &I,
+pub fn generate_destructuring<'a, I:Fn(&Field) -> bool>(
+	fields:impl ExactSizeIterator<Item = &'a Field>,
+	filter_field:&I,
 ) -> (TokenStream, Vec<TokenStream>) {
-    let fields_len = fields.len();
-    let (captures, fields_idents): (Vec<_>, Vec<_>) = fields
+	let fields_len = fields.len();
+	let (captures, fields_idents):(Vec<_>, Vec<_>) = fields
         // We need to enumerate first to capture the indexes of the fields before filtering has
         // changed them.
         .enumerate()
@@ -152,18 +155,18 @@ pub fn generate_destructuring<'a, I: Fn(&Field) -> bool>(
             }
         })
         .unzip();
-    // Only add the wildcard pattern if we're ignoring some fields.
-    let wildcard = if fields_idents.len() != fields_len {
-        quote! { .. }
-    } else {
-        quote! {}
-    };
-    (
-        quote! {
-            { #(#captures,)* #wildcard }
-        },
-        fields_idents,
-    )
+	// Only add the wildcard pattern if we're ignoring some fields.
+	let wildcard = if fields_idents.len() != fields_len {
+		quote! { .. }
+	} else {
+		quote! {}
+	};
+	(
+		quote! {
+			{ #(#captures,)* #wildcard }
+		},
+		fields_idents,
+	)
 }
 
 /// Generates an exhaustive match arm destructuring pattern for the given
@@ -173,7 +176,7 @@ pub fn generate_destructuring<'a, I: Fn(&Field) -> bool>(
 /// Returns both the capture pattern token stream and the name of the bound
 /// identifiers corresponding to the input fields.
 pub fn generate_exhaustive_destructuring<'a>(
-    fields: impl ExactSizeIterator<Item = &'a Field>,
+	fields:impl ExactSizeIterator<Item = &'a Field>,
 ) -> (TokenStream, Vec<TokenStream>) {
-    generate_destructuring(fields, &|_| true)
+	generate_destructuring(fields, &|_| true)
 }

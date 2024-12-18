@@ -10,8 +10,8 @@ mod md4;
 mod xxh3_hash64;
 
 pub use crate::{
-    deterministic_hash::{DeterministicHash, DeterministicHasher},
-    hex::encode_hex,
-    md4::hash_md4,
-    xxh3_hash64::{hash_xxh3_hash64, Xxh3Hash64Hasher},
+	deterministic_hash::{DeterministicHash, DeterministicHasher},
+	hex::encode_hex,
+	md4::hash_md4,
+	xxh3_hash64::{Xxh3Hash64Hasher, hash_xxh3_hash64},
 };

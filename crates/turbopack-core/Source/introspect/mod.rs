@@ -13,14 +13,8 @@ pub struct IntrospectableChildren(IndexSet<(Vc<RcStr>, VcDynIntrospectable)>);
 
 #[turbo_tasks::value_trait]
 pub trait Introspectable {
-    fn ty(self: Vc<Self>) -> Vc<RcStr>;
-    fn title(self: Vc<Self>) -> Vc<RcStr> {
-        Vc::<RcStr>::default()
-    }
-    fn details(self: Vc<Self>) -> Vc<RcStr> {
-        Vc::<RcStr>::default()
-    }
-    fn children(self: Vc<Self>) -> Vc<IntrospectableChildren> {
-        Vc::cell(IndexSet::new())
-    }
+	fn ty(self: Vc<Self>) -> Vc<RcStr>;
+	fn title(self: Vc<Self>) -> Vc<RcStr> { Vc::<RcStr>::default() }
+	fn details(self: Vc<Self>) -> Vc<RcStr> { Vc::<RcStr>::default() }
+	fn children(self: Vc<Self>) -> Vc<IntrospectableChildren> { Vc::cell(IndexSet::new()) }
 }
