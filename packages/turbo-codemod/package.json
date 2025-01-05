@@ -11,7 +11,7 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"axios": "0.27.2",
+		"axios": "0.28.0",
 		"commander": "^9.5.0",
 		"diff": "^5.1.0",
 		"find-up": "4.1.0",
