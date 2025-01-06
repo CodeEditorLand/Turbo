@@ -4,6 +4,6 @@
 		"ui": "*"
 	},
 	"devDependencies": {
-		"tsconfig": "1.0.0"
+		"tsconfig": "7.0.0"
 	}
 }

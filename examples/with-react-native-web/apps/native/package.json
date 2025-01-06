@@ -10,12 +10,12 @@
 	},
 	"dependencies": {
 		"@repo/ui": "*",
-		"expo": "49.0.21",
-		"expo-status-bar": "1.7.0",
-		"react-native-web": "0.19.10"
+		"expo": "52.0.23",
+		"expo-status-bar": "2.0.0",
+		"react-native-web": "0.19.13"
 	},
 	"devDependencies": {
-		"@expo/webpack-config": "19.0.0",
+		"@expo/webpack-config": "19.0.1",
 		"@types/react-native": "0.73.0"
 	}
 }

@@ -6,19 +6,19 @@
 		"dev": "remix vite:dev"
 	},
 	"dependencies": {
-		"@remix-run/node": "2.9.2",
-		"@remix-run/react": "2.9.2",
-		"@remix-run/server-runtime": "2.9.2",
+		"@remix-run/node": "2.15.2",
+		"@remix-run/react": "2.15.2",
+		"@remix-run/server-runtime": "2.15.2",
 		"@repo/ui": "workspace:*",
-		"@vercel/analytics": "1.2.2",
-		"@vercel/remix": "2.9.2-patch.2",
-		"isbot": "4"
+		"@vercel/analytics": "1.4.1",
+		"@vercel/remix": "2.15.2",
+		"isbot": "5"
 	},
 	"devDependencies": {
 		"@codeeditorland/tsconfig-paths": "4.2.1",
-		"@remix-run/dev": "2.9.2",
-		"@remix-run/eslint-config": "2.9.2",
-		"@vercel/remix": "2.9.2-patch.2",
-		"autoprefixer": "10.4.19"
+		"@remix-run/dev": "2.15.2",
+		"@remix-run/eslint-config": "2.15.2",
+		"@vercel/remix": "2.15.2",
+		"autoprefixer": "10.4.20"
 	}
 }

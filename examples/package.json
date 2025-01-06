@@ -5,6 +5,6 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"tsx": "4.19.1"
+		"tsx": "4.19.2"
 	}
 }
