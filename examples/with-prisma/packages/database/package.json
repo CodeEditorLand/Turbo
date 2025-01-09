@@ -15,12 +15,12 @@
 		"studio": "prisma studio"
 	},
 	"dependencies": {
-		"@prisma/client": "6.1.0"
+		"@prisma/client": "6.2.1"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"prisma": "6.1.0",
+		"prisma": "6.2.1",
 		"rimraf": "6.0.1",
 		"tsup": "8.3.5",
 		"tsx": "4.19.2"

@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"@repo/ui": "workspace:*",
-		"next": "15.1.3"
+		"next": "15.1.4"
 	},
 	"devDependencies": {
 		"@repo/api": "workspace:*",

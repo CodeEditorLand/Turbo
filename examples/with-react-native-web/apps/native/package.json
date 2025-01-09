@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@repo/ui": "*",
-		"expo": "52.0.23",
+		"expo": "52.0.24",
 		"expo-status-bar": "2.0.0",
 		"react-native-web": "0.19.13"
 	},

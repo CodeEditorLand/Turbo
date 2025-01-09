@@ -23,7 +23,7 @@
 		"json5": "^2.2.3",
 		"ora": "8.1.1",
 		"picocolors": "1.1.1",
-		"semver": "^7.3.7",
+		"semver": "^7.6.3",
 		"update-check": "^1.5.4"
 	},
 	"devDependencies": {
@@ -34,7 +34,7 @@
 		"@turbo/types": "workspace:*",
 		"@turbo/utils": "workspace:*",
 		"@turbo/workspaces": "workspace:*",
-		"@types/diff": "^6.0.0",
+		"@types/diff": "^7.0.0",
 		"@types/fs-extra": "^11.0.4",
 		"@types/gradient-string": "^1.1.6",
 		"@types/inquirer": "^9.0.7",

@@ -9,7 +9,7 @@
 	"dependencies": {
 		"@acme/core": "workspace:*",
 		"@acme/utils": "workspace:*",
-		"next": "^15.1.3"
+		"next": "^15.1.4"
 	},
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
