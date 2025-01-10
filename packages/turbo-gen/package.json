@@ -12,25 +12,25 @@
 	},
 	"dependencies": {
 		"@turbo/workspaces": "workspace:*",
-		"commander": "^13.0.0",
-		"fs-extra": "^11.2.0",
-		"inquirer": "^12.3.0",
-		"minimatch": "^10.0.1",
-		"node-plop": "^0.32.0",
+		"commander": "13.0.0",
+		"fs-extra": "11.2.0",
+		"inquirer": "12.3.0",
+		"minimatch": "10.0.1",
+		"node-plop": "0.32.0",
 		"picocolors": "1.1.1",
-		"proxy-agent": "^6.5.0",
-		"update-check": "^1.5.4",
-		"validate-npm-package-name": "^6.0.0"
+		"proxy-agent": "6.5.0",
+		"update-check": "1.5.4",
+		"validate-npm-package-name": "6.0.0"
 	},
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@turbo/utils": "workspace:*",
-		"@types/fs-extra": "^11.0.4",
-		"@types/inquirer": "^9.0.7",
-		"@types/node": "^22.10.5",
-		"@types/validate-npm-package-name": "^4.0.2",
-		"tsup": "^8.3.5"
+		"@types/fs-extra": "11.0.4",
+		"@types/inquirer": "9.0.7",
+		"@types/node": "22.10.5",
+		"@types/validate-npm-package-name": "4.0.2",
+		"tsup": "8.3.5"
 	}
 }
