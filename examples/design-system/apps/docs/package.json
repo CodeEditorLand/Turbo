@@ -12,12 +12,12 @@
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@storybook/addon-actions": "^8.4.7",
-		"@storybook/addon-essentials": "^8.4.7",
-		"@storybook/addon-links": "^8.4.7",
-		"@storybook/react": "^8.4.7",
-		"@storybook/react-vite": "^8.4.7",
+		"@storybook/addon-actions": "^8.5.0",
+		"@storybook/addon-essentials": "^8.5.0",
+		"@storybook/addon-links": "^8.5.0",
+		"@storybook/react": "^8.5.0",
+		"@storybook/react-vite": "^8.5.0",
 		"serve": "^14.2.4",
-		"storybook": "^8.4.7"
+		"storybook": "^8.5.0"
 	}
 }

@@ -22,7 +22,7 @@
 		"esbuild": "0.24.2",
 		"esbuild-register": "3.6.0",
 		"faker": "6.6.6",
-		"fs-extra": "11.2.0",
+		"fs-extra": "11.3.0",
 		"ndjson": "2.0.0",
 		"ngraph.generators": "20.1.0",
 		"node-fetch": "3.3.2",
@@ -35,7 +35,7 @@
 		"@turbo/tsconfig": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/ndjson": "2.0.4",
-		"@types/node": "22.10.6",
+		"@types/node": "22.10.7",
 		"@types/node-fetch": "2.6.12"
 	}
 }
