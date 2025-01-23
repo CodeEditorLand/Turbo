@@ -3,6 +3,6 @@
 	"description": "A barebones Turborepo example for working with Task Graphs.",
 	"dependencies": {},
 	"devDependencies": {
-		"turbo": "2.3.3"
+		"turbo": "2.3.4"
 	}
 }

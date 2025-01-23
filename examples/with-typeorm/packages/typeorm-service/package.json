@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.10.7",
+		"@types/node": "22.10.9",
 		"unplugin-swc": "1.5.1"
 	}
 }

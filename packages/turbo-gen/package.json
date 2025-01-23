@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"@turbo/workspaces": "workspace:*",
-		"commander": "13.0.0",
+		"commander": "13.1.0",
 		"fs-extra": "11.3.0",
 		"inquirer": "12.3.2",
 		"minimatch": "10.0.1",
@@ -29,7 +29,7 @@
 		"@turbo/utils": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/inquirer": "9.0.7",
-		"@types/node": "22.10.7",
+		"@types/node": "22.10.9",
 		"@types/validate-npm-package-name": "4.0.2",
 		"tsup": "8.3.5"
 	}

@@ -6,6 +6,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
-		"turbo": "2.3.3"
+		"turbo": "2.3.4"
 	}
 }
