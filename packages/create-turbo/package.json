@@ -29,7 +29,7 @@
 		"@turbo/workspaces": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/inquirer": "9.0.7",
-		"@types/node": "22.10.9",
+		"@types/node": "22.10.10",
 		"@types/semver": "7.5.8",
 		"tsup": "8.3.5"
 	}

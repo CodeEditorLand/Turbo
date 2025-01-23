@@ -12,6 +12,6 @@
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"@turbo/gen": "2.3.4",
-		"@types/node": "22.10.9"
+		"@types/node": "22.10.10"
 	}
 }

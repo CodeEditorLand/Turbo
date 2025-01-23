@@ -16,7 +16,7 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.10.9",
+		"@types/node": "22.10.10",
 		"jest-environment-jsdom": "29.7.0"
 	}
 }

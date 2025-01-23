@@ -21,7 +21,7 @@
 		"@turbo/types": "workspace:*",
 		"@turbo/utils": "workspace:*",
 		"@types/estree": "1.0.6",
-		"@types/node": "22.10.9",
+		"@types/node": "22.10.10",
 		"json5": "2.2.3",
 		"tsup": "8.3.5"
 	}
