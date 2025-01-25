@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@nuxtjs/eslint-config-typescript": "^12.1.0",
 		"eslint-config-custom": "workspace:*",
-		"nuxt": "^3.15.2",
+		"nuxt": "^3.15.3",
 		"tsconfig": "workspace:*"
 	}
 }
