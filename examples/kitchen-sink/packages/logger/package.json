@@ -18,6 +18,6 @@
 		"@repo/jest-presets": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "22.10.10",
-		"tsup": "8.3.5"
+		"tsup": "8.3.6"
 	}
 }

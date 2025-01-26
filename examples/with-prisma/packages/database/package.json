@@ -22,7 +22,7 @@
 		"@repo/typescript-config": "*",
 		"prisma": "6.2.1",
 		"rimraf": "6.0.1",
-		"tsup": "8.3.5",
+		"tsup": "8.3.6",
 		"tsx": "4.19.2"
 	}
 }

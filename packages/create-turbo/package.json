@@ -31,6 +31,6 @@
 		"@types/inquirer": "9.0.7",
 		"@types/node": "22.10.10",
 		"@types/semver": "7.5.8",
-		"tsup": "8.3.5"
+		"tsup": "8.3.6"
 	}
 }
