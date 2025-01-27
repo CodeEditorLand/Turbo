@@ -8,7 +8,6 @@
 		"release": "turbo run build --filter=docs^... && changeset publish",
 		"version-packages": "changeset version"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@changesets/cli": "2.27.12",
 		"turbo": "2.3.4"
