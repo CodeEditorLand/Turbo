@@ -158,7 +158,7 @@ impl<W> App<W> {
         let active_task = self.active_task()?.to_owned();
         self.tasks
             .get_mut(&active_task)
-            .ok_or_else(|| Error::TaskNotFound { name: active_task })
+            .ok_or(Error::TaskNotFound { name: active_task })
     }
 
     fn persist_active_task(&mut self) -> Result<(), Error> {
@@ -681,8 +681,8 @@ async fn run_app_inner<B: Backend + std::io::Write>(
 
 /// Blocking poll for events, will only return None if app handle has been
 /// dropped
-async fn poll<'a>(
-    input_options: InputOptions<'a>,
+async fn poll(
+    input_options: InputOptions<'_>,
     receiver: &mut AppReceiver,
     crossterm_rx: &mut mpsc::Receiver<crossterm::event::Event>,
 ) -> Option<Event> {

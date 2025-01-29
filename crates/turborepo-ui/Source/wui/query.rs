@@ -17,16 +17,19 @@ struct CurrentRun<'a> {
 }
 
 #[Object]
-impl<'a> CurrentRun<'a> {
-	async fn tasks(&self) -> Vec<RunTask> {
-		self.state
-			.lock()
-			.await
-			.tasks()
-			.iter()
-			.map(|(task, state)| RunTask { name:task.clone(), state:state.clone() })
-			.collect()
-	}
+impl CurrentRun<'_> {
+    async fn tasks(&self) -> Vec<RunTask> {
+        self.state
+            .lock()
+            .await
+            .tasks()
+            .iter()
+            .map(|(task, state)| RunTask {
+                name: task.clone(),
+                state: state.clone(),
+            })
+            .collect()
+    }
 }
 
 /// We keep the state in a `Arc<Mutex<RefCell<T>>>` so both `Subscriber` and

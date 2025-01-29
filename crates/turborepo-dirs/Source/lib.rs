@@ -30,6 +30,6 @@ pub fn vercel_config_dir() -> Result<Option<AbsoluteSystemPathBuf>, PathError> {
 
 #[derive(Debug, Error)]
 pub enum Error {
-	#[error("config directory not found")]
-	ConfigDirNotFound,
+    #[error("Config directory not found.")]
+    ConfigDirNotFound,
 }

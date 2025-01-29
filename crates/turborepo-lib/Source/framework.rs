@@ -52,19 +52,17 @@ impl Matcher {
 			workspace.package_json.dependencies.as_ref()
 		};
 
-		match self.strategy {
-			Strategy::All => {
-				self.dependencies
-					.iter()
-					.all(|dep| deps.map_or(false, |deps| deps.contains_key(dep)))
-			},
-			Strategy::Some => {
-				self.dependencies
-					.iter()
-					.any(|dep| deps.map_or(false, |deps| deps.contains_key(dep)))
-			},
-		}
-	}
+        match self.strategy {
+            Strategy::All => self
+                .dependencies
+                .iter()
+                .all(|dep| deps.is_some_and(|deps| deps.contains_key(dep))),
+            Strategy::Some => self
+                .dependencies
+                .iter()
+                .any(|dep| deps.is_some_and(|deps| deps.contains_key(dep))),
+        }
+    }
 }
 
 pub fn infer_framework(workspace:&PackageInfo, is_monorepo:bool) -> Option<&Framework> {

@@ -1,9 +1,0 @@
-{
-	"name": "@turborepo-examples-tests/non-monorepo",
-	"scripts": {},
-	"dependencies": {
-		"turborepo-examples": "workspace:*",
-		"turborepo-tests-helpers": "workspace:*"
-	},
-	"devDependencies": {}
-}

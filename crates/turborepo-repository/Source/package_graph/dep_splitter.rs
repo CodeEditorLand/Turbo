@@ -143,7 +143,7 @@ impl<'a> DependencyVersion<'a> {
         // behavior before this additional logic was added.
 
         // TODO: extend this to support the `enableTransparentWorkspaces` yarn option
-        self.protocol.map_or(false, |p| p != "npm")
+        self.protocol.is_some_and(|p| p != "npm")
     }
 
     fn matches_workspace_package(
@@ -192,7 +192,7 @@ impl<'a> DependencyVersion<'a> {
     }
 }
 
-impl<'a> fmt::Display for DependencyVersion<'a> {
+impl fmt::Display for DependencyVersion<'_> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self.protocol {
             Some(protocol) => f.write_fmt(format_args!("{}:{}", protocol, self.version)),
