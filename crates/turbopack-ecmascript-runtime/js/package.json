@@ -13,7 +13,7 @@
 		"check:nodejs": "tsc -p src/nodejs"
 	},
 	"dependencies": {
-		"@types/node": "22.10.10"
+		"@types/node": "22.13.0"
 	},
 	"devDependencies": {
 		"@next/react-refresh-utils": "15.1.6",

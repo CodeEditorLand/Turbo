@@ -12,7 +12,7 @@
 		"release": "pnpm build && pnpm publish"
 	},
 	"dependencies": {
-		"dotenv": "16.0.3"
+		"dotenv": "16.4.7"
 	},
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
@@ -20,9 +20,9 @@
 		"@turbo/tsconfig": "workspace:*",
 		"@turbo/types": "workspace:*",
 		"@turbo/utils": "workspace:*",
-		"@types/estree": "^1.0.1",
-		"@types/node": "^18.17.2",
-		"json5": "^2.2.1",
-		"tsup": "^6.2.0"
+		"@types/estree": "^1.0.6",
+		"@types/node": "^22.13.0",
+		"json5": "^2.2.3",
+		"tsup": "^8.3.6"
 	}
 }

@@ -8,14 +8,14 @@
 	},
 	"dependencies": {
 		"@repo/ui": "workspace:*",
-		"@tailwindcss/postcss": "^4.0.0",
+		"@tailwindcss/postcss": "^4.0.2",
 		"next": "^15.1.6"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tailwind-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^22.10.10",
+		"@types/node": "^22.13.0",
 		"autoprefixer": "^10.4.20",
 		"postcss": "^8.5.1"
 	}

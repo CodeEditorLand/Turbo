@@ -22,7 +22,7 @@
 		"@types/body-parser": "^1.19.5",
 		"@types/cors": "^2.8.17",
 		"@types/morgan": "^1.9.9",
-		"@types/node": "^22.10.10",
+		"@types/node": "^22.13.0",
 		"@types/supertest": "^6.0.2",
 		"supertest": "^7.0.0",
 		"tsup": "^8.3.6"
