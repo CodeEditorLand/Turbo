@@ -19,7 +19,7 @@
 	"dependencies": {
 		"@vercel/blob": "0.27.1",
 		"copy-template-dir": "1.4.0",
-		"esbuild": "0.24.2",
+		"esbuild": "0.25.0",
 		"esbuild-register": "3.6.0",
 		"faker": "6.6.6",
 		"fs-extra": "11.3.0",
@@ -35,7 +35,7 @@
 		"@turbo/tsconfig": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/ndjson": "2.0.4",
-		"@types/node": "22.13.0",
+		"@types/node": "22.13.1",
 		"@types/node-fetch": "2.6.12"
 	}
 }

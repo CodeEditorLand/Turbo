@@ -60,8 +60,8 @@
 	},
 	"devDependencies": {
 		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "22.13.0",
-		"esbuild": "0.24.2"
+		"@types/node": "22.13.1",
+		"esbuild": "0.25.0"
 	},
 	"icon": "resources/icon.png",
 	"capabilities": {

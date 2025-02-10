@@ -754,7 +754,7 @@ mod test {
 		let root_package_json_path = repo_root.join_component("package.json");
 		// Start with no workspace glob
 		root_package_json_path
-			.create_with_contents(r#"{"packageManager": "pnpm@7.0.0"}"#)
+			.create_with_contents(r#"{"packageManager": "pnpm@10.2.1"}"#)
 			.unwrap();
 		repo_root.join_component("pnpm-lock.yaml").create_with_contents("").unwrap();
 
@@ -851,7 +851,7 @@ mod test {
 		let root_package_json_path = repo_root.join_component("package.json");
 		// Start with no workspace glob
 		root_package_json_path
-			.create_with_contents(r#"{"packageManager": "pnpm@7.0.0"}"#)
+			.create_with_contents(r#"{"packageManager": "pnpm@10.2.1"}"#)
 			.unwrap();
 		let pnpm_lock_file = repo_root.join_component("pnpm-lock.yaml");
 		pnpm_lock_file.create_with_contents("").unwrap();

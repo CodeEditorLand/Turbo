@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script greps stdin (i.e. what's piped to it)
 # splits it by "=" and prints the second value.

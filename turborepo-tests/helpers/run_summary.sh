@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function getSummaryTask() {
   cat "$1" | jq ".tasks | map(select(.task == \"$2\")) | .[0]"

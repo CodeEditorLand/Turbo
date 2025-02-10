@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.0",
+		"@types/node": "22.13.1",
 		"gatsby-plugin-compile-es6-packages": "2.1.1"
 	}
 }
