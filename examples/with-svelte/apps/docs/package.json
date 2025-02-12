@@ -15,6 +15,6 @@
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"tslib": "^2.8.1"
+		"tslib": "2.8.1"
 	}
 }

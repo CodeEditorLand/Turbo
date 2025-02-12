@@ -21,8 +21,8 @@
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"prisma": "latest",
-		"rimraf": "^6.0.1",
-		"tsup": "^8.3.6",
+		"rimraf": "6.0.1",
+		"tsup": "8.3.6",
 		"tsx": "4.19.2"
 	}
 }

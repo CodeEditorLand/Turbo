@@ -7,7 +7,7 @@
 	},
 	"dependencies": {
 		"@repo/ui": "*",
-		"next": "15.1.6",
+		"next": "15.1.7",
 		"react-native-web": "0.19.13"
 	},
 	"devDependencies": {

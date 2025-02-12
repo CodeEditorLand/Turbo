@@ -7,10 +7,10 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"next": "15.1.6",
-		"turb": "^0.1.2"
+		"next": "15.1.7",
+		"turb": "0.1.2"
 	},
 	"devDependencies": {
-		"@types/node": "^22"
+		"@types/node": "22"
 	}
 }

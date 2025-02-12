@@ -8,7 +8,7 @@
 	"dependencies": {
 		"@repo/typeorm-service": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"next": "15.1.6",
+		"next": "15.1.7",
 		"typeorm": "0.3.20"
 	},
 	"devDependencies": {

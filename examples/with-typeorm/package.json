@@ -9,6 +9,6 @@
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"turbo": "2.4.0"
+		"turbo": "2.4.2"
 	}
 }

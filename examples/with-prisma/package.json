@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"prisma": "latest",
 		"tsx": "4.19.2",
-		"turbo": "^2.4.0"
+		"turbo": "2.4.2"
 	},
 	"prisma": {
 		"schema": "packages/database/prisma/schema.prisma",
