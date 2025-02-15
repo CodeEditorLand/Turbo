@@ -1,22 +1,12 @@
-[package]
-name = "turbo"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
-[features]
-# By default, we enable rustls-tls for reqwest via downstream transitive features.
-# This is for the convenience of running daily dev workflows, i.e running
-# `cargo xxx` without explicitly specifying features, not that we want to
-# promote this as default backend.
-default = ["rustls-tls", "turborepo-lib/daemon-package-discovery"]
-native-tls = ["turborepo-lib/native-tls"]
-rustls-tls = ["turborepo-lib/rustls-tls"]
-pprof = ["turborepo-lib/pprof"]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [build-dependencies]
 build-target = "0.4.0"
+
+[dependencies]
+anyhow = { workspace = true, features = ["backtrace"] }
+turborepo-lib = { workspace = true, default-features = false }
+
+[dependencies.miette]
+workspace = true
 
 [dev-dependencies]
 assert_cmd = { workspace = true }
@@ -29,11 +19,17 @@ tempfile = { workspace = true }
 turbopath = { workspace = true }
 which = { workspace = true }
 
+[features]
+default = ["rustls-tls", "turborepo-lib/daemon-package-discovery"]
+native-tls = ["turborepo-lib/native-tls"]
+pprof = ["turborepo-lib/pprof"]
+rustls-tls = ["turborepo-lib/rustls-tls"]
 
 [lints]
 workspace = true
 
-[dependencies]
-anyhow = { workspace = true, features = ["backtrace"] }
-miette.workspace = true
-turborepo-lib = { workspace = true, default-features = false }
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turbo"
+version = "0.1.0"

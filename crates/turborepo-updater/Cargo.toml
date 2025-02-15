@@ -1,20 +1,3 @@
-[package]
-name = "turbo-updater"
-version = "0.1.0"
-edition = "2021"
-description = "Minimal wrapper around update-informer to provide npm registry support and consistent UI"
-license = "MIT"
-publish = false
-
-[features]
-# Allows configuring a specific tls backend for reqwest.
-# See top level Cargo.toml for more details.
-native-tls = ["reqwest/native-tls", "update-informer/native-tls"]
-rustls-tls = ["reqwest/rustls-tls", "update-informer/rustls-tls"]
-
-[lints]
-workspace = true
-
 [dependencies]
 atty = { workspace = true }
 console = { workspace = true }
@@ -25,3 +8,21 @@ thiserror = { workspace = true }
 update-informer = { git = "https://github.com/nicholaslyang/update-informer.git", default-features = false, features = [
   "reqwest",
 ] }
+
+[features]
+native-tls = ["reqwest/native-tls", "update-informer/native-tls"]
+rustls-tls = ["reqwest/rustls-tls", "update-informer/rustls-tls"]
+
+[lib]
+path = "Source/lib.rs"
+
+[lints]
+workspace = true
+
+[package]
+description = "Minimal wrapper around update-informer to provide npm registry support and consistent UI"
+edition = "2021"
+license-file = "LICENSE"
+name = "turbo-updater"
+publish = false
+version = "0.1.0"

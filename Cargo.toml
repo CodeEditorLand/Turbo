@@ -1,77 +1,37 @@
-[workspace]
-resolver = "2"
+[profile]
 
+[profile.dev]
+
+[profile.dev.build-override]
+opt-level = 3
+
+[profile.dev.package]
+
+[profile.dev.package."*"]
+opt-level = 1
+
+[profile.release]
+lto = "off"
+
+[profile.release-turborepo]
+inherits = "release"
+strip = true
+
+[profile.release-turborepo-lsp]
+inherits = "release"
+opt-level = "z"
+strip = true
+
+[workspace]
 members = [
   "crates/tower-uds",
   "crates/turbo-trace",
   "crates/turborepo*",
   "packages/turbo-repository/rust",
 ]
+resolver = "2"
 
-[workspace.metadata.groups]
-# Only the libraries, does not include the turborepo binary.
-# That way we don't have to build the Go code
-turborepo-libraries = ["path:crates/turborepo-*"]
-turborepo = ["path:crates/turborepo*"]
-
-[workspace.lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(debug_assert)'] }
-
-[workspace.lints.clippy]
-too_many_arguments = "allow"
-
-# Set the options for dependencies (not crates in the workspace), this mostly impacts cold builds
-[profile.dev.package."*"]
-opt-level = 1
-
-# Set the settings for build scripts and proc-macros.
-[profile.dev.build-override]
-opt-level = 3
-
-[profile.release]
-lto = "off"
-
-[profile.release-turborepo-lsp]
-inherits = "release"
-strip = true
-opt-level = "z"
-
-[profile.release-turborepo]
-inherits = "release"
-strip = true
-
-# Declare dependencies used across workspace packages requires single version bump.
-# ref: https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#inheriting-a-dependency-from-a-workspace
 [workspace.dependencies]
-async-recursion = "1.0.2"
-miette = { version = "5.10.0", features = ["fancy"] }
-markdown = "1.0.0-alpha.18"
-
-turbo-trace = { path = "crates/turbo-trace" }
-turbo-updater = { path = "crates/turborepo-updater" }
-turbopath = { path = "crates/turborepo-paths" }
-turborepo = { path = "crates/turborepo" }
-turborepo-analytics = { path = "crates/turborepo-analytics" }
-turborepo-api-client = { path = "crates/turborepo-api-client" }
-turborepo-cache = { path = "crates/turborepo-cache" }
-turborepo-ci = { path = "crates/turborepo-ci" }
-turborepo-env = { path = "crates/turborepo-env" }
-turborepo-errors = { path = "crates/turborepo-errors" }
-turborepo-fs = { path = "crates/turborepo-fs" }
-turborepo-lib = { path = "crates/turborepo-lib", default-features = false }
-turborepo-lockfiles = { path = "crates/turborepo-lockfiles" }
-turborepo-microfrontends = { path = "crates/turborepo-microfrontends" }
-turborepo-repository = { path = "crates/turborepo-repository" }
-turborepo-ui = { path = "crates/turborepo-ui" }
-turborepo-unescape = { path = "crates/turborepo-unescape" }
-turborepo-scm = { path = "crates/turborepo-scm" }
-wax = { path = "crates/turborepo-wax" }
-turborepo-vercel-api = { path = "crates/turborepo-vercel-api" }
-turborepo-vercel-api-mock = { path = "crates/turborepo-vercel-api-mock" }
-turborepo-vt100 = { path = "crates/turborepo-vt100" }
-
-reqwest = { version = "0.12.9", default-features = false }
-
 anyhow = "1.0.69"
 assert_cmd = "2.0.8"
 async-compression = { version = "0.3.13", default-features = false, features = [
@@ -80,6 +40,7 @@ async-compression = { version = "0.3.13", default-features = false, features = [
 ] }
 async-graphql = "7.0.7"
 async-graphql-axum = "7.0.7"
+async-recursion = "1.0.2"
 async-trait = "0.1.64"
 atty = "0.2.14"
 axum = "0.7.5"
@@ -115,7 +76,9 @@ indoc = "2.0.0"
 insta = { version = "1.34.0", features = ["json"] }
 itertools = "0.10.5"
 lazy_static = "1.4.0"
+markdown = "1.0.0-alpha.18"
 merge = "0.1.0"
+miette = { version = "5.10.0", features = ["fancy"] }
 mime = "0.3.16"
 notify = "6.1.1"
 num_cpus = "1.15.0"
@@ -136,6 +99,7 @@ radix_trie = "0.2.1"
 rand = "0.8.5"
 ratatui = "0.26.1"
 regex = "1.7.0"
+reqwest = { version = "0.12.9", default-features = false }
 rustc-hash = "1.1.0"
 semver = "1.0.16"
 serde = { version = "1.0.152", features = ["derive"] }
@@ -165,8 +129,44 @@ tracing = "0.1.37"
 tracing-appender = "0.2.2"
 tracing-subscriber = "0.3.16"
 tui-term = { version = "=0.1.9", default-features = false }
+turbo-trace = { path = "crates/turbo-trace" }
+turbo-updater = { path = "crates/turborepo-updater" }
+turbopath = { path = "crates/turborepo-paths" }
+turborepo = { path = "crates/turborepo" }
+turborepo-analytics = { path = "crates/turborepo-analytics" }
+turborepo-api-client = { path = "crates/turborepo-api-client" }
+turborepo-cache = { path = "crates/turborepo-cache" }
+turborepo-ci = { path = "crates/turborepo-ci" }
+turborepo-env = { path = "crates/turborepo-env" }
+turborepo-errors = { path = "crates/turborepo-errors" }
+turborepo-fs = { path = "crates/turborepo-fs" }
+turborepo-lib = { path = "crates/turborepo-lib", default-features = false }
+turborepo-lockfiles = { path = "crates/turborepo-lockfiles" }
+turborepo-microfrontends = { path = "crates/turborepo-microfrontends" }
+turborepo-repository = { path = "crates/turborepo-repository" }
+turborepo-scm = { path = "crates/turborepo-scm" }
+turborepo-ui = { path = "crates/turborepo-ui" }
+turborepo-unescape = { path = "crates/turborepo-unescape" }
+turborepo-vercel-api = { path = "crates/turborepo-vercel-api" }
+turborepo-vercel-api-mock = { path = "crates/turborepo-vercel-api-mock" }
+turborepo-vt100 = { path = "crates/turborepo-vt100" }
+unicode-segmentation = "1.10.1"
 url = "2.2.2"
 urlencoding = "2.1.2"
+wax = { path = "crates/turborepo-wax" }
 webbrowser = "0.8.7"
 which = "4.4.0"
-unicode-segmentation = "1.10.1"
+
+[workspace.lints]
+
+[workspace.lints.clippy]
+too_many_arguments = "allow"
+
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(debug_assert)'] }
+
+[workspace.metadata]
+
+[workspace.metadata.groups]
+turborepo = ["path:crates/turborepo*"]
+turborepo-libraries = ["path:crates/turborepo-*"]

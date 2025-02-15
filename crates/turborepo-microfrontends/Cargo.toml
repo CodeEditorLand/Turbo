@@ -1,9 +1,3 @@
-[package]
-name = "turborepo-microfrontends"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
 [dependencies]
 biome_deserialize = { workspace = true }
 biome_deserialize_macros = { workspace = true }
@@ -22,5 +16,14 @@ pretty_assertions = { workspace = true }
 tempfile = { workspace = true }
 test-case = { workspace = true }
 
+[lib]
+path = "Source/lib.rs"
+
 [lints]
 workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-microfrontends"
+version = "0.1.0"

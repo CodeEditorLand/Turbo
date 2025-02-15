@@ -1,11 +1,4 @@
-[package]
-name = "turbo-trace"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
 [dependencies]
-camino.workspace = true
 clap = { version = "4.5.17", features = ["derive"] }
 futures = { workspace = true }
 globwalk = { version = "0.1.0", path = "../turborepo-globwalk" }
@@ -21,5 +14,17 @@ tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 turbopath = { workspace = true }
 
+[dependencies.camino]
+workspace = true
+
+[lib]
+path = "Source/lib.rs"
+
 [lints]
 workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turbo-trace"
+version = "0.1.0"

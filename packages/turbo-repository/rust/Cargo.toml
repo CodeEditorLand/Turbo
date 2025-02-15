@@ -1,14 +1,5 @@
-[package]
-name = "turborepo-napi"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
-[lib]
-crate-type = ["cdylib"]
-
-[lints]
-workspace = true
+[build-dependencies]
+napi-build = "2.0.1"
 
 [dependencies]
 napi = { version = "2.14.0", features = ["tokio_rt"] }
@@ -21,10 +12,18 @@ turborepo-repository = { workspace = true }
 [dev-dependencies]
 pretty_assertions = { workspace = true }
 
-[build-dependencies]
-napi-build = "2.0.1"
-
 [features]
-# The napi proc macro expands to include this feature, forward it correct feature
-# to avoid the lint warning.
 noop = ["napi-derive/noop"]
+
+[lib]
+crate-type = ["cdylib"]
+path = "Source/lib.rs"
+
+[lints]
+workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-napi"
+version = "0.1.0"

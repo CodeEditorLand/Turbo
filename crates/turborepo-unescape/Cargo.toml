@@ -1,14 +1,21 @@
-[package]
-name = "turborepo-unescape"
-version = "0.1.0"
-edition = "2021"
-license = "MPL-2.0"
-
 [dependencies]
 biome_deserialize = { workspace = true }
 biome_diagnostics = { workspace = true }
-serde.workspace = true
-serde_json.workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+
+[lib]
+path = "Source/lib.rs"
 
 [lints]
 workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-unescape"
+version = "0.1.0"

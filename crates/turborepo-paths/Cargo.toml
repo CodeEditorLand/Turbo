@@ -1,13 +1,23 @@
-[package]
-name = "turbopath"
-version = "0.1.0"
-license = "MIT"
-edition = "2021"
+[dependencies]
+biome_deserialize = { workspace = true, optional = true }
+biome_deserialize_macros = { workspace = true, optional = true }
+biome_diagnostics = { workspace = true, optional = true }
+biome_json_parser = { workspace = true, optional = true }
+camino = { workspace = true }
+dunce = { workspace = true }
+fs-err = "2.9.0"
+miette = { workspace = true }
+path-clean = "1.0.1"
+serde = { workspace = true }
+thiserror = { workspace = true }
+turborepo-unescape = { workspace = true, optional = true }
+wax = { workspace = true }
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[lints]
-workspace = true
+[dev-dependencies]
+anyhow = { workspace = true }
+serde_json = { workspace = true }
+tempfile = { workspace = true }
+test-case = { workspace = true }
 
 [features]
 biome = [
@@ -18,25 +28,14 @@ biome = [
   "dep:turborepo-unescape",
 ]
 
-[dependencies]
-biome_deserialize = { workspace = true, optional = true }
-biome_deserialize_macros = { workspace = true, optional = true }
-biome_diagnostics = { workspace = true, optional = true }
-biome_json_parser = { workspace = true, optional = true }
-turborepo-unescape = { workspace = true, optional = true }
+[lib]
+path = "Source/lib.rs"
 
-camino = { workspace = true }
-dunce = { workspace = true }
-fs-err = "2.9.0"
-miette = { workspace = true }
-path-clean = "1.0.1"
-# TODO: Make this a crate feature
-serde = { workspace = true }
-thiserror = { workspace = true }
-wax = { workspace = true }
+[lints]
+workspace = true
 
-[dev-dependencies]
-anyhow = { workspace = true }
-serde_json = { workspace = true }
-tempfile = { workspace = true }
-test-case = { workspace = true }
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turbopath"
+version = "0.1.0"

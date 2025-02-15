@@ -1,12 +1,3 @@
-[package]
-name = "turborepo-graph-utils"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
-[lints]
-workspace = true
-
 [dependencies]
 fixedbitset = "0.4.2"
 futures = "0.3.26"
@@ -19,3 +10,15 @@ tracing = { workspace = true, features = ["log"] }
 
 [dev-dependencies]
 insta = { workspace = true }
+
+[lib]
+path = "Source/lib.rs"
+
+[lints]
+workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-graph-utils"
+version = "0.1.0"

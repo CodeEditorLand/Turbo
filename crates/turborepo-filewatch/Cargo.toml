@@ -1,14 +1,3 @@
-[package]
-name = "turborepo-filewatch"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[lints]
-workspace = true
-
 [dependencies]
 futures = { version = "0.3.26" }
 itertools = { workspace = true }
@@ -24,10 +13,6 @@ turborepo-repository = { version = "0.1.0", path = "../turborepo-repository" }
 turborepo-scm = { workspace = true }
 walkdir = "2.3.3"
 wax = { workspace = true }
-
-[target."cfg(target_os=\"macos\")".dependencies.fsevent-sys]
-optional = true
-version = "4"
 
 [dependencies.bitflags]
 version = "1.0.4"
@@ -46,3 +31,25 @@ default = ["macos_fsevent"]
 macos_fsevent = ["fsevent-sys"]
 manual_recursive_watch = []
 watch_ancestors = []
+
+[lib]
+path = "Source/lib.rs"
+
+[lints]
+workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-filewatch"
+version = "0.1.0"
+
+[target]
+
+[target.'cfg(target_os="macos")']
+
+[target.'cfg(target_os="macos")'.dependencies]
+
+[target.'cfg(target_os="macos")'.dependencies.fsevent-sys]
+optional = true
+version = "4"

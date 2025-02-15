@@ -1,19 +1,3 @@
-[package]
-name = "turborepo-ui"
-version = "0.1.0"
-edition = "2021"
-license = "MIT"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[dev-dependencies]
-anyhow = { workspace = true }
-indoc = { workspace = true }
-tempfile = { workspace = true }
-test-case = { workspace = true }
-
-[lints]
-workspace = true
-
 [dependencies]
 async-graphql = { workspace = true }
 async-graphql-axum = { workspace = true }
@@ -28,7 +12,6 @@ crossterm = { version = "0.27.0", features = ["event-stream"] }
 dialoguer = { workspace = true }
 futures = { workspace = true }
 indicatif = { workspace = true }
-itertools.workspace = true
 lazy_static = { workspace = true }
 nix = { version = "0.26.2", features = ["signal"] }
 ratatui = { workspace = true }
@@ -42,6 +25,31 @@ turbopath = { workspace = true }
 turborepo-ci = { workspace = true }
 turborepo-vt100 = { workspace = true }
 which = { workspace = true }
+
+[dependencies.itertools]
+workspace = true
+
+[dev-dependencies]
+anyhow = { workspace = true }
+indoc = { workspace = true }
+tempfile = { workspace = true }
+test-case = { workspace = true }
+
+[lib]
+path = "Source/lib.rs"
+
+[lints]
+workspace = true
+
+[package]
+edition = "2021"
+license-file = "LICENSE"
+name = "turborepo-ui"
+version = "0.1.0"
+
+[target]
+
+[target."cfg(windows)"]
 
 [target."cfg(windows)".dependencies]
 clipboard-win = "5.3.1"
