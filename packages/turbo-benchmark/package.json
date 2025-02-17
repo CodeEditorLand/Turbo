@@ -35,7 +35,7 @@
 		"@turbo/tsconfig": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/ndjson": "2.0.4",
-		"@types/node": "22.13.1",
+		"@types/node": "22.13.4",
 		"@types/node-fetch": "2.6.12"
 	}
 }

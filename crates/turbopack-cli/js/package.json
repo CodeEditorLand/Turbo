@@ -6,6 +6,6 @@
 		"@vercel/turbopack-ecmascript-runtime": "*"
 	},
 	"devDependencies": {
-		"@types/node": "22.13.1"
+		"@types/node": "22.13.4"
 	}
 }
