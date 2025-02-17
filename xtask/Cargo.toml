@@ -1,6 +1,6 @@
 [[bin]]
 bench = false
-name = "xtask"
+name = "vercel-xtask"
 path = "src/main.rs"
 
 [dependencies]
@@ -24,8 +24,8 @@ workspace = true
 
 [package]
 description = "https://github.com/matklad/cargo-xtask/"
-edition = "2021"
+edition = "2024"
 license-file = "LICENSE"
-name = "xtask"
+name = "vercel-xtask"
 publish = false
 version = "0.1.0"

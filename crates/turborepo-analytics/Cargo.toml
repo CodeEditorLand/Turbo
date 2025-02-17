@@ -16,7 +16,7 @@ path = "Source/lib.rs"
 workspace = true
 
 [package]
-edition = "2021"
+edition = "2024"
 license-file = "LICENSE"
 name = "turborepo-analytics"
 version = "0.1.0"

@@ -21,7 +21,7 @@ workspace = true
 
 [package]
 description = "Minimal wrapper around update-informer to provide npm registry support and consistent UI"
-edition = "2021"
+edition = "2024"
 license-file = "LICENSE"
 name = "turbo-updater"
 publish = false

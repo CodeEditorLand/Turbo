@@ -21,7 +21,7 @@ workspace = true
 authors = ["Paul Hummer <paul@eventuallyanyway.com>"]
 categories = ["filesystem"]
 description = "A library for using pidfiles as resource locks"
-edition = "2021"
+edition = "2024"
 include = [
   "src/*.rs",
   "Cargo.toml",

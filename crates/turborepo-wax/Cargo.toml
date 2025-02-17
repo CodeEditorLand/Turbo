@@ -44,13 +44,13 @@ workspace = true
 authors = ["Sean Olson <olson.sean.k@gmail.com>"]
 categories = ["filesystem"]
 description = "Opinionated and portable globs that can be matched against paths and directory trees."
-edition = "2021"
+edition = "2024"
 keywords = ["glob", "pattern", "regex"]
 license-file = "LICENSE"
 name = "wax"
 readme = "README.md"
 repository = "https://github.com/olson-sean-k/wax"
-rust-version = "1.66.1"
+rust-version = "1.85.0"
 version = "0.6.0"
 
 [package.metadata]

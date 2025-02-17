@@ -27,7 +27,7 @@ rustls-tls = ["turborepo-lib/rustls-tls"]
 path = "Source/lib.rs"
 
 [package]
-edition = "2021"
+edition = "2024"
 license-file = "LICENSE"
 name = "turborepo-lsp"
 version = "0.1.0"

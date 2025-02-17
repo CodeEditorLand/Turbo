@@ -29,7 +29,11 @@ rustls-tls = ["turborepo-lib/rustls-tls"]
 workspace = true
 
 [package]
-edition = "2021"
+edition = "2024"
 license-file = "LICENSE"
 name = "turbo"
 version = "0.1.0"
+
+[[bin]]
+name = "turbo"
+path = "Source/main.rs"
