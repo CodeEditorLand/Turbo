@@ -1,6 +1,0 @@
-{
-  "name": "@vercel/not-allowed-dependent",
-  "dependencies": {
-    "@vercel/my-app": "*"
-  }
-}
