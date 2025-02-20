@@ -655,6 +655,10 @@ pub enum Command {
         /// tokens for the given login url.
         #[clap(long = "force", short = 'f')]
         force: bool,
+        /// Manually enter token instead of requesting one from the login
+        /// service.
+        #[clap(long, conflicts_with = "sso_team")]
+        manual: bool,
     },
     /// Logout to your Vercel account
     Logout {
@@ -846,7 +850,7 @@ pub struct ExecutionArgs {
     #[clap(short = 'F', long, group = "scope-filter-group")]
     pub filter: Vec<String>,
 
-    /// Run only tasks that are affected by changes between
+    /// Filter to only packages that are affected by changes between
     /// the current branch and `main`
     #[clap(long, group = "scope-filter-group", conflicts_with = "filter")]
     pub affected: bool,
@@ -1128,6 +1132,65 @@ impl Display for LogPrefix {
     }
 }
 
+fn initialize_telemetry_client(
+    color_config: ColorConfig,
+    version: &str,
+) -> Option<TelemetryHandle> {
+    let mut telemetry_handle: Option<TelemetryHandle> = None;
+    match AnonAPIClient::new("https://telemetry.vercel.com", 250, version) {
+        Ok(anonymous_api_client) => {
+            let handle = init_telemetry(anonymous_api_client, color_config);
+            match handle {
+                Ok(h) => telemetry_handle = Some(h),
+                Err(error) => {
+                    debug!("failed to start telemetry: {:?}", error)
+                }
+            }
+        }
+        Err(error) => {
+            debug!("Failed to create AnonAPIClient: {:?}", error);
+        }
+    }
+    telemetry_handle
+}
+
+#[derive(PartialEq)]
+enum PrintVersionState {
+    Enabled,
+    Disabled,
+}
+
+fn get_print_version_state() -> PrintVersionState {
+    // map_or is used here because env::var returns Result<String, ...>
+    // and we want to compare against str
+    env::var("TURBO_PRINT_VERSION_DISABLED").map_or(PrintVersionState::Enabled, |var| {
+        match var.as_str() {
+            "1" | "true" => PrintVersionState::Disabled,
+            _ => PrintVersionState::Enabled,
+        }
+    })
+}
+
+#[derive(PartialEq)]
+enum CIState {
+    Inside,
+    Outside,
+}
+
+fn get_ci_state() -> CIState {
+    match turborepo_ci::is_ci() {
+        true => CIState::Inside,
+        _ => CIState::Outside,
+    }
+}
+
+fn should_print_version() -> bool {
+    let print_version_state = get_print_version_state();
+    let ci_state = get_ci_state();
+
+    print_version_state == PrintVersionState::Enabled && ci_state == CIState::Outside
+}
+
 /// Runs the CLI by parsing arguments with clap, then either calling Rust code
 /// directly or returning a payload for the Go code to use.
 ///
@@ -1158,29 +1221,9 @@ pub async fn run(
     let version = get_version();
 
     // track telemetry handle to close at the end of the run
-    let mut telemetry_handle: Option<TelemetryHandle> = None;
+    let telemetry_handle = initialize_telemetry_client(color_config, version);
 
-    // initialize telemetry
-    match AnonAPIClient::new("https://telemetry.vercel.com", 250, version) {
-        Ok(anonymous_api_client) => {
-            let handle = init_telemetry(anonymous_api_client, color_config);
-            match handle {
-                Ok(h) => telemetry_handle = Some(h),
-                Err(error) => {
-                    debug!("failed to start telemetry: {:?}", error)
-                }
-            }
-        }
-        Err(error) => {
-            debug!("Failed to create AnonAPIClient: {:?}", error);
-        }
-    }
-
-    let should_print_version = env::var("TURBO_PRINT_VERSION_DISABLED")
-        .map_or(true, |disable| !matches!(disable.as_str(), "1" | "true"))
-        && !turborepo_ci::is_ci();
-
-    if should_print_version {
+    if should_print_version() {
         eprintln!("{}\n", GREY.apply_to(format!("turbo {}", get_version())));
     }
 
@@ -1432,7 +1475,11 @@ pub async fn run(
 
             Ok(0)
         }
-        Command::Login { sso_team, force } => {
+        Command::Login {
+            sso_team,
+            force,
+            manual,
+        } => {
             let event = CommandEventBuilder::new("login").with_parent(&root_telemetry);
             event.track_call();
             if cli_args.test_run {
@@ -1442,16 +1489,13 @@ pub async fn run(
 
             let sso_team = sso_team.clone();
             let force = *force;
+            let manual = *manual;
 
             let mut base = CommandBase::new(cli_args, repo_root, version, color_config)?;
             event.track_ui_mode(base.opts.run_opts.ui_mode);
             let event_child = event.child();
 
-            if let Some(sso_team) = sso_team {
-                login::sso_login(&mut base, &sso_team, event_child, force).await?;
-            } else {
-                login::login(&mut base, event_child, force).await?;
-            }
+            login::login(&mut base, event_child, sso_team.as_deref(), force, manual).await?;
 
             Ok(0)
         }
@@ -2539,7 +2583,8 @@ mod test {
             Args {
                 command: Some(Command::Login {
                     sso_team: None,
-                    force: false
+                    force: false,
+                    manual: false,
                 }),
                 ..Args::default()
             }
@@ -2553,6 +2598,7 @@ mod test {
                 command: Some(Command::Login {
                     sso_team: None,
                     force: false,
+                    manual: false,
                 }),
                 cwd: Some(Utf8PathBuf::from("../examples/with-yarn")),
                 ..Args::default()
@@ -2568,6 +2614,7 @@ mod test {
                 command: Some(Command::Login {
                     sso_team: Some("my-team".to_string()),
                     force: false,
+                    manual: false,
                 }),
                 cwd: Some(Utf8PathBuf::from("../examples/with-yarn")),
                 ..Args::default()

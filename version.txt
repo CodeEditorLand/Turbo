@@ -1,2 +1,2 @@
-2.4.0
-latest
+2.4.3-canary.3
+canary
