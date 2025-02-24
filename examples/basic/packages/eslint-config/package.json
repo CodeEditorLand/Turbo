@@ -1,14 +1,14 @@
 {
-	"name": "@repo/eslint-config",
-	"exports": {
-		"./base": "./base.js",
-		"./next-js": "./next.js",
-		"./react-internal": "./react-internal.js"
-	},
 	"dependencies": {},
 	"devDependencies": {
 		"eslint-plugin-only-warn": "^1.1.0",
 		"eslint-plugin-turbo": "^2.4.0",
 		"globals": "^15.15.0"
-	}
+	},
+	"exports": {
+		"./base": "./base.js",
+		"./next-js": "./next.js",
+		"./react-internal": "./react-internal.js"
+	},
+	"name": "@repo/eslint-config"
 }
