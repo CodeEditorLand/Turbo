@@ -1,21 +1,21 @@
 {
-	"name": "@acme/core",
-	"sideEffects": false,
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist/**"
-	],
-	"scripts": {
-		"build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-		"dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react"
-	},
 	"dependencies": {},
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
 		"@acme/tsconfig": "workspace:*",
 		"tsup": "8.3.6"
-	}
+	},
+	"files": [
+		"dist/**"
+	],
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"name": "@acme/core",
+	"scripts": {
+		"build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+		"dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react"
+	},
+	"sideEffects": false,
+	"types": "./dist/index.d.ts"
 }
