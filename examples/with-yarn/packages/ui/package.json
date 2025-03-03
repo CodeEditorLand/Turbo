@@ -1,17 +1,17 @@
 {
-	"name": "@repo/ui",
-	"exports": {
-		"./card": "./src/card.tsx",
-		"./code": "./src/code.tsx"
-	},
-	"scripts": {
-		"generate:component": "turbo gen react-component"
-	},
 	"dependencies": {},
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"@turbo/gen": "2.4.2",
 		"@types/node": "22.13.4"
+	},
+	"exports": {
+		"./card": "./src/card.tsx",
+		"./code": "./src/code.tsx"
+	},
+	"name": "@repo/ui",
+	"scripts": {
+		"generate:component": "turbo gen react-component"
 	}
 }
