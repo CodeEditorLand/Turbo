@@ -9,7 +9,8 @@ use turborepo_cache::{CacheOpts, RemoteCacheOpts};
 
 use crate::{
     cli::{
-        Command, DryRunMode, EnvMode, ExecutionArgs, LogOrder, LogPrefix, OutputLogsMode, RunArgs,
+        Command, ContinueMode, DryRunMode, EnvMode, ExecutionArgs, LogOrder, LogPrefix,
+        OutputLogsMode, RunArgs,
     },
     config::ConfigurationOptions,
     run::task_id::TaskId,
@@ -92,8 +93,12 @@ impl Opts {
             cmd.push_str(" --parallel");
         }
 
-        if self.run_opts.continue_on_error {
-            cmd.push_str(" --continue");
+        match self.run_opts.continue_on_error {
+            ContinueMode::Always => cmd.push_str(" --continue=always"),
+            ContinueMode::DependenciesSuccessful => {
+                cmd.push_str(" --continue=dependencies-successful")
+            }
+            _ => (),
         }
 
         if let Some(dry) = self.run_opts.dry_run {
@@ -216,7 +221,7 @@ pub struct RunOpts {
     // Whether or not to infer the framework for each workspace.
     pub(crate) framework_inference: bool,
     pub profile: Option<String>,
-    pub(crate) continue_on_error: bool,
+    pub(crate) continue_on_error: ContinueMode,
     pub(crate) pass_through_args: Vec<String>,
     pub(crate) only: bool,
     pub(crate) dry_run: Option<DryRunMode>,
@@ -226,7 +231,6 @@ pub struct RunOpts {
     pub log_prefix: ResolvedLogPrefix,
     pub log_order: ResolvedLogOrder,
     pub summarize: bool,
-    pub(crate) experimental_space_id: Option<String>,
     pub is_github_actions: bool,
     pub ui_mode: UIMode,
 }
@@ -342,11 +346,6 @@ impl<'a> TryFrom<OptsInputs<'a>> for RunOpts {
             log_prefix,
             log_order,
             summarize: inputs.config.run_summary(),
-            experimental_space_id: inputs
-                .run_args
-                .experimental_space_id
-                .clone()
-                .or(inputs.config.spaces_id().map(|s| s.to_owned())),
             framework_inference: inputs.execution_args.framework_inference,
             concurrency,
             parallel: inputs.run_args.parallel,
@@ -550,7 +549,7 @@ mod test {
 
     use super::{APIClientOpts, RepoOpts, RunOpts};
     use crate::{
-        cli::{Command, DryRunMode, RunArgs},
+        cli::{Command, ContinueMode, DryRunMode, RunArgs},
         commands::CommandBase,
         config::ConfigurationOptions,
         opts::{Opts, RunCacheOpts, ScopeOpts},
@@ -565,7 +564,7 @@ mod test {
         only: bool,
         pass_through_args: Vec<String>,
         parallel: bool,
-        continue_on_error: bool,
+        continue_on_error: ContinueMode,
         dry_run: Option<DryRunMode>,
         affected: Option<(String, String)>,
     }
@@ -607,10 +606,20 @@ mod test {
             filter_patterns: vec!["my-app".to_string()],
             tasks: vec!["build".to_string()],
             parallel: true,
-            continue_on_error: true,
+            continue_on_error: ContinueMode::Always,
             ..Default::default()
             },
-        "turbo run build --filter=my-app --parallel --continue"
+        "turbo run build --filter=my-app --parallel --continue=always"
+    )]
+    #[test_case(
+        TestCaseOpts{
+            filter_patterns: vec!["my-app".to_string()],
+            tasks: vec!["build".to_string()],
+            parallel: true,
+            continue_on_error: ContinueMode::DependenciesSuccessful,
+            ..Default::default()
+            },
+        "turbo run build --filter=my-app --parallel --continue=dependencies-successful"
     )]
     #[test_case(
         TestCaseOpts{
@@ -666,7 +675,6 @@ mod test {
             log_prefix: crate::opts::ResolvedLogPrefix::Task,
             log_order: crate::opts::ResolvedLogOrder::Stream,
             summarize: false,
-            experimental_space_id: None,
             is_github_actions: false,
             daemon: None,
         };

@@ -54,6 +54,7 @@ turborepo-repository = { path = "crates/turborepo-repository" }
 turborepo-ui = { path = "crates/turborepo-ui" }
 turborepo-unescape = { path = "crates/turborepo-unescape" }
 turborepo-scm = { path = "crates/turborepo-scm" }
+turborepo-signals = { path = "crates/turborepo-signals" }
 wax = { path = "crates/turborepo-wax" }
 turborepo-vercel-api = { path = "crates/turborepo-vercel-api" }
 turborepo-vercel-api-mock = { path = "crates/turborepo-vercel-api-mock" }
@@ -96,7 +97,7 @@ derive_setters = "0.1.6"
 dialoguer = "0.11.0"
 dunce = "1.0.3"
 either = "1.9.0"
-futures = "0.3.26"
+futures = "0.3.30"
 futures-retry = "0.6.0"
 git2 = { version = "0.20.0", default-features = false }
 hex = "0.4.3"
@@ -115,7 +116,7 @@ notify = "6.1.1"
 num_cpus = "1.15.0"
 once_cell = "1.17.1"
 owo-colors = "3.5.0"
-oxc_resolver = { version = "2.1.0" }
+oxc_resolver = "4.2.0"
 parking_lot = "0.12.1"
 path-clean = "1.0.1"
 pathdiff = "0.2.1"
