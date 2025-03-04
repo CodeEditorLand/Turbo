@@ -6,8 +6,8 @@
 		"./react-internal": "./react-internal.js"
 	},
 	"devDependencies": {
-		"eslint-plugin-only-warn": "^1.1.0",
-		"eslint-plugin-turbo": "^2.3.4",
-		"globals": "^15.15.0"
+		"eslint-plugin-only-warn": "1.1.0",
+		"eslint-plugin-turbo": "2.4.4",
+		"globals": "16.0.0"
 	}
 }

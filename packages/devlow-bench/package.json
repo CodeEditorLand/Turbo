@@ -34,7 +34,7 @@
 		"@turbo/eslint-config": "workspace:*",
 		"@types/inquirer": "9.0.7",
 		"@types/minimist": "1.2.5",
-		"@types/node": "22.13.4",
+		"@types/node": "22.13.9",
 		"@types/split2": "4.2.3"
 	}
 }

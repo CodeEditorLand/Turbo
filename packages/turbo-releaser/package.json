@@ -12,15 +12,15 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"commander": "^11.0.0",
-		"tar": "6.1.13"
+		"commander": "13.1.0",
+		"tar": "7.4.3"
 	},
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "^20",
-		"@types/tar": "^6.1.4",
-		"tsup": "^6.7.0",
-		"tsx": "4.19.1"
+		"@types/node": "22",
+		"@types/tar": "6.1.13",
+		"tsup": "8.4.0",
+		"tsx": "4.19.3"
 	}
 }

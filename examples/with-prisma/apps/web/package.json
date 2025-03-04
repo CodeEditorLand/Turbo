@@ -6,12 +6,12 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"next": "15.1.7"
+		"next": "15.2.1"
 	},
 	"devDependencies": {
 		"@repo/database": "*",
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@types/node": "22.13.4"
+		"@types/node": "22.13.9"
 	}
 }

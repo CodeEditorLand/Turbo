@@ -22,7 +22,7 @@
 		"@types/body-parser": "1.19.5",
 		"@types/cors": "2.8.17",
 		"@types/morgan": "1.9.9",
-		"@types/node": "22.13.4",
+		"@types/node": "22.13.9",
 		"@types/supertest": "6.0.2",
 		"esbuild": "0.25.0",
 		"esbuild-register": "3.6.0",

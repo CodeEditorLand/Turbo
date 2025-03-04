@@ -9,11 +9,11 @@
 	"dependencies": {
 		"@repo/logger": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"next": "^15.1.6"
+		"next": "15.2.1"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^22.12.0"
+		"@types/node": "22.13.9"
 	}
 }

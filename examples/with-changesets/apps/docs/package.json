@@ -9,11 +9,11 @@
 	"dependencies": {
 		"@acme/core": "workspace:*",
 		"@acme/utils": "workspace:*",
-		"next": "15.1.7"
+		"next": "15.2.1"
 	},
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
 		"@acme/tsconfig": "workspace:*",
-		"@types/node": "22.13.4"
+		"@types/node": "22.13.9"
 	}
 }

@@ -3,8 +3,8 @@
 	"devDependencies": {
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@turbo/gen": "2.4.2",
-		"@types/node": "22.13.4"
+		"@turbo/gen": "2.4.4",
+		"@types/node": "22.13.9"
 	},
 	"exports": {
 		"./card": "./src/card.tsx",
