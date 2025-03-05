@@ -1,9 +1,16 @@
 {
-	"dependencies": {},
-	"devDependencies": {
-		"@taplo/cli": "0.7.0",
-		"lint-staged": "15.4.3",
-		"semver": "7.7.1"
+	"name": "turbo-monorepo",
+	"scripts": {
+		"build": "pnpm -- turbo run build",
+		"build:ts": "tsc -b tsconfig.project.json",
+		"build:turbo": "pnpm run --filter=cli build",
+		"check:toml": "taplo format --check",
+		"prepare": "husky install",
+		"rustdoc": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going || true",
+		"rustdoc:open": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going --open",
+		"test:integration": "pnpm --filter turborepo-tests-integration exec prysk",
+		"turbo": "pnpm run build:turbo && node turbow.js",
+		"turbo-prebuilt": "node turbow.js"
 	},
 	"lint-staged": {
 		"*.rs": [
@@ -19,17 +26,10 @@
 			"prettier --write"
 		]
 	},
-	"name": "turbo-monorepo",
-	"scripts": {
-		"build": "pnpm -- turbo run build",
-		"build:ts": "tsc -b tsconfig.project.json",
-		"build:turbo": "pnpm run --filter=cli build",
-		"check:toml": "taplo format --check",
-		"prepare": "husky install",
-		"rustdoc": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going || true",
-		"rustdoc:open": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going --open",
-		"test:integration": "pnpm --filter turborepo-tests-integration exec prysk",
-		"turbo": "pnpm run build:turbo && node turbow.js",
-		"turbo-prebuilt": "node turbow.js"
+	"dependencies": {},
+	"devDependencies": {
+		"@taplo/cli": "0.7.0",
+		"lint-staged": "15.4.3",
+		"semver": "7.7.1"
 	}
 }

@@ -9,6 +9,7 @@
 	"main": "index.ts",
 	"module": "index.ts",
 	"scripts": {},
+	"dependencies": {},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*"
 	}

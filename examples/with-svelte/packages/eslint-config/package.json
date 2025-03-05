@@ -1,5 +1,6 @@
 {
 	"name": "@repo/eslint-config",
+	"dependencies": {},
 	"devDependencies": {
 		"eslint-config-turbo": "2.4.4",
 		"eslint-plugin-svelte": "3.0.2",

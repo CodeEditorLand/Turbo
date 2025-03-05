@@ -1,3 +1,5 @@
 {
-  "name": "jsonc-package"
+	"name": "jsonc-package",
+	"dependencies": {},
+	"devDependencies": {}
 }

@@ -1,3 +1,5 @@
 {
-  "name": "both-configs"
+	"name": "both-configs",
+	"dependencies": {},
+	"devDependencies": {}
 }

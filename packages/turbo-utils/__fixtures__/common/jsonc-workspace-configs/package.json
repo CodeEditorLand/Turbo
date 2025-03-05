@@ -1,7 +1,9 @@
 {
-  "name": "jsonc-workspace-configs",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+	"name": "jsonc-workspace-configs",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"dependencies": {},
+	"devDependencies": {}
 }

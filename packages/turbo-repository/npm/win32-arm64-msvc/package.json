@@ -1,23 +1,15 @@
 {
-  "name": "@turbo/repository-win32-arm64-msvc",
-  "version": "0.0.1-canary.14",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vercel/turborepo",
-    "directory": "packages/turbo-repository/npm/win32-x64-msvc"
-  },
-  "os": [
-    "win32"
-  ],
-  "cpu": [
-    "arm64"
-  ],
-  "main": "repository.win32-arm64-msvc.node",
-  "files": [
-    "repository.win32-arm64-msvc.node"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">= 10"
-  }
+	"name": "@turbo/repository-win32-arm64-msvc",
+	"main": "repository.win32-arm64-msvc.node",
+	"files": [
+		"repository.win32-arm64-msvc.node"
+	],
+	"dependencies": {},
+	"devDependencies": {},
+	"os": [
+		"win32"
+	],
+	"cpu": [
+		"arm64"
+	]
 }

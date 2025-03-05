@@ -1,63 +1,42 @@
 {
-  "name": "@turbo/workspaces",
-  "version": "2.4.5-canary.0",
-  "description": "Tools for working with package managers",
-  "homepage": "https://turbo.build/repo",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vercel/turborepo",
-    "directory": "packages/turbo-workspaces"
-  },
-  "bugs": {
-    "url": "https://github.com/vercel/turborepo/issues"
-  },
-  "bin": "dist/cli.js",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "test": "jest",
-    "lint": "eslint src/",
-    "check-types": "tsc --noEmit",
-    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
-  },
-  "dependencies": {
-    "commander": "13.1.0",
-    "execa": "9.5.2",
-    "fast-glob": "3.3.3",
-    "fs-extra": "11.3.0",
-    "gradient-string": "3.0.0",
-    "inquirer": "12.4.2",
-    "js-yaml": "4.1.0",
-    "ora": "8.2.0",
-    "picocolors": "1.1.1",
-    "semver": "7.7.1",
-    "update-check": "1.5.4"
-  },
-  "devDependencies": {
-    "@jest/globals": "29.7.0",
-    "@turbo/eslint-config": "workspace:*",
-    "@turbo/test-utils": "workspace:*",
-    "@turbo/tsconfig": "workspace:*",
-    "@turbo/utils": "workspace:*",
-    "@types/fs-extra": "11.0.4",
-    "@types/gradient-string": "1.1.6",
-    "@types/inquirer": "9.0.7",
-    "@types/js-yaml": "4.0.9",
-    "@types/node": "22.13.9",
-    "@types/semver": "7.5.8",
-    "jest": "29.7.0",
-    "ts-jest": "29.2.6",
-    "tsup": "8.4.0",
-    "typescript": "5.8.2"
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "@turbo/workspaces",
+	"description": "Tools for working with package managers",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"bin": "dist/cli.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"check-types": "tsc --noEmit",
+		"dev": "tsup --watch"
+	},
+	"dependencies": {
+		"commander": "13.1.0",
+		"execa": "9.5.2",
+		"fast-glob": "3.3.3",
+		"fs-extra": "11.3.0",
+		"gradient-string": "3.0.0",
+		"inquirer": "12.4.2",
+		"js-yaml": "4.1.0",
+		"ora": "8.2.0",
+		"picocolors": "1.1.1",
+		"semver": "7.7.1",
+		"update-check": "1.5.4"
+	},
+	"devDependencies": {
+		"@turbo/eslint-config": "workspace:*",
+		"@turbo/test-utils": "workspace:*",
+		"@turbo/tsconfig": "workspace:*",
+		"@turbo/utils": "workspace:*",
+		"@types/fs-extra": "11.0.4",
+		"@types/gradient-string": "1.1.6",
+		"@types/inquirer": "9.0.7",
+		"@types/js-yaml": "4.0.9",
+		"@types/node": "22.13.9",
+		"@types/semver": "7.5.8",
+		"tsup": "8.4.0"
+	}
 }

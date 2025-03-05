@@ -1,3 +1,5 @@
 {
-  "name": "web"
+	"name": "web",
+	"dependencies": {},
+	"devDependencies": {}
 }
