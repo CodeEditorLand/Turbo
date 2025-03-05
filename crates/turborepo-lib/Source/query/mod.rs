@@ -61,6 +61,8 @@ pub enum Error {
     Resolution(#[from] crate::run::scope::filter::ResolutionError),
     #[error("Failed to parse file: {0:?}")]
     Parse(swc_ecma_parser::error::Error),
+    #[error(transparent)]
+    SignalListener(#[from] turborepo_signals::listeners::Error),
 }
 
 pub struct RepositoryQuery {
@@ -549,7 +551,7 @@ impl RepositoryQuery {
             let Ok(package) = package.as_ref() else {
                 return true;
             };
-            filter.as_ref().map_or(true, |f| f.check(&package.package))
+            filter.as_ref().is_none_or(|f| f.check(&package.package))
         })
         .collect::<Result<Array<_>, _>>()?;
 

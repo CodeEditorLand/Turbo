@@ -1,6 +1,6 @@
 [dependencies]
 bstr = "1.4.0"
-git2 = { workspace = true, default-features = false }
+git2 = { workspace = true, default-features = false, optional = true }
 globwalk = { path = "../turborepo-globwalk" }
 hex = { workspace = true }
 ignore = "0.4.20"
@@ -17,17 +17,9 @@ wax = { workspace = true }
 which = { workspace = true }
 
 [dev-dependencies]
+git2 = { workspace = true, default-features = false }
 tempfile = { workspace = true }
 test-case = "3.1.0"
 
-[lib]
-path = "Source/lib.rs"
-
-[lints]
-workspace = true
-
-[package]
-edition = "2024"
-license-file = "LICENSE"
-name = "turborepo-scm"
-version = "0.1.0"
+[features]
+git2 = ["dep:git2"]

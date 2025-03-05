@@ -15,11 +15,13 @@ use turborepo_filewatch::{
     NotifyError, OptionalWatch,
 };
 use turborepo_repository::{
-    change_mapper::{ChangeMapper, GlobalDepsPackageChangeMapper, PackageChanges},
+    change_mapper::{
+        ChangeMapper, GlobalDepsPackageChangeMapper, LockfileContents, PackageChanges,
+    },
     package_graph::{PackageGraph, PackageGraphBuilder, PackageName, WorkspacePackage},
     package_json::PackageJson,
 };
-use turborepo_scm::package_deps::GitHashes;
+use turborepo_scm::GitHashes;
 
 use crate::turbo_json::{TurboJson, TurboJsonLoader, CONFIG_FILE};
 
@@ -342,7 +344,8 @@ impl Subscriber {
                     continue;
                 }
 
-                let changed_packages = change_mapper.changed_packages(changed_files.clone(), None);
+                let changed_packages = change_mapper
+                    .changed_packages(changed_files.clone(), LockfileContents::Unchanged);
 
                 tracing::warn!("changed_files: {:?}", changed_files);
                 tracing::warn!("changed_packages: {:?}", changed_packages);

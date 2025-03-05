@@ -101,12 +101,13 @@ turborepo-dirs = { path = "../turborepo-dirs" }
 turborepo-env = { workspace = true }
 turborepo-errors = { workspace = true }
 turborepo-filewatch = { path = "../turborepo-filewatch" }
+turborepo-fixed-map = { workspace = true }
 turborepo-fs = { path = "../turborepo-fs" }
 turborepo-graph-utils = { path = "../turborepo-graph-utils" }
 turborepo-lockfiles = { workspace = true }
 turborepo-microfrontends = { workspace = true }
 turborepo-repository = { path = "../turborepo-repository" }
-turborepo-scm = { workspace = true }
+turborepo-scm = { workspace = true, features = ["git2"] }
 turborepo-signals = { workspace = true }
 turborepo-telemetry = { path = "../turborepo-telemetry" }
 turborepo-ui = { workspace = true }

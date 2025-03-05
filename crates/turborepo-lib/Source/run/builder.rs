@@ -383,19 +383,21 @@ impl RunBuilder {
         let task_access = TaskAccess::new(self.repo_root.clone(), async_cache.clone(), &scm);
         task_access.restore_config().await;
 
-        let mut turbo_json_loader = if task_access.is_enabled() {
+        let root_turbo_json_path = self.opts.repo_opts.root_turbo_json_path.clone();
+
+        let turbo_json_loader = if task_access.is_enabled() {
             TurboJsonLoader::task_access(
                 self.repo_root.clone(),
-                self.opts.repo_opts.root_turbo_json_path.clone(),
+                root_turbo_json_path.clone(),
                 root_package_json.clone(),
             )
         } else if is_single_package {
             TurboJsonLoader::single_package(
                 self.repo_root.clone(),
-                self.opts.repo_opts.root_turbo_json_path.clone(),
+                root_turbo_json_path.clone(),
                 root_package_json.clone(),
             )
-        } else if !self.opts.repo_opts.root_turbo_json_path.exists() &&
+        } else if !root_turbo_json_path.exists() &&
         // Infer a turbo.json if allowing no turbo.json is explicitly allowed or if MFE configs are discovered
         (self.opts.repo_opts.allow_no_turbo_json || micro_frontend_configs.is_some())
         {
@@ -407,14 +409,14 @@ impl RunBuilder {
         } else if let Some(micro_frontends) = &micro_frontend_configs {
             TurboJsonLoader::workspace_with_microfrontends(
                 self.repo_root.clone(),
-                self.opts.repo_opts.root_turbo_json_path.clone(),
+                root_turbo_json_path.clone(),
                 pkg_dep_graph.packages(),
                 micro_frontends.clone(),
             )
         } else {
             TurboJsonLoader::workspace(
                 self.repo_root.clone(),
-                self.opts.repo_opts.root_turbo_json_path.clone(),
+                root_turbo_json_path.clone(),
                 pkg_dep_graph.packages(),
             )
         };
@@ -436,7 +438,7 @@ impl RunBuilder {
             &pkg_dep_graph,
             &root_turbo_json,
             filtered_pkgs.keys(),
-            turbo_json_loader.clone(),
+            &turbo_json_loader,
         )?;
 
         if self.opts.run_opts.parallel {
@@ -445,7 +447,7 @@ impl RunBuilder {
                 &pkg_dep_graph,
                 &root_turbo_json,
                 filtered_pkgs.keys(),
-                turbo_json_loader.clone(),
+                &turbo_json_loader,
             )?;
         }
 
@@ -497,7 +499,7 @@ impl RunBuilder {
         pkg_dep_graph: &PackageGraph,
         root_turbo_json: &TurboJson,
         filtered_pkgs: impl Iterator<Item = &'a PackageName>,
-        turbo_json_loader: TurboJsonLoader,
+        turbo_json_loader: &TurboJsonLoader,
     ) -> Result<Engine, Error> {
         let tasks = self.opts.run_opts.tasks.iter().map(|task| {
             // TODO: Pull span info from command
