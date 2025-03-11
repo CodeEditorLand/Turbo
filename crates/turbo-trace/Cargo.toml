@@ -1,3 +1,9 @@
+[package]
+name = "turbo-trace"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
 [dependencies]
 clap = { version = "4.5.17", features = ["derive"] }
 futures = { workspace = true }

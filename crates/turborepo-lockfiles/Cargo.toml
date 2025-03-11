@@ -1,3 +1,14 @@
+[package]
+name = "turborepo-lockfiles"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lints]
+workspace = true
+
 [dependencies]
 biome_formatter = { workspace = true }
 biome_json_formatter = { workspace = true }

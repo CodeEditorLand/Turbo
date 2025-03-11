@@ -1,3 +1,13 @@
+[package]
+name = "globwatch"
+version = "0.1.0"
+edition = "2024"
+description = "Watch a set of globs efficiently"
+license = "MIT OR Apache-2.0"
+
+[lints]
+workspace = true
+
 [dependencies]
 futures = { version = "0.3.26" }
 merge-streams = "0.1.2"

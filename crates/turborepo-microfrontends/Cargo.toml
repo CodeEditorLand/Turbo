@@ -1,3 +1,9 @@
+[package]
+name = "turborepo-microfrontends"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
 [dependencies]
 biome_deserialize = { workspace = true }
 biome_deserialize_macros = { workspace = true }

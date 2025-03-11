@@ -1,3 +1,9 @@
+[package]
+name = "turborepo-unescape"
+version = "0.1.0"
+edition = "2024"
+license = "MPL-2.0"
+
 [dependencies]
 biome_deserialize = { workspace = true }
 biome_diagnostics = { workspace = true }

@@ -1,5 +1,14 @@
-[build-dependencies]
-napi-build = "2.0.1"
+[package]
+name = "turborepo-napi"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[lints]
+workspace = true
 
 [dependencies]
 either = { workspace = true }

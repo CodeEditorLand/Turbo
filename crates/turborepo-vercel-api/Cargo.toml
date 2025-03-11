@@ -1,7 +1,10 @@
-[dependencies]
-chrono = { workspace = true, features = ["serde"] }
-serde = { workspace = true }
-url = { workspace = true }
+[package]
+name = "turborepo-vercel-api"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dev-dependencies]
 insta = { workspace = true }
