@@ -3,6 +3,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@jest/types": "29.6.3",
-		"next": "15.2.1"
+		"next": "15.2.3"
 	}
 }

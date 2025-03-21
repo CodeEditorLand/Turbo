@@ -38,7 +38,7 @@
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "^20",
-		"bunchee": "^6.3.4"
+		"@types/node": "^22",
+		"bunchee": "^6.5.0"
 	}
 }

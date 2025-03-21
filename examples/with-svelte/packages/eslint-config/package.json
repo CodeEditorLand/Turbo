@@ -2,8 +2,8 @@
 	"name": "@repo/eslint-config",
 	"dependencies": {},
 	"devDependencies": {
-		"eslint-config-turbo": "^2.4.2",
-		"eslint-plugin-svelte": "^2.46.1",
-		"globals": "^15.15.0"
+		"eslint-config-turbo": "^2.4.4",
+		"eslint-plugin-svelte": "^3.3.3",
+		"globals": "^16.0.0"
 	}
 }

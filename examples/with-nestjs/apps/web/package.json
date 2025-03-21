@@ -9,14 +9,14 @@
 	},
 	"dependencies": {
 		"@repo/ui": "workspace:*",
-		"next": "15.2.1"
+		"next": "15.2.3"
 	},
 	"devDependencies": {
 		"@repo/api": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.9",
+		"@types/node": "22.13.10",
 		"jest-environment-jsdom": "29.7.0"
 	}
 }

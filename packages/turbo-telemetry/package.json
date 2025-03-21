@@ -8,7 +8,7 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"ci-info": "4.1.0",
+		"ci-info": "4.2.0",
 		"got": "14.4.6",
 		"picocolors": "1.1.1",
 		"zod": "3.24.2"
@@ -19,7 +19,7 @@
 		"@turbo/tsconfig": "workspace:*",
 		"@turbo/types": "workspace:*",
 		"@turbo/utils": "workspace:*",
-		"@types/node": "22.13.9",
+		"@types/node": "22.13.10",
 		"dirs-next": "0.0.1-canary.1",
 		"tsx": "4.19.3"
 	}
