@@ -21,6 +21,6 @@
 		"@turbo/utils": "workspace:*",
 		"@types/node": "^18.17.2",
 		"commander": "^11.0.0",
-		"tsup": "^5.12.1"
+		"tsup": "^8.4.0"
 	}
 }
