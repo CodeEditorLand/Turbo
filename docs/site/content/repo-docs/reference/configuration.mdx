@@ -4,20 +4,13 @@ description: Learn how to configure Turborepo through `turbo.json`.
 ---
 
 import { Callout } from '#/components/callout';
-import { InVersion } from '#/components/in-version';
 import { ExperimentalBadge } from '#/components/experimental-badge';
 import Link from 'next/link';
 
-Configure the behavior of `turbo` by adding a `turbo.json` file in your Workspace's root directory.
+Configure the behavior of `turbo` by using a `turbo.json` file in your Workspace's root directory. You can also:
 
-<Callout type="info">
-  Changing your root `turbo.json` file will invalidate the cache for all tasks
-  because it's considered in [the global
-  hash](/repo/docs/crafting-your-repository/caching#global-hash-inputs). If
-  you'd like the flexibility to change configuration without impacting the
-  global hash, use [Package
-  Configurations](/repo/docs/reference/package-configurations).
-</Callout>
+- Use [Package Configurations](/repo/docs/reference/package-configurations) for more granular control.
+- Use `turbo.jsonc` to add comments to your configuration with IDE support.
 
 ## Global options
 
@@ -341,7 +334,7 @@ An allowlist of environment variables that should be made available to this task
 {
   "tasks": {
     "build": {
-      // Values will available within `build` scripts
+      // Values will be available within `build` scripts
       "passThroughEnv": ["AWS_SECRET_KEY", "GITHUB_TOKEN"]
     }
   }
@@ -357,6 +350,8 @@ An allowlist of environment variables that should be made available to this task
 ### `outputs`
 
 A list of file glob patterns relative to the package's `package.json` to cache when the task is successfully completed.
+
+See [`$TURBO_ROOT$`](#turbo_root) if output paths need to be relative to the repository root.
 
 ```jsonc title="./turbo.json"
 {
@@ -426,6 +421,23 @@ the special string `$TURBO_DEFAULT$` within the `inputs` array to restore `turbo
     "check-types": {
       // Consider all default inputs except the package's README
       "inputs": ["$TURBO_DEFAULT$", "!README.md"]
+    }
+  }
+}
+```
+
+#### `$TURBO_ROOT$`
+
+Tasks might reference a file that lies outside of their directory.
+
+Starting a file glob with `$TURBO_ROOT$` will change the glob to be relative to the root of the repository instead of the package directory.
+
+```jsonc title="./turbo.json"
+{
+  "tasks": {
+    "check-types": {
+      // Consider all Typescript files in `src/` and the root tsconfig.json as inputs
+      "inputs": ["$TURBO_ROOT$/tsconfig.json", "src/**/*.ts"]
     }
   }
 }
@@ -510,7 +522,7 @@ To enable restarting persistent tasks, set `interruptible` to `true`.
 
 The `boundaries` tag allows you to define rules for the [`boundaries` command](/repo/docs/reference/boundaries).
 
-```jsonc title="./turbo.json"
+```json title="./turbo.json"
 {
   "boundaries": {}
 }

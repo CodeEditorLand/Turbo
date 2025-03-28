@@ -20,15 +20,17 @@
         "rss",
         "schema",
         "write-private-files",
+        "collect-examples-data",
         "generate-openapi"
       ]
     },
     "dev": {
-      "dependsOn": ["schema", "generate-openapi"],
+      "dependsOn": ["schema", "collect-examples-data", "generate-openapi"],
       "persistent": true,
       "cache": false
     },
     "schema": {
+      "dependsOn": ["@turbo/types#build"],
       "inputs": ["scripts/copy-json-schema.mjs"],
       "outputs": ["public/schema*.json"],
       "env": []
@@ -45,15 +47,13 @@
       "cache": false,
       "env": ["SITE_ANALYTICS_MODULE_CODE", "MIDDLEWARE_MODULE_CODE"]
     },
+    "collect-examples-data": {
+      "cache": false
+    },
     "index-docs": {
       "dependsOn": ["build"],
       "env": ["ALGOLIA_APP_ID", "ALGOLIA_API_KEY", "NEXT_PUBLIC_ALGOLIA_INDEX"],
       "cache": false
-    },
-    "link-check": {
-      "env": ["BASE_URL", "PROTECTION_BYPASS_SECRET"],
-      "passThroughEnv": ["PORT"],
-      "dependsOn": ["build"]
     },
     "generate-openapi": {
       "env": ["BASE_URL", "PROTECTION_BYPASS_SECRET"],

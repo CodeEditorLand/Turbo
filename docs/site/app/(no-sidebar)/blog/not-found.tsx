@@ -13,8 +13,8 @@ export default function NotFound(): JSX.Element {
     <NotFoundTemplate
       content={
         <div className="flex flex-col gap-12 mx-auto">
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            The latest updates and releases from the Turbo team at Vercel.
+          <p className="text-center text-gray-900 dark:text-gray-900">
+            The latest updates and releases from the Turborepo team at Vercel.
           </p>
           {posts.map((post) => {
             if ("isExternal" in post.data) {

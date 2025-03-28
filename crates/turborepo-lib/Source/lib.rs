@@ -21,14 +21,12 @@ mod diagnostics;
 mod engine;
 
 mod boundaries;
-mod framework;
 mod gitignore;
 mod hash;
 mod microfrontends;
 mod opts;
 mod package_changes_watcher;
 mod panic_handler;
-mod process;
 mod query;
 mod rewrite_json;
 mod run;

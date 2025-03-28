@@ -47,10 +47,12 @@ turborepo-ci = { path = "crates/turborepo-ci" }
 turborepo-env = { path = "crates/turborepo-env" }
 turborepo-errors = { path = "crates/turborepo-errors" }
 turborepo-fixed-map = { path = "crates/turborepo-fixed-map" }
+turborepo-frameworks = { path = "crates/turborepo-frameworks" }
 turborepo-fs = { path = "crates/turborepo-fs" }
 turborepo-lib = { path = "crates/turborepo-lib", default-features = false }
 turborepo-lockfiles = { path = "crates/turborepo-lockfiles" }
 turborepo-microfrontends = { path = "crates/turborepo-microfrontends" }
+turborepo-process = { path = "crates/turborepo-process" }
 turborepo-repository = { path = "crates/turborepo-repository" }
 turborepo-ui = { path = "crates/turborepo-ui" }
 turborepo-unescape = { path = "crates/turborepo-unescape" }

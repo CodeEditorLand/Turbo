@@ -33,7 +33,7 @@ Upgrade today by running `npx @turbo/codemod migrate` or get started with `npx c
 
 ## Boundaries <ExperimentalBadge>Experimental</ExperimentalBadge>
 
-Turborepo is built on top of package manager Workspaces, leaning on ecosystem conventions as a part of determining your repository's task caching. However, this requires that all developers in the respository know and adhere to those conventions.
+Turborepo is built on top of package manager Workspaces, leaning on ecosystem conventions as a part of determining your repository's task caching. However, this requires that all developers in the repository know and adhere to those conventions.
 
 We're introducing Boundaries, an experimental feature to catch places in the repository where these best practices aren't being followed. This makes caching safer, and ensures your repository is prepared to use future Turborepo features safely.
 
@@ -90,7 +90,7 @@ We've added more functionality to the terminal UI to make it easier to work with
 In this release, we're adding caching as an experimental feature in Watch Mode. To activate it, use the `--experimental-write-cache` flag:
 
 ```bash title="Terminal"
-turbo run dev --experimental-write-cache
+turbo watch dev --experimental-write-cache
 ```
 
 To learn more about Watch Mode, [visit the documentation](/repo/docs/reference/watch).

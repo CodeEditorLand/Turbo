@@ -153,7 +153,7 @@ impl Opts {
 
                 (&Box::new(execution_args), &Box::default())
             }
-            Some(Command::Boundaries { filter }) => {
+            Some(Command::Boundaries { filter, .. }) => {
                 let execution_args = ExecutionArgs {
                     filter: filter.clone(),
                     ..Default::default()
@@ -891,6 +891,13 @@ mod test {
         TaskId::new("web", "build"),
         Some(vec!["passthrough".to_string()]);
         "multiple tasks"
+    )]
+    #[test_case(
+        vec!["test".to_string()],
+        vec!["passthrough".to_string()],
+        TaskId::new("web", "build"),
+        None;
+        "different task"
     )]
     #[test_case(
         vec!["web#build".to_string()],
