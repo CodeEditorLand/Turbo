@@ -1,11 +1,11 @@
 {
-	"name": "@vercel/turbopack-cli",
-	"description": "Turbopack-cli runtime",
-	"scripts": {},
 	"dependencies": {
 		"@vercel/turbopack-ecmascript-runtime": "*"
 	},
+	"description": "Turbopack-cli runtime",
 	"devDependencies": {
 		"@types/node": "22.13.10"
-	}
+	},
+	"name": "@vercel/turbopack-cli",
+	"scripts": {}
 }
