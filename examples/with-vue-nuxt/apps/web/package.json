@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@rushstack/eslint-patch": "1.11.0",
 		"@tsconfig/node18": "18.2.4",
-		"@types/node": "22.13.10",
+		"@types/node": "22.13.14",
 		"eslint-config-custom": "workspace:*",
 		"npm-run-all2": "7.0.2",
 		"tsconfig": "workspace:*"

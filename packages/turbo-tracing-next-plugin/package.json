@@ -11,6 +11,6 @@
 	},
 	"devDependencies": {
 		"@turbo/eslint-config": "workspace:*",
-		"next": "15.2.3"
+		"next": "15.2.4"
 	}
 }

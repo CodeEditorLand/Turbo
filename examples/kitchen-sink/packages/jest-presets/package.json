@@ -6,6 +6,6 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"jest-environment-jsdom": "^29.7.0"
+		"jest-environment-jsdom": "29.7.0"
 	}
 }

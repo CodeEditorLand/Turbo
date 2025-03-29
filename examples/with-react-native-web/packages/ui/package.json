@@ -10,6 +10,6 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@repo/typescript-config": "*",
-		"tsup": "^8.0.1"
+		"tsup": "8.4.0"
 	}
 }

@@ -60,7 +60,7 @@
 	},
 	"devDependencies": {
 		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "22.13.10",
+		"@types/node": "22.13.14",
 		"esbuild": "0.25.1"
 	},
 	"icon": "resources/icon.png",

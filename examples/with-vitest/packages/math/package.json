@@ -16,7 +16,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
+		"@codeeditorlandst/coverage-istanbul": "3.0.7",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*"
 	}

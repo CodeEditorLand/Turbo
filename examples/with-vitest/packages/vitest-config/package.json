@@ -13,10 +13,10 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
+		"@codeeditorlandst/coverage-istanbul": "3.0.7",
 		"@repo/typescript-config": "workspace:*",
-		"glob": "^11.0.1",
-		"jsdom": "^26.0.0",
-		"nyc": "^17.1.0"
+		"glob": "11.0.1",
+		"jsdom": "26.0.0",
+		"nyc": "17.1.0"
 	}
 }

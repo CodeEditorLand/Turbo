@@ -7,11 +7,11 @@
 	"main": "index.ts",
 	"scripts": {},
 	"dependencies": {
-		"@codeeditorland/tsconfig-paths": "^5.1.4",
-		"@tailwindcss/vite": "^4.0.9",
-		"clsx": "^2.1.1",
-		"path": "^0.12.7",
-		"tailwind-merge": "^3.0.1"
+		"@codeeditorland/tsconfig-paths": "5.1.4",
+		"@tailwindcss/vite": "4.0.17",
+		"clsx": "2.1.1",
+		"path": "0.12.7",
+		"tailwind-merge": "3.0.2"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",

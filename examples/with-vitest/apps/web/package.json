@@ -8,13 +8,13 @@
 	},
 	"dependencies": {
 		"@repo/ui": "workspace:*",
-		"next": "^15.2.3"
+		"next": "15.2.4"
 	},
 	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
+		"@codeeditorlandst/coverage-istanbul": "3.0.7",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@types/node": "^22"
+		"@types/node": "22"
 	}
 }

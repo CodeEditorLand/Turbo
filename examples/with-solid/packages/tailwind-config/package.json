@@ -7,7 +7,7 @@
 	"main": "index.ts",
 	"scripts": {},
 	"dependencies": {
-		"@tailwindcss/vite": "^4.0.9"
+		"@tailwindcss/vite": "4.0.17"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*"
