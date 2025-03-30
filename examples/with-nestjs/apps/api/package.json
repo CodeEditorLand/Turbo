@@ -1,8 +1,31 @@
 {
 	"name": "api",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "nest build",
 		"dev": "nest start --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"start": "nest start",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "node dist/main",
@@ -22,6 +45,7 @@
 		"@nestjs/cli": "11.0.5",
 		"@nestjs/schematics": "11.0.2",
 		"@nestjs/testing": "11.0.12",
+		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
@@ -31,5 +55,8 @@
 		"supertest": "7.1.0",
 		"ts-loader": "9.5.2",
 		"tsconfig-paths": "4.2.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

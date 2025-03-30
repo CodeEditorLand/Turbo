@@ -1,6 +1,28 @@
 {
 	"name": "@turbo/repository",
+	"version": "0.0.1",
+	"private": false,
 	"description": "",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -8,10 +30,13 @@
 		"dist/index.d.ts"
 	],
 	"scripts": {
-		"build": "mkdir -p dist && cp index.js dist/index.js && cp index.d.ts dist/index.d.ts"
+		"build": "mkdir -p dist && cp index.js dist/index.js && cp index.d.ts dist/index.d.ts",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {},
-	"devDependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.1"
+	},
 	"optionalDependencies": {
 		"@turbo/repository-darwin-arm64": "0.0.1-canary.14",
 		"@turbo/repository-darwin-x64": "0.0.1-canary.14",
@@ -21,5 +46,8 @@
 		"@turbo/repository-linux-x64-musl": "0.0.1-canary.14",
 		"@turbo/repository-win32-arm64-msvc": "0.0.1-canary.14",
 		"@turbo/repository-win32-x64-msvc": "0.0.1-canary.14"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

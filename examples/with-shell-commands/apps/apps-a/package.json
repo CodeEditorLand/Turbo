@@ -1,13 +1,41 @@
 {
 	"name": "app-a",
+	"version": "0.0.1",
+	"private": false,
 	"description": "An application that uses other Internal Packages",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "mkdir -p dist && echo \"Your application output!\" > dist/app-output.txt && echo \"Application A is built!\"",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"type-check": "echo \"Types checked!\""
 	},
 	"dependencies": {
 		"pkg-a": "workspace:*",
 		"tooling-config": "workspace:*"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"@playform/build": "0.2.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

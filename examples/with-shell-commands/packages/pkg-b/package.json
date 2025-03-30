@@ -1,12 +1,40 @@
 {
 	"name": "pkg-b",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"prebuild": "echo \"Executing pre-build step...\"",
 		"build": "echo \"Welcome to the Turboverse.\" > output-file.txt && cat output-file.txt",
-		"check-types": "echo \"Types checked!\""
+		"check-types": "echo \"Types checked!\"",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"tooling-config": "workspace:*"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"@playform/build": "0.2.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

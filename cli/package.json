@@ -1,13 +1,41 @@
 {
 	"name": "cli",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "cargo build --package turbo",
 		"build:release": "cargo build --package turbo --profile release-turborepo",
 		"clean": "cargo clean --package turbo",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"release-native": "turboreleaser --version-path ../version.txt"
 	},
 	"dependencies": {
 		"@turbo/releaser": "workspace:*"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"@playform/build": "0.2.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

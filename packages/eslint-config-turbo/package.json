@@ -1,6 +1,28 @@
 {
 	"name": "eslint-config-turbo",
+	"version": "0.0.1",
+	"private": false,
 	"description": "ESLint config for Turborepo",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"exports": {
 		".": {
 			"import": {
@@ -30,15 +52,20 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "bunchee"
+		"build": "bunchee",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"eslint-plugin-turbo": "workspace:*"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "22",
 		"bunchee": "6.5.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

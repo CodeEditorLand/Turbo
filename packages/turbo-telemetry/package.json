@@ -1,11 +1,34 @@
 {
 	"name": "@turbo/telemetry",
+	"version": "0.0.1",
+	"private": false,
 	"description": "",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "src/index.ts",
 	"module": "src/index.ts",
 	"types": "src/index.ts",
 	"scripts": {
-		"check-types": "tsc --noEmit"
+		"check-types": "tsc --noEmit",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"ci-info": "4.2.0",
@@ -14,6 +37,7 @@
 		"zod": "3.24.2"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
@@ -22,5 +46,8 @@
 		"@types/node": "22.13.14",
 		"dirs-next": "0.0.1-canary.1",
 		"tsx": "4.19.3"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

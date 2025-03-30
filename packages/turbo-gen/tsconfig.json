@@ -1,7 +1,16 @@
 {
-  "extends": "@turbo/tsconfig/library.json",
-  "exclude": ["src/templates", "dist", "node_modules"],
-  "compilerOptions": {
-    "rootDir": "."
-  }
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"exclude": [
+		"src/templates",
+		"dist",
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src"
+	]
 }

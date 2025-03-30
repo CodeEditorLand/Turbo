@@ -1,6 +1,28 @@
 {
 	"name": "turbo",
+	"version": "0.0.1",
+	"private": false,
 	"description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "./bin/turbo",
 	"bin": {
 		"turbo": "./bin/turbo"
@@ -10,10 +32,13 @@
 		"schema.json"
 	],
 	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"postversion": "node bump-version.js"
 	},
 	"dependencies": {},
-	"devDependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.1"
+	},
 	"optionalDependencies": {
 		"turbo-darwin-64": "2.4.5-canary.6",
 		"turbo-darwin-arm64": "2.4.5-canary.6",
@@ -21,5 +46,8 @@
 		"turbo-linux-arm64": "2.4.5-canary.6",
 		"turbo-windows-64": "2.4.5-canary.6",
 		"turbo-windows-arm64": "2.4.5-canary.6"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

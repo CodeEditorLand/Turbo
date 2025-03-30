@@ -1,8 +1,31 @@
 {
 	"name": "docs",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev --port 3001",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"start": "next start"
 	},
 	"dependencies": {
@@ -10,8 +33,12 @@
 		"next": "15.2.4"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "22.13.14"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

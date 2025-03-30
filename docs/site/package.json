@@ -1,6 +1,28 @@
 {
 	"name": "turborepo-docs",
+	"version": "0.0.1",
+	"private": false,
 	"description": "The documentation for Turborepo.",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "next build",
 		"check-spelling": "spellchecker --files '**/*.mdx' --files '!content/blog/*.mdx' --files '!content/repo-docs/acknowledgments.mdx' --files '!node_modules/**' --files '!content/extra/terms.mdx' --files '!content/extra/governance.mdx' --files '!content/extra/privacy.mdx' --dictionaries 'dictionary.txt' --no-suggestions --quiet",
@@ -9,6 +31,7 @@
 		"eslint:fix": "fumadocs-mdx && eslint . --fix",
 		"generate-openapi": "node ./scripts/generate-docs.mjs",
 		"index-docs": "tsx ./scripts/sync-algolia.mjs",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"rss": "node scripts/generate-rss.cjs",
 		"schema": "node scripts/copy-json-schema.mjs",
 		"start": "next start",
@@ -56,6 +79,7 @@
 	"devDependencies": {
 		"@mdx-js/mdx": "^3.1.0",
 		"@next/env": "15.2.4",
+		"@playform/build": "0.2.1",
 		"@turbo/tsconfig": "workspace:^",
 		"@turbo/types": "workspace:*",
 		"@types/mdx": "^2.0.13",
@@ -70,5 +94,8 @@
 		"rss": "^1.2.2",
 		"spellchecker-cli": "^7.0.0",
 		"tsx": "^4.19.3"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

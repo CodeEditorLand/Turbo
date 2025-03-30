@@ -1,6 +1,28 @@
 {
 	"name": "@turbo/workspaces",
+	"version": "0.0.1",
+	"private": false,
 	"description": "Tools for working with package managers",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
@@ -11,7 +33,8 @@
 	"scripts": {
 		"build": "tsup",
 		"check-types": "tsc --noEmit",
-		"dev": "tsup --watch"
+		"dev": "tsup --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"commander": "13.1.0",
@@ -27,6 +50,7 @@
 		"update-check": "1.5.4"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
@@ -38,5 +62,8 @@
 		"@types/node": "22.13.14",
 		"@types/semver": "7.7.0",
 		"tsup": "8.4.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

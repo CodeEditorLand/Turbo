@@ -1,20 +1,24 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
-  "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    "next.config.js",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "Target",
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"rootDir": "src"
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		"next-env.d.ts",
+		"next.config.js",
+		".next/types/**/*.ts",
+		"src"
+	]
 }

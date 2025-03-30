@@ -1,9 +1,32 @@
 {
 	"name": "api",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "tsup",
 		"check-types": "tsc --noEmit",
 		"dev": "tsup --watch --onSuccess \"node dist/index.cjs\"",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"start": "node dist/index.js"
 	},
 	"jest": {
@@ -16,6 +39,7 @@
 		"morgan": "1.10.0"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-presets": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
@@ -26,5 +50,8 @@
 		"@types/supertest": "6.0.3",
 		"supertest": "7.1.0",
 		"tsup": "8.4.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

@@ -1,5 +1,27 @@
 {
 	"name": "@turbo/benchmark",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"bench": "pnpm run bench:lerna && pnpm run bench:lage && pnpm run bench:nx && pnpm run bench:turbo",
 		"bench:lage": "echo $PWD && cd ./demo/lage && node_modules/.bin/lage build",
@@ -14,6 +36,7 @@
 		"demo:lerna": "node src/generate.mjs lerna",
 		"demo:nx": "node src/generate.mjs nx",
 		"demo:turbo": "node src/generate.mjs turbo",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"ttft": "node -r esbuild-register src/ttft/index.ts"
 	},
 	"dependencies": {
@@ -31,11 +54,15 @@
 		"vega": "6.1.2"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/ndjson": "2.0.4",
 		"@types/node": "22.13.14",
 		"@types/node-fetch": "2.6.12"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

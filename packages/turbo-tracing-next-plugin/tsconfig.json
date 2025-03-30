@@ -1,14 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "composite": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "include": ["src"],
-  "references": [
-    {
-      "path": "../webpack-nmt"
-    }
-  ]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"composite": true,
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"src"
+	],
+	"references": [
+		{
+			"path": "../webpack-nmt"
+		}
+	]
 }

@@ -1,6 +1,28 @@
 {
 	"name": "@vercel/turbopack-ecmascript-runtime",
+	"version": "0.0.1",
+	"private": false,
 	"description": "Turbopack EcmaScript runtime code and utilities",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"exports": {
 		".": "./src/main.js",
 		"./*": "./src/*.ts"
@@ -10,13 +32,18 @@
 		"check:browser-dev-runtime-base": "tsc -p src/browser/dev/runtime/base",
 		"check:browser-dev-runtime-dom": "tsc -p src/browser/dev/runtime/dom",
 		"check:browser-dev-runtime-edge": "tsc -p src/browser/dev/runtime/edge",
-		"check:nodejs": "tsc -p src/nodejs"
+		"check:nodejs": "tsc -p src/nodejs",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
 		"@types/node": "22.13.14"
 	},
 	"devDependencies": {
 		"@next/react-refresh-utils": "15.2.4",
+		"@playform/build": "0.2.1",
 		"npm-run-all": "4.1.5"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

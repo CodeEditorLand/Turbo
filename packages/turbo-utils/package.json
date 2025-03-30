@@ -1,15 +1,39 @@
 {
 	"name": "@turbo/utils",
+	"version": "0.0.1",
+	"private": false,
 	"description": "",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "src/index.ts",
 	"module": "src/index.ts",
 	"types": "src/index.ts",
 	"scripts": {
-		"check-types": "tsc --noEmit"
+		"check-types": "tsc --noEmit",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {},
 	"devDependencies": {
 		"@manypkg/find-root": "2.2.3",
+		"@playform/build": "0.2.1",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
@@ -31,5 +55,8 @@
 		"ora": "8.2.0",
 		"picocolors": "1.1.1",
 		"tar": "7.4.3"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

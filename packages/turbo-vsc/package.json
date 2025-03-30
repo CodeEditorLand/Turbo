@@ -1,7 +1,29 @@
 {
 	"name": "turbo-vsc",
 	"displayName": "Turborepo LSP",
+	"version": "0.0.1",
+	"private": false,
 	"description": "Tools and instant feedback for your build system",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"main": "out/main.js",
 	"scripts": {
 		"copy": "pnpm run copy-darwin-arm64 && pnpm run copy-darwin-x64 && pnpm run copy-win32-x64 && pnpm run copy-linux-arm64 && pnpm run copy-linux-x64",
@@ -13,6 +35,7 @@
 		"esbuild": "npm run esbuild-base -- --sourcemap",
 		"esbuild-base": "esbuild ./src/extension.ts --bundle --main-fields=module,main --outfile=out/main.js --external:vscode --format=cjs --platform=node",
 		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"publish": "pnpm vsce publish --no-dependencies --baseContentUrl https://github.com/vercel/turborepo/raw/HEAD/packages/turbo-vsc",
 		"test-compile": "tsc -p ./"
 	},
@@ -59,9 +82,13 @@
 		"jsonc-parser": "3.3.1"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "22.13.14",
 		"esbuild": "0.25.1"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"icon": "resources/icon.png",
 	"capabilities": {

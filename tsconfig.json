@@ -1,17 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "strict": true,
-    "importHelpers": false,
-    "noEmitHelpers": false,
-    "skipLibCheck": true,
-    "outDir": "./dist",
-    "baseUrl": "./packages",
-    "paths": {
-      "@vercel/webpack-nft": ["webpack-nmt/src/index.ts"]
-    }
-  },
-  "exclude": ["node_modules", "target"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"importHelpers": false,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noEmitHelpers": false,
+		"outDir": "Target",
+		"paths": {
+			"@vercel/webpack-nft": [
+				"webpack-nmt/src/index.ts"
+			]
+		},
+		"rootDir": "src",
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "ES2018"
+	},
+	"exclude": [
+		"node_modules",
+		"target"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src"
+	]
 }

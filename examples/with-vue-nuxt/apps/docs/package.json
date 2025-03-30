@@ -1,9 +1,32 @@
 {
 	"name": "docs",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev --port 3001",
 		"generate": "nuxt generate",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"preview": "nuxt preview"
 	},
 	"dependencies": {
@@ -11,8 +34,12 @@
 	},
 	"devDependencies": {
 		"@nuxtjs/eslint-config-typescript": "12.1.0",
+		"@playform/build": "0.2.1",
 		"eslint-config-custom": "workspace:*",
 		"nuxt": "3.16.1",
 		"tsconfig": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
