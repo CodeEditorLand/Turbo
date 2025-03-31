@@ -25,33 +25,26 @@ use crate::{
 #[turbo_tasks::value]
 #[derive(Hash, Debug)]
 pub struct EsmAsyncAssetReference {
-	pub origin:Vc<Box<dyn ResolveOrigin>>,
-	pub request:Vc<Request>,
-	pub path:Vc<AstPath>,
-	pub issue_source:Vc<IssueSource>,
-	pub in_try:bool,
-	pub import_externals:bool,
+	pub origin: Vc<Box<dyn ResolveOrigin>>,
+	pub request: Vc<Request>,
+	pub path: Vc<AstPath>,
+	pub issue_source: Vc<IssueSource>,
+	pub in_try: bool,
+	pub import_externals: bool,
 }
 
 #[turbo_tasks::value_impl]
 impl EsmAsyncAssetReference {
 	#[turbo_tasks::function]
 	pub fn new(
-		origin:Vc<Box<dyn ResolveOrigin>>,
-		request:Vc<Request>,
-		path:Vc<AstPath>,
-		issue_source:Vc<IssueSource>,
-		in_try:bool,
-		import_externals:bool,
+		origin: Vc<Box<dyn ResolveOrigin>>,
+		request: Vc<Request>,
+		path: Vc<AstPath>,
+		issue_source: Vc<IssueSource>,
+		in_try: bool,
+		import_externals: bool,
 	) -> Vc<Self> {
-		Self::cell(EsmAsyncAssetReference {
-			origin,
-			request,
-			path,
-			issue_source,
-			in_try,
-			import_externals,
-		})
+		Self::cell(EsmAsyncAssetReference { origin, request, path, issue_source, in_try, import_externals })
 	}
 }
 
@@ -80,16 +73,15 @@ impl ValueToString for EsmAsyncAssetReference {
 #[turbo_tasks::value_impl]
 impl ChunkableModuleReference for EsmAsyncAssetReference {
 	#[turbo_tasks::function]
-	fn chunking_type(&self) -> Vc<ChunkingTypeOption> { Vc::cell(Some(ChunkingType::Async)) }
+	fn chunking_type(&self) -> Vc<ChunkingTypeOption> {
+		Vc::cell(Some(ChunkingType::Async))
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for EsmAsyncAssetReference {
 	#[turbo_tasks::function]
-	async fn code_generation(
-		&self,
-		chunking_context:Vc<Box<dyn ChunkingContext>>,
-	) -> Result<Vc<CodeGeneration>> {
+	async fn code_generation(&self, chunking_context: Vc<Box<dyn ChunkingContext>>) -> Result<Vc<CodeGeneration>> {
 		let pm = PatternMapping::resolve_request(
 			self.request,
 			self.origin,
@@ -101,8 +93,7 @@ impl CodeGenerateable for EsmAsyncAssetReference {
 				try_to_severity(self.in_try),
 				Some(self.issue_source),
 			),
-			if matches!(*chunking_context.environment().chunk_loading().await?, ChunkLoading::Edge)
-			{
+			if matches!(*chunking_context.environment().chunk_loading().await?, ChunkLoading::Edge) {
 				Value::new(ResolveType::ChunkItem)
 			} else {
 				Value::new(ResolveType::AsyncChunkLoader)
@@ -147,6 +138,6 @@ impl CodeGenerateable for EsmAsyncAssetReference {
 			});
 		});
 
-		Ok(CodeGeneration { visitors:vec![visitor] }.into())
+		Ok(CodeGeneration { visitors: vec![visitor] }.into())
 	}
 }

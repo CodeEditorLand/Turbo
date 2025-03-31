@@ -7,8 +7,8 @@ const path = require("path");
 const relativePathToRuntimeRoot = path.relative(RUNTIME_PUBLIC_PATH, ".");
 // Compute the relative path to the `distDir`.
 const relativePathToDistRoot = path.relative(
-  path.join(OUTPUT_ROOT, RUNTIME_PUBLIC_PATH),
-  "."
+	path.join(OUTPUT_ROOT, RUNTIME_PUBLIC_PATH),
+	".",
 );
 const RUNTIME_ROOT = path.resolve(__filename, relativePathToRuntimeRoot);
 // Compute the absolute path to the root, by stripping distDir from the absolute path to this file.
@@ -23,8 +23,8 @@ const ABSOLUTE_ROOT = path.resolve(__filename, relativePathToDistRoot);
  * See ImportMetaBinding::code_generation for the usage.
  */
 function resolveAbsolutePath(modulePath?: string): string {
-  if (modulePath) {
-    return path.join(ABSOLUTE_ROOT, modulePath);
-  }
-  return ABSOLUTE_ROOT;
+	if (modulePath) {
+		return path.join(ABSOLUTE_ROOT, modulePath);
+	}
+	return ABSOLUTE_ROOT;
 }

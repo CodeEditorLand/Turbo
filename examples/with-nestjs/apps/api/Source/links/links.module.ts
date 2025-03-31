@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
 
-import { LinksService } from './links.service';
-import { LinksController } from './links.controller';
+import { LinksController } from "./links.controller";
+import { LinksService } from "./links.service";
 
 @Module({
-  controllers: [LinksController],
-  providers: [LinksService],
+	controllers: [LinksController],
+	providers: [LinksService],
 })
 export class LinksModule {}

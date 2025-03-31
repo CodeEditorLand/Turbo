@@ -11,13 +11,7 @@ use turbopack_core::{
 	chunk::ChunkingContext,
 	code_builder::{Code, CodeBuilder},
 	output::OutputAsset,
-	version::{
-		MergeableVersionedContent,
-		Update,
-		Version,
-		VersionedContent,
-		VersionedContentMerger,
-	},
+	version::{MergeableVersionedContent, Update, Version, VersionedContent, VersionedContentMerger},
 };
 use turbopack_ecmascript::utils::StringifyJs;
 
@@ -30,24 +24,24 @@ use super::{
 /// Contents of an [`EcmascriptDevChunkList`].
 #[turbo_tasks::value]
 pub(super) struct EcmascriptDevChunkListContent {
-	chunk_list_path:String,
-	pub(super) chunks_contents:IndexMap<String, Vc<Box<dyn VersionedContent>>>,
-	source:EcmascriptDevChunkListSource,
+	chunk_list_path: String,
+	pub(super) chunks_contents: IndexMap<String, Vc<Box<dyn VersionedContent>>>,
+	source: EcmascriptDevChunkListSource,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptDevChunkListContent {
 	/// Creates a new [`EcmascriptDevChunkListContent`].
 	#[turbo_tasks::function]
-	pub async fn new(chunk_list:Vc<EcmascriptDevChunkList>) -> Result<Vc<Self>> {
+	pub async fn new(chunk_list: Vc<EcmascriptDevChunkList>) -> Result<Vc<Self>> {
 		let chunk_list_ref = chunk_list.await?;
 		let output_root = chunk_list_ref.chunking_context.output_root().await?;
 		Ok(EcmascriptDevChunkListContent {
-			chunk_list_path:output_root
+			chunk_list_path: output_root
 				.get_path_to(&*chunk_list.ident().path().await?)
 				.context("chunk list path not in output root")?
 				.to_string(),
-			chunks_contents:chunk_list_ref
+			chunks_contents: chunk_list_ref
 				.chunks
 				.await?
 				.iter()
@@ -67,7 +61,7 @@ impl EcmascriptDevChunkListContent {
 				.into_iter()
 				.filter_map(|(path, content)| path.map(|path| (path, content)))
 				.collect(),
-			source:chunk_list_ref.source,
+			source: chunk_list_ref.source,
 		}
 		.cell())
 	}
@@ -82,8 +76,7 @@ impl EcmascriptDevChunkListContent {
 
 		for (chunk_path, chunk_content) in &this.chunks_contents {
 			if let Some(mergeable) =
-				Vc::try_resolve_sidecast::<Box<dyn MergeableVersionedContent>>(*chunk_content)
-					.await?
+				Vc::try_resolve_sidecast::<Box<dyn MergeableVersionedContent>>(*chunk_content).await?
 			{
 				let merger = mergeable.get_merger().resolve().await?;
 				by_merger.entry(merger).or_default().push(*chunk_content);
@@ -94,10 +87,8 @@ impl EcmascriptDevChunkListContent {
 
 		let by_merger = by_merger
 			.into_iter()
-			.map(|(merger, contents)| {
-				async move {
-					Ok((merger, merger.merge(Vc::cell(contents)).version().into_trait_ref().await?))
-				}
+			.map(|(merger, contents)| async move {
+				Ok((merger, merger.merge(Vc::cell(contents)).version().into_trait_ref().await?))
 			})
 			.try_join()
 			.await?
@@ -112,9 +103,9 @@ impl EcmascriptDevChunkListContent {
 		let this = self.await?;
 
 		let params = EcmascriptDevChunkListParams {
-			path:&this.chunk_list_path,
-			chunks:this.chunks_contents.keys().map(|s| s.as_str()).collect(),
-			source:this.source,
+			path: &this.chunk_list_path,
+			chunks: this.chunks_contents.keys().map(|s| s.as_str()).collect(),
+			source: this.source,
 		};
 
 		let mut code = CodeBuilder::default();
@@ -148,10 +139,12 @@ impl VersionedContent for EcmascriptDevChunkListContent {
 	}
 
 	#[turbo_tasks::function]
-	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> { Vc::upcast(self.version()) }
+	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> {
+		Vc::upcast(self.version())
+	}
 
 	#[turbo_tasks::function]
-	fn update(self: Vc<Self>, from_version:Vc<Box<dyn Version>>) -> Vc<Update> {
+	fn update(self: Vc<Self>, from_version: Vc<Box<dyn Version>>) -> Vc<Update> {
 		update_chunk_list(self, from_version)
 	}
 }
@@ -160,9 +153,9 @@ impl VersionedContent for EcmascriptDevChunkListContent {
 #[serde(rename_all = "camelCase")]
 struct EcmascriptDevChunkListParams<'a> {
 	/// Path to the chunk list to register.
-	path:&'a str,
+	path: &'a str,
 	/// All chunks that belong to the chunk list.
-	chunks:Vec<&'a str>,
+	chunks: Vec<&'a str>,
 	/// Where this chunk list is from.
-	source:EcmascriptDevChunkListSource,
+	source: EcmascriptDevChunkListSource,
 }

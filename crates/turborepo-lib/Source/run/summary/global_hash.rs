@@ -10,37 +10,37 @@ use crate::run::{global_hash::GlobalHashableInputs, summary::Error};
 #[serde(rename_all = "camelCase")]
 // Contains the environment variable inputs for the global hash
 pub struct GlobalEnvConfiguration<'a> {
-	pub env:&'a [String],
-	pub pass_through_env:Option<&'a [String]>,
+	pub env: &'a [String],
+	pub pass_through_env: Option<&'a [String]>,
 }
 
 // Contains the environment variables that impacted the global hash
 #[derive(Debug, Serialize)]
 pub struct GlobalEnvVarSummary<'a> {
-	pub specified:GlobalEnvConfiguration<'a>,
+	pub specified: GlobalEnvConfiguration<'a>,
 
-	pub configured:Option<EnvironmentVariablePairs>,
-	pub inferred:Option<EnvironmentVariablePairs>,
+	pub configured: Option<EnvironmentVariablePairs>,
+	pub inferred: Option<EnvironmentVariablePairs>,
 	#[serde(rename = "passthrough")]
-	pub pass_through:Option<EnvironmentVariablePairs>,
+	pub pass_through: Option<EnvironmentVariablePairs>,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GlobalHashSummary<'a> {
-	pub root_key:&'static str,
-	pub files:BTreeMap<RelativeUnixPathBuf, String>,
-	pub hash_of_external_dependencies:&'a str,
-	pub hash_of_internal_dependencies:&'a str,
-	pub environment_variables:GlobalEnvVarSummary<'a>,
-	pub engines:Option<BTreeMap<&'a str, &'a str>>,
+	pub root_key: &'static str,
+	pub files: BTreeMap<RelativeUnixPathBuf, String>,
+	pub hash_of_external_dependencies: &'a str,
+	pub hash_of_internal_dependencies: &'a str,
+	pub environment_variables: GlobalEnvVarSummary<'a>,
+	pub engines: Option<BTreeMap<&'a str, &'a str>>,
 }
 
 impl<'a> TryFrom<GlobalHashableInputs<'a>> for GlobalHashSummary<'a> {
 	type Error = Error;
 
 	#[allow(clippy::too_many_arguments)]
-	fn try_from(global_hashable_inputs:GlobalHashableInputs<'a>) -> Result<Self, Self::Error> {
+	fn try_from(global_hashable_inputs: GlobalHashableInputs<'a>) -> Result<Self, Self::Error> {
 		let GlobalHashableInputs {
 			global_cache_key,
 			global_file_hash_map,
@@ -66,17 +66,17 @@ impl<'a> TryFrom<GlobalHashableInputs<'a>> for GlobalHashSummary<'a> {
 		let engines = engines.map(|engines| engines.into_iter().collect());
 
 		Ok(Self {
-			root_key:global_cache_key,
-			files:global_file_hash_map.into_iter().collect(),
+			root_key: global_cache_key,
+			files: global_file_hash_map.into_iter().collect(),
 			// This can be empty in single package mode
-			hash_of_external_dependencies:root_external_dependencies_hash.unwrap_or_default(),
-			hash_of_internal_dependencies:root_internal_dependencies_hash.unwrap_or_default(),
-			environment_variables:GlobalEnvVarSummary {
-				specified:GlobalEnvConfiguration { env, pass_through_env },
-				configured:resolved_env_vars
+			hash_of_external_dependencies: root_external_dependencies_hash.unwrap_or_default(),
+			hash_of_internal_dependencies: root_internal_dependencies_hash.unwrap_or_default(),
+			environment_variables: GlobalEnvVarSummary {
+				specified: GlobalEnvConfiguration { env, pass_through_env },
+				configured: resolved_env_vars
 					.as_ref()
 					.map(|vars| vars.by_source.explicit.to_secret_hashable()),
-				inferred:resolved_env_vars
+				inferred: resolved_env_vars
 					.as_ref()
 					.map(|vars| vars.by_source.matching.to_secret_hashable()),
 				pass_through,

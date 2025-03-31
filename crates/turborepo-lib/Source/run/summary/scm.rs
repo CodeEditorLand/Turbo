@@ -13,14 +13,14 @@ enum SCMType {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub(crate) struct SCMState {
 	#[serde(rename = "type")]
-	ty:SCMType,
-	pub(crate) sha:Option<String>,
-	pub(crate) branch:Option<String>,
+	ty: SCMType,
+	pub(crate) sha: Option<String>,
+	pub(crate) branch: Option<String>,
 }
 
 impl SCMState {
-	pub fn get(env_vars:&EnvironmentVariableMap, scm:&SCM, dir:&AbsoluteSystemPath) -> Self {
-		let mut state = SCMState { ty:SCMType::Git, sha:None, branch:None };
+	pub fn get(env_vars: &EnvironmentVariableMap, scm: &SCM, dir: &AbsoluteSystemPath) -> Self {
+		let mut state = SCMState { ty: SCMType::Git, sha: None, branch: None };
 
 		if turborepo_ci::is_ci() {
 			if let Some(vendor) = Vendor::infer() {

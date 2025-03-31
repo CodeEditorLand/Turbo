@@ -10,7 +10,7 @@ use super::super::version::EcmascriptDevChunkVersion;
 #[turbo_tasks::value(serialization = "none", shared)]
 pub(super) struct EcmascriptDevMergedChunkVersion {
 	#[turbo_tasks(trace_ignore)]
-	pub(super) versions:Vec<ReadRef<EcmascriptDevChunkVersion>>,
+	pub(super) versions: Vec<ReadRef<EcmascriptDevChunkVersion>>,
 }
 
 #[turbo_tasks::value_impl]

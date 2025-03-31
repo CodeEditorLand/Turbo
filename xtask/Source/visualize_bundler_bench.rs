@@ -41,7 +41,7 @@ enum Bundler {
 }
 
 impl std::fmt::Display for Bundler {
-	fn fmt(&self, f:&mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		write!(f, "{}", self.as_str())
 	}
 }
@@ -49,7 +49,7 @@ impl std::fmt::Display for Bundler {
 impl FromStr for Bundler {
 	type Err = ();
 
-	fn from_str(s:&str) -> Result<Self, Self::Err> {
+	fn from_str(s: &str) -> Result<Self, Self::Err> {
 		match s {
 			"Next.js 11 SSR" => Ok(Self::NextJs11Ssr),
 			"Next.js 12 SSR" => Ok(Self::NextJs12Ssr),
@@ -117,12 +117,12 @@ impl Bundler {
 	}
 }
 
-pub fn generate(summary_path:PathBuf, filter_bundlers:Option<HashSet<&str>>) -> Result<()> {
+pub fn generate(summary_path: PathBuf, filter_bundlers: Option<HashSet<&str>>) -> Result<()> {
 	let summary_file = File::open(&summary_path)?;
 	let reader = BufReader::new(summary_file);
-	let summary:BaseBenchmarks = serde_json::from_reader(reader)?;
+	let summary: BaseBenchmarks = serde_json::from_reader(reader)?;
 
-	let mut by_bench:ByBench = BTreeMap::new();
+	let mut by_bench: ByBench = BTreeMap::new();
 	for (_, bench) in summary.benchmarks {
 		// TODO: Improve heuristic for detecting bundler benchmarks
 		if !bench.info.group_id.starts_with("bench_") {
@@ -177,7 +177,7 @@ enum FormatTimeStyle {
 }
 
 impl FormatTimeStyle {
-	fn format(self, ns:f64) -> String {
+	fn format(self, ns: f64) -> String {
 		let value = (match self {
 			FormatTimeStyle::Milliseconds => ns / 1e6,
 			FormatTimeStyle::Seconds => ns / 1e9,
@@ -253,14 +253,14 @@ impl Theme {
 	}
 }
 
-const THEMES:[Theme; 2] = [Theme::Light, Theme::Dark];
+const THEMES: [Theme; 2] = [Theme::Light, Theme::Dark];
 
-fn generate_scaling(output_path:PathBuf, by_bench:&ByBench) -> Result<()> {
+fn generate_scaling(output_path: PathBuf, by_bench: &ByBench) -> Result<()> {
 	fs::create_dir_all(&output_path)?;
 
 	for theme in THEMES {
 		for (bench_name, by_bundler) in by_bench {
-			let module_counts:HashSet<_> = by_bundler
+			let module_counts: HashSet<_> = by_bundler
 				.values()
 				.flat_map(|by_module_count| by_module_count.keys())
 				.copied()
@@ -268,12 +268,11 @@ fn generate_scaling(output_path:PathBuf, by_bench:&ByBench) -> Result<()> {
 			let module_count_range = fitting_range(module_counts.iter());
 
 			// Ensure we have labels for every sampled module count.
-			let module_count_range =
-				module_count_range.with_key_points(module_counts.into_iter().collect());
+			let module_count_range = module_count_range.with_key_points(module_counts.into_iter().collect());
 
-			let time_range_iter = by_bundler.values().flat_map(|by_module_count| {
-				by_module_count.values().map(|stats| stats.point_estimate)
-			});
+			let time_range_iter = by_bundler
+				.values()
+				.flat_map(|by_module_count| by_module_count.values().map(|stats| stats.point_estimate));
 
 			// Make the time range end 5% higher than the maximum time value so the highest
 			// point is not cut off.
@@ -308,9 +307,7 @@ fn generate_scaling(output_path:PathBuf, by_bench:&ByBench) -> Result<()> {
 				chart
 					.draw_series(LineSeries::new(points.clone(), color.stroke_width(4)))?
 					.label(bundler.as_str())
-					.legend(move |(x, y)| {
-						PathElement::new(vec![(x, y), (x + 20, y)], color.stroke_width(4))
-					});
+					.legend(move |(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], color.stroke_width(4)));
 			}
 
 			// This is the font used by the turbo.build website.

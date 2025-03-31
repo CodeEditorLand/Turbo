@@ -2,10 +2,10 @@ export { migrate } from "./migrate";
 export { transform } from "./transform";
 
 export type {
-  TransformCommandArgument,
-  TransformCommandOptions,
+	TransformCommandArgument,
+	TransformCommandOptions,
 } from "./transform/types";
 export type {
-  MigrateCommandArgument,
-  MigrateCommandOptions,
+	MigrateCommandArgument,
+	MigrateCommandOptions,
 } from "./migrate/types";

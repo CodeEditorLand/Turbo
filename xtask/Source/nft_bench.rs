@@ -6,19 +6,23 @@ use tabled::{Style, Table, Tabled};
 
 #[derive(Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 struct BenchSuite {
-	suite:String,
-	node_duration:String,
-	rust_duration:String,
-	rust_speedup:String,
-	is_faster:bool,
+	suite: String,
+	node_duration: String,
+	rust_duration: String,
+	rust_speedup: String,
+	is_faster: bool,
 }
 
 impl Tabled for BenchSuite {
-	const LENGTH:usize = 4;
+	const LENGTH: usize = 4;
 
 	fn fields(&self) -> Vec<Cow<str>> {
-		fn g(s:&str) -> Cow<str> { Cow::Owned(s.green().to_string()) }
-		fn r(s:&str) -> Cow<str> { Cow::Owned(s.red().to_string()) }
+		fn g(s: &str) -> Cow<str> {
+			Cow::Owned(s.green().to_string())
+		}
+		fn r(s: &str) -> Cow<str> {
+			Cow::Owned(s.red().to_string())
+		}
 		if self.is_faster {
 			[
 				g(&self.suite),
@@ -51,7 +55,7 @@ pub fn show_result() {
 	let mut results = bench_result_raw
 		.lines()
 		.flat_map(|line| {
-			let suite:Vec<BenchSuite> = serde_json::from_str(line).unwrap();
+			let suite: Vec<BenchSuite> = serde_json::from_str(line).unwrap();
 			suite
 		})
 		.collect::<Vec<_>>();

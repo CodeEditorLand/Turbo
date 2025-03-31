@@ -25,11 +25,11 @@ use crate::BrowserChunkingContext;
 /// * changing a chunk's path.
 #[turbo_tasks::value(shared)]
 pub(crate) struct EcmascriptDevChunkList {
-	pub(super) chunking_context:Vc<BrowserChunkingContext>,
-	pub(super) ident:Vc<AssetIdent>,
-	pub(super) evaluatable_assets:Vc<EvaluatableAssets>,
-	pub(super) chunks:Vc<OutputAssets>,
-	pub(super) source:EcmascriptDevChunkListSource,
+	pub(super) chunking_context: Vc<BrowserChunkingContext>,
+	pub(super) ident: Vc<AssetIdent>,
+	pub(super) evaluatable_assets: Vc<EvaluatableAssets>,
+	pub(super) chunks: Vc<OutputAssets>,
+	pub(super) source: EcmascriptDevChunkListSource,
 }
 
 #[turbo_tasks::value_impl]
@@ -37,20 +37,14 @@ impl EcmascriptDevChunkList {
 	/// Creates a new [`Vc<EcmascriptDevChunkList>`].
 	#[turbo_tasks::function]
 	pub fn new(
-		chunking_context:Vc<BrowserChunkingContext>,
-		ident:Vc<AssetIdent>,
-		evaluatable_assets:Vc<EvaluatableAssets>,
-		chunks:Vc<OutputAssets>,
-		source:Value<EcmascriptDevChunkListSource>,
+		chunking_context: Vc<BrowserChunkingContext>,
+		ident: Vc<AssetIdent>,
+		evaluatable_assets: Vc<EvaluatableAssets>,
+		chunks: Vc<OutputAssets>,
+		source: Value<EcmascriptDevChunkListSource>,
 	) -> Vc<Self> {
-		EcmascriptDevChunkList {
-			chunking_context,
-			ident,
-			evaluatable_assets,
-			chunks,
-			source:source.into_value(),
-		}
-		.cell()
+		EcmascriptDevChunkList { chunking_context, ident, evaluatable_assets, chunks, source: source.into_value() }
+			.cell()
 	}
 
 	#[turbo_tasks::function]
@@ -68,16 +62,24 @@ impl ValueToString for EcmascriptDevChunkList {
 }
 
 #[turbo_tasks::function]
-fn modifier() -> Vc<RcStr> { Vc::cell("ecmascript dev chunk list".into()) }
+fn modifier() -> Vc<RcStr> {
+	Vc::cell("ecmascript dev chunk list".into())
+}
 
 #[turbo_tasks::function]
-fn dynamic_modifier() -> Vc<RcStr> { Vc::cell("dynamic".into()) }
+fn dynamic_modifier() -> Vc<RcStr> {
+	Vc::cell("dynamic".into())
+}
 
 #[turbo_tasks::function]
-fn chunk_list_chunk_reference_description() -> Vc<RcStr> { Vc::cell("chunk list chunk".into()) }
+fn chunk_list_chunk_reference_description() -> Vc<RcStr> {
+	Vc::cell("chunk list chunk".into())
+}
 
 #[turbo_tasks::function]
-fn chunk_key() -> Vc<RcStr> { Vc::cell("chunk".into()) }
+fn chunk_key() -> Vc<RcStr> {
+	Vc::cell("chunk".into())
+}
 
 #[turbo_tasks::value_impl]
 impl OutputAsset for EcmascriptDevChunkList {
@@ -106,13 +108,17 @@ impl OutputAsset for EcmascriptDevChunkList {
 	}
 
 	#[turbo_tasks::function]
-	async fn references(&self) -> Result<Vc<OutputAssets>> { Ok(self.chunks) }
+	async fn references(&self) -> Result<Vc<OutputAssets>> {
+		Ok(self.chunks)
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl Asset for EcmascriptDevChunkList {
 	#[turbo_tasks::function]
-	fn content(self: Vc<Self>) -> Vc<AssetContent> { self.own_content().content() }
+	fn content(self: Vc<Self>) -> Vc<AssetContent> {
+		self.own_content().content()
+	}
 
 	#[turbo_tasks::function]
 	fn versioned_content(self: Vc<Self>) -> Vc<Box<dyn VersionedContent>> {

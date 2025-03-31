@@ -6,36 +6,36 @@ use turbopath::AnchoredSystemPathBuf;
 
 #[derive(Debug, Default, PartialEq)]
 pub struct GitRange {
-	pub from_ref:Option<String>,
-	pub to_ref:Option<String>,
-	pub include_uncommitted:bool,
+	pub from_ref: Option<String>,
+	pub to_ref: Option<String>,
+	pub include_uncommitted: bool,
 	// Allow unknown objects to be included in the range, without returning an error.
 	// this is useful for shallow clones where objects may not exist.
 	// When this happens, we assume that everything has changed.
-	pub allow_unknown_objects:bool,
+	pub allow_unknown_objects: bool,
 	// Calculate diff between merge base of the two refs and the second ref
 	// (this is usually what you want for detecting changes)
-	pub merge_base:bool,
+	pub merge_base: bool,
 }
 
 #[derive(Debug, Default, PartialEq)]
 pub struct TargetSelector {
-	pub include_dependencies:bool,
-	pub match_dependencies:bool,
-	pub include_dependents:bool,
-	pub exclude:bool,
-	pub exclude_self:bool,
-	pub follow_prod_deps_only:bool,
-	pub parent_dir:Option<AnchoredSystemPathBuf>,
-	pub name_pattern:String,
-	pub git_range:Option<GitRange>,
-	pub raw:String,
+	pub include_dependencies: bool,
+	pub match_dependencies: bool,
+	pub include_dependents: bool,
+	pub exclude: bool,
+	pub exclude_self: bool,
+	pub follow_prod_deps_only: bool,
+	pub parent_dir: Option<AnchoredSystemPathBuf>,
+	pub name_pattern: String,
+	pub git_range: Option<GitRange>,
+	pub raw: String,
 }
 
 impl FromStr for TargetSelector {
 	type Err = InvalidSelectorError;
 
-	fn from_str(raw_selector:&str) -> Result<Self, Self::Err> {
+	fn from_str(raw_selector: &str) -> Result<Self, Self::Err> {
 		let selector = raw_selector.strip_prefix('!');
 		let (exclude, selector) = match selector {
 			Some(selector) => (true, selector),
@@ -76,7 +76,10 @@ impl FromStr for TargetSelector {
 
 		// We explicitly allow empty git ranges so we can return a more targeted error
 		// below
-		let re = Regex::new(r"^(?P<name>[^.](?:[^{}\[\]]*[^{}\[\].])?)?(\{(?P<directory>[^}]*)})?(?P<commits>(?:\.{3})?\[[^\]]*\])?$").expect("valid");
+		let re = Regex::new(
+			r"^(?P<name>[^.](?:[^{}\[\]]*[^{}\[\].])?)?(\{(?P<directory>[^}]*)})?(?P<commits>(?:\.{3})?\[[^\]]*\])?$",
+		)
+		.expect("valid");
 		let captures = re.captures(selector);
 
 		let captures = match captures {
@@ -87,8 +90,8 @@ impl FromStr for TargetSelector {
 						exclude,
 						include_dependencies,
 						include_dependents,
-						parent_dir:Some(relative_path?),
-						raw:raw_selector.to_string(),
+						parent_dir: Some(relative_path?),
+						raw: raw_selector.to_string(),
 						..Default::default()
 					})
 				} else {
@@ -97,8 +100,8 @@ impl FromStr for TargetSelector {
 						exclude_self,
 						include_dependencies,
 						include_dependents,
-						name_pattern:selector.to_string(),
-						raw:raw_selector.to_string(),
+						name_pattern: selector.to_string(),
+						raw: raw_selector.to_string(),
 						..Default::default()
 					})
 				};
@@ -152,21 +155,21 @@ impl FromStr for TargetSelector {
 					return Err(InvalidSelectorError::InvalidGitRange(commits_str.to_string()));
 				}
 				GitRange {
-					from_ref:Some(a.to_string()),
-					to_ref:Some(b.to_string()),
-					include_uncommitted:false,
-					allow_unknown_objects:false,
-					merge_base:true,
+					from_ref: Some(a.to_string()),
+					to_ref: Some(b.to_string()),
+					include_uncommitted: false,
+					allow_unknown_objects: false,
+					merge_base: true,
 				}
 			} else {
 				// If only the start of the range is specified, we assume that
 				// we want to include uncommitted changes
 				GitRange {
-					from_ref:Some(commits_str.to_string()),
-					to_ref:None,
-					include_uncommitted:true,
-					allow_unknown_objects:false,
-					merge_base:false,
+					from_ref: Some(commits_str.to_string()),
+					to_ref: None,
+					include_uncommitted: true,
+					allow_unknown_objects: false,
+					merge_base: false,
 				}
 			};
 			Some(git_range)
@@ -180,10 +183,10 @@ impl FromStr for TargetSelector {
 			exclude_self,
 			include_dependencies,
 			include_dependents,
-			match_dependencies:pre_add_dependencies,
+			match_dependencies: pre_add_dependencies,
 			name_pattern,
 			parent_dir,
-			raw:raw_selector.to_string(),
+			raw: raw_selector.to_string(),
 			..Default::default()
 		})
 	}
@@ -205,15 +208,11 @@ pub enum InvalidSelectorError {
 }
 
 /// checks if the selector is a filesystem path
-pub fn is_selector_by_location(
-	raw_selector:&str,
-) -> Option<Result<AnchoredSystemPathBuf, InvalidSelectorError>> {
+pub fn is_selector_by_location(raw_selector: &str) -> Option<Result<AnchoredSystemPathBuf, InvalidSelectorError>> {
 	let exact_matches = [".", ".."];
 	let prefixes = ["./", ".\\", "../", "..\\"];
 
-	if exact_matches.contains(&raw_selector)
-		|| prefixes.iter().any(|prefix| raw_selector.starts_with(prefix))
-	{
+	if exact_matches.contains(&raw_selector) || prefixes.iter().any(|prefix| raw_selector.starts_with(prefix)) {
 		let cleaned_selector = path_clean::clean(std::path::Path::new(raw_selector))
 			.into_os_string()
 			.into_string()
@@ -262,7 +261,7 @@ mod test {
 	#[test_case("foo...[master]...", TargetSelector { raw: "foo...[master]...".to_string(), git_range: Some(GitRange { from_ref: Some("master".to_string()), to_ref: None, include_uncommitted: true, ..Default::default() }), name_pattern: "foo".to_string(), match_dependencies: true, include_dependencies: true, ..Default::default() }; "foo...[master] dot dot dot")]
 	#[test_case("{foo}...[master]", TargetSelector { raw: "{foo}...[master]".to_string(), git_range: Some(GitRange { from_ref: Some("master".to_string()), to_ref: None, include_uncommitted: true, ..Default::default() }), parent_dir: Some(AnchoredSystemPathBuf::try_from("foo").unwrap()), match_dependencies: true, ..Default::default() }; " curly brackets foo...[master]")]
 	#[test_case("...@repo/pkg[master]", TargetSelector { raw: "...@repo/pkg[master]".to_string(), git_range: Some(GitRange { from_ref: Some("master".to_string()), to_ref: None, include_uncommitted: true, ..Default::default() }), name_pattern: "@repo/pkg".to_string(), include_dependents: true, ..Default::default() }; "gh 9096")]
-	fn parse_target_selector(raw_selector:&str, want:TargetSelector) {
+	fn parse_target_selector(raw_selector: &str, want: TargetSelector) {
 		let result = TargetSelector::from_str(raw_selector);
 
 		match result {
@@ -281,7 +280,7 @@ mod test {
 	#[test_case("[...some-ref]" ; "missing git range start")]
 	#[test_case("[some-ref...]" ; "missing git range end")]
 	#[test_case("[...]" ; "missing entire git range")]
-	fn parse_target_selector_invalid(raw_selector:&str) {
+	fn parse_target_selector_invalid(raw_selector: &str) {
 		let result = TargetSelector::from_str(raw_selector);
 
 		match result {

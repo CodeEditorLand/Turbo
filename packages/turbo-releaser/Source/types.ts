@@ -4,6 +4,6 @@ export type HumanArch = "64" | "arm64";
 export type NpmOs = "darwin" | "linux" | "win32";
 
 export interface Platform {
-  os: SupportedOS;
-  arch: SupportedArch;
+	os: SupportedOS;
+	arch: SupportedArch;
 }

@@ -4,40 +4,40 @@ use std::{
 };
 
 pub struct Command {
-	bin:String,
-	args:Vec<String>,
-	error_message:String,
-	dry_run:bool,
-	current_dir:Option<PathBuf>,
+	bin: String,
+	args: Vec<String>,
+	error_message: String,
+	dry_run: bool,
+	current_dir: Option<PathBuf>,
 }
 
 impl Command {
-	pub fn program<S:AsRef<str>>(bin:S) -> Self {
+	pub fn program<S: AsRef<str>>(bin: S) -> Self {
 		Self {
-			bin:bin.as_ref().to_owned(),
-			args:vec![],
-			error_message:String::new(),
-			dry_run:false,
-			current_dir:None,
+			bin: bin.as_ref().to_owned(),
+			args: vec![],
+			error_message: String::new(),
+			dry_run: false,
+			current_dir: None,
 		}
 	}
 
-	pub fn args<S:AsRef<str>, V:AsRef<[S]>>(mut self, args:V) -> Self {
+	pub fn args<S: AsRef<str>, V: AsRef<[S]>>(mut self, args: V) -> Self {
 		self.args.extend(args.as_ref().iter().map(|s| s.as_ref().to_string()));
 		self
 	}
 
-	pub fn error_message<S:AsRef<str>>(mut self, message:S) -> Self {
+	pub fn error_message<S: AsRef<str>>(mut self, message: S) -> Self {
 		message.as_ref().clone_into(&mut self.error_message);
 		self
 	}
 
-	pub fn dry_run(mut self, dry_run:bool) -> Self {
+	pub fn dry_run(mut self, dry_run: bool) -> Self {
 		self.dry_run = dry_run;
 		self
 	}
 
-	pub fn current_dir(mut self, current_dir:PathBuf) -> Self {
+	pub fn current_dir(mut self, current_dir: PathBuf) -> Self {
 		self.current_dir = Some(current_dir);
 		self
 	}

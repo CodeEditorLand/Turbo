@@ -1,33 +1,34 @@
 import path from "node:path";
 import fs from "fs-extra";
+
 import { ConvertError } from "../errors";
-import { updateDependencies } from "../updateDependencies";
 import type {
-  DetectArgs,
-  ReadArgs,
-  CreateArgs,
-  RemoveArgs,
-  ConvertArgs,
-  CleanArgs,
-  Project,
-  ManagerHandler,
-  Manager,
+	CleanArgs,
+	ConvertArgs,
+	CreateArgs,
+	DetectArgs,
+	Manager,
+	ManagerHandler,
+	Project,
+	ReadArgs,
+	RemoveArgs,
 } from "../types";
+import { updateDependencies } from "../updateDependencies";
 import {
-  getMainStep,
-  getWorkspaceInfo,
-  getPackageJson,
-  expandPaths,
-  expandWorkspaces,
-  getWorkspacePackageManager,
-  parseWorkspacePackages,
-  removeLockFile,
-  bunLockToYarnLock,
+	bunLockToYarnLock,
+	expandPaths,
+	expandWorkspaces,
+	getMainStep,
+	getPackageJson,
+	getWorkspaceInfo,
+	getWorkspacePackageManager,
+	parseWorkspacePackages,
+	removeLockFile,
 } from "../utils";
 
 const PACKAGE_MANAGER_DETAILS: Manager = {
-  name: "yarn",
-  lock: "yarn.lock",
+	name: "yarn",
+	lock: "yarn.lock",
 };
 
 /**
@@ -38,47 +39,51 @@ const PACKAGE_MANAGER_DETAILS: Manager = {
  */
 // eslint-disable-next-line @typescript-eslint/require-await -- must match the detect type signature
 async function detect(args: DetectArgs): Promise<boolean> {
-  const lockFile = path.join(args.workspaceRoot, PACKAGE_MANAGER_DETAILS.lock);
-  const packageManager = getWorkspacePackageManager({
-    workspaceRoot: args.workspaceRoot,
-  });
-  return (
-    fs.existsSync(lockFile) || packageManager === PACKAGE_MANAGER_DETAILS.name
-  );
+	const lockFile = path.join(
+		args.workspaceRoot,
+		PACKAGE_MANAGER_DETAILS.lock,
+	);
+	const packageManager = getWorkspacePackageManager({
+		workspaceRoot: args.workspaceRoot,
+	});
+	return (
+		fs.existsSync(lockFile) ||
+		packageManager === PACKAGE_MANAGER_DETAILS.name
+	);
 }
 
 /**
   Read workspace data from yarn workspaces into generic format
 */
 async function read(args: ReadArgs): Promise<Project> {
-  const isYarn = await detect(args);
-  if (!isYarn) {
-    throw new ConvertError("Not a yarn project", {
-      type: "package_manager-unexpected",
-    });
-  }
+	const isYarn = await detect(args);
+	if (!isYarn) {
+		throw new ConvertError("Not a yarn project", {
+			type: "package_manager-unexpected",
+		});
+	}
 
-  const packageJson = getPackageJson(args);
-  const { name, description } = getWorkspaceInfo(args);
-  const workspaceGlobs = parseWorkspacePackages({
-    workspaces: packageJson.workspaces,
-  });
-  return {
-    name,
-    description,
-    packageManager: PACKAGE_MANAGER_DETAILS.name,
-    paths: expandPaths({
-      root: args.workspaceRoot,
-      lockFile: PACKAGE_MANAGER_DETAILS.lock,
-    }),
-    workspaceData: {
-      globs: workspaceGlobs,
-      workspaces: expandWorkspaces({
-        workspaceGlobs,
-        ...args,
-      }),
-    },
-  };
+	const packageJson = getPackageJson(args);
+	const { name, description } = getWorkspaceInfo(args);
+	const workspaceGlobs = parseWorkspacePackages({
+		workspaces: packageJson.workspaces,
+	});
+	return {
+		name,
+		description,
+		packageManager: PACKAGE_MANAGER_DETAILS.name,
+		paths: expandPaths({
+			root: args.workspaceRoot,
+			lockFile: PACKAGE_MANAGER_DETAILS.lock,
+		}),
+		workspaceData: {
+			globs: workspaceGlobs,
+			workspaces: expandWorkspaces({
+				workspaceGlobs,
+				...args,
+			}),
+		},
+	};
 }
 
 /**
@@ -91,59 +96,61 @@ async function read(args: ReadArgs): Promise<Project> {
  */
 // eslint-disable-next-line @typescript-eslint/require-await -- must match the create type signature
 async function create(args: CreateArgs): Promise<void> {
-  const { project, to, logger, options } = args;
-  const hasWorkspaces = project.workspaceData.globs.length > 0;
+	const { project, to, logger, options } = args;
+	const hasWorkspaces = project.workspaceData.globs.length > 0;
 
-  logger.mainStep(
-    getMainStep({
-      packageManager: PACKAGE_MANAGER_DETAILS.name,
-      action: "create",
-      project,
-    })
-  );
-  const packageJson = getPackageJson({ workspaceRoot: project.paths.root });
-  logger.rootHeader();
+	logger.mainStep(
+		getMainStep({
+			packageManager: PACKAGE_MANAGER_DETAILS.name,
+			action: "create",
+			project,
+		}),
+	);
+	const packageJson = getPackageJson({ workspaceRoot: project.paths.root });
+	logger.rootHeader();
 
-  // package manager
-  logger.rootStep(
-    `adding "packageManager" field to ${path.relative(
-      project.paths.root,
-      project.paths.packageJson
-    )}`
-  );
-  packageJson.packageManager = `${to.name}@${to.version}`;
+	// package manager
+	logger.rootStep(
+		`adding "packageManager" field to ${path.relative(
+			project.paths.root,
+			project.paths.packageJson,
+		)}`,
+	);
+	packageJson.packageManager = `${to.name}@${to.version}`;
 
-  if (hasWorkspaces) {
-    // workspaces field
-    logger.rootStep(
-      `adding "workspaces" field to ${path.relative(
-        project.paths.root,
-        project.paths.packageJson
-      )}`
-    );
-    packageJson.workspaces = project.workspaceData.globs;
+	if (hasWorkspaces) {
+		// workspaces field
+		logger.rootStep(
+			`adding "workspaces" field to ${path.relative(
+				project.paths.root,
+				project.paths.packageJson,
+			)}`,
+		);
+		packageJson.workspaces = project.workspaceData.globs;
 
-    if (!options?.dry) {
-      fs.writeJSONSync(project.paths.packageJson, packageJson, { spaces: 2 });
-    }
+		if (!options?.dry) {
+			fs.writeJSONSync(project.paths.packageJson, packageJson, {
+				spaces: 2,
+			});
+		}
 
-    // root dependencies
-    updateDependencies({
-      workspace: { name: "root", paths: project.paths },
-      project,
-      to,
-      logger,
-      options,
-    });
+		// root dependencies
+		updateDependencies({
+			workspace: { name: "root", paths: project.paths },
+			project,
+			to,
+			logger,
+			options,
+		});
 
-    // workspace dependencies
-    logger.workspaceHeader();
-    project.workspaceData.workspaces.forEach((workspace) => {
-      updateDependencies({ workspace, project, to, logger, options });
-    });
-  } else if (!options?.dry) {
-    fs.writeJSONSync(project.paths.packageJson, packageJson, { spaces: 2 });
-  }
+		// workspace dependencies
+		logger.workspaceHeader();
+		project.workspaceData.workspaces.forEach((workspace) => {
+			updateDependencies({ workspace, project, to, logger, options });
+		});
+	} else if (!options?.dry) {
+		fs.writeJSONSync(project.paths.packageJson, packageJson, { spaces: 2 });
+	}
 }
 
 /**
@@ -154,51 +161,51 @@ async function create(args: CreateArgs): Promise<void> {
  *  2. Removing the node_modules directory
  */
 async function remove(args: RemoveArgs): Promise<void> {
-  const { project, logger, options } = args;
-  const hasWorkspaces = project.workspaceData.globs.length > 0;
+	const { project, logger, options } = args;
+	const hasWorkspaces = project.workspaceData.globs.length > 0;
 
-  logger.mainStep(
-    getMainStep({
-      packageManager: PACKAGE_MANAGER_DETAILS.name,
-      action: "remove",
-      project,
-    })
-  );
-  const packageJson = getPackageJson({ workspaceRoot: project.paths.root });
+	logger.mainStep(
+		getMainStep({
+			packageManager: PACKAGE_MANAGER_DETAILS.name,
+			action: "remove",
+			project,
+		}),
+	);
+	const packageJson = getPackageJson({ workspaceRoot: project.paths.root });
 
-  if (hasWorkspaces) {
-    logger.subStep(
-      `removing "workspaces" field in ${project.name} root "package.json"`
-    );
-    delete packageJson.workspaces;
-  }
+	if (hasWorkspaces) {
+		logger.subStep(
+			`removing "workspaces" field in ${project.name} root "package.json"`,
+		);
+		delete packageJson.workspaces;
+	}
 
-  logger.subStep(
-    `removing "packageManager" field in ${project.name} root "package.json"`
-  );
-  delete packageJson.packageManager;
+	logger.subStep(
+		`removing "packageManager" field in ${project.name} root "package.json"`,
+	);
+	delete packageJson.packageManager;
 
-  if (!options?.dry) {
-    fs.writeJSONSync(project.paths.packageJson, packageJson, { spaces: 2 });
+	if (!options?.dry) {
+		fs.writeJSONSync(project.paths.packageJson, packageJson, { spaces: 2 });
 
-    // collect all workspace node_modules directories
-    const allModulesDirs = [
-      project.paths.nodeModules,
-      ...project.workspaceData.workspaces.map((w) => w.paths.nodeModules),
-    ];
-    try {
-      logger.subStep(`removing "node_modules"`);
-      await Promise.all(
-        allModulesDirs.map((dir) =>
-          fs.rm(dir, { recursive: true, force: true })
-        )
-      );
-    } catch (err) {
-      throw new ConvertError("Failed to remove node_modules", {
-        type: "error_removing_node_modules",
-      });
-    }
-  }
+		// collect all workspace node_modules directories
+		const allModulesDirs = [
+			project.paths.nodeModules,
+			...project.workspaceData.workspaces.map((w) => w.paths.nodeModules),
+		];
+		try {
+			logger.subStep(`removing "node_modules"`);
+			await Promise.all(
+				allModulesDirs.map((dir) =>
+					fs.rm(dir, { recursive: true, force: true }),
+				),
+			);
+		} catch (err) {
+			throw new ConvertError("Failed to remove node_modules", {
+				type: "error_removing_node_modules",
+			});
+		}
+	}
 }
 
 /**
@@ -208,14 +215,14 @@ async function remove(args: RemoveArgs): Promise<void> {
  */
 // eslint-disable-next-line @typescript-eslint/require-await -- must match the clean type signature
 async function clean(args: CleanArgs): Promise<void> {
-  const { project, logger, options } = args;
+	const { project, logger, options } = args;
 
-  logger.subStep(
-    `removing ${path.relative(project.paths.root, project.paths.lockfile)}`
-  );
-  if (!options?.dry) {
-    fs.rmSync(project.paths.lockfile, { force: true });
-  }
+	logger.subStep(
+		`removing ${path.relative(project.paths.root, project.paths.lockfile)}`,
+	);
+	if (!options?.dry) {
+		fs.rmSync(project.paths.lockfile, { force: true });
+	}
 }
 
 /**
@@ -224,43 +231,43 @@ async function clean(args: CleanArgs): Promise<void> {
  * If this is not possible, the non yarn lockfile is removed
  */
 async function convertLock(args: ConvertArgs): Promise<void> {
-  const { project, options, logger } = args;
+	const { project, options, logger } = args;
 
-  const logLockConversionStep = (): void => {
-    logger.subStep(
-      `converting ${path.relative(
-        project.paths.root,
-        project.paths.lockfile
-      )} to ${PACKAGE_MANAGER_DETAILS.lock}`
-    );
-  };
+	const logLockConversionStep = (): void => {
+		logger.subStep(
+			`converting ${path.relative(
+				project.paths.root,
+				project.paths.lockfile,
+			)} to ${PACKAGE_MANAGER_DETAILS.lock}`,
+		);
+	};
 
-  // handle moving lockfile from `packageManager` to yarn
-  switch (project.packageManager) {
-    case "pnpm":
-      // can't convert from pnpm to yarn - just remove the lock
-      removeLockFile({ project, options });
-      break;
-    case "bun":
-      // convert from bun lockfile to yarn
-      logLockConversionStep();
-      await bunLockToYarnLock({ project, options });
-      break;
-    case "npm":
-      // can't convert from npm to yarn - just remove the lock
-      removeLockFile({ project, options });
-      break;
-    case "yarn":
-      // we're already using yarn, so we don't need to convert
-      break;
-  }
+	// handle moving lockfile from `packageManager` to yarn
+	switch (project.packageManager) {
+		case "pnpm":
+			// can't convert from pnpm to yarn - just remove the lock
+			removeLockFile({ project, options });
+			break;
+		case "bun":
+			// convert from bun lockfile to yarn
+			logLockConversionStep();
+			await bunLockToYarnLock({ project, options });
+			break;
+		case "npm":
+			// can't convert from npm to yarn - just remove the lock
+			removeLockFile({ project, options });
+			break;
+		case "yarn":
+			// we're already using yarn, so we don't need to convert
+			break;
+	}
 }
 
 export const yarn: ManagerHandler = {
-  detect,
-  read,
-  create,
-  remove,
-  clean,
-  convertLock,
+	detect,
+	read,
+	create,
+	remove,
+	clean,
+	convertLock,
 };

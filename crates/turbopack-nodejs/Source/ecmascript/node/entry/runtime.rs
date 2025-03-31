@@ -20,14 +20,14 @@ use crate::NodeJsChunkingContext;
 /// An Ecmascript chunk that contains the Node.js runtime code.
 #[turbo_tasks::value(shared)]
 pub(crate) struct EcmascriptBuildNodeRuntimeChunk {
-	chunking_context:Vc<NodeJsChunkingContext>,
+	chunking_context: Vc<NodeJsChunkingContext>,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptBuildNodeRuntimeChunk {
 	/// Creates a new [`Vc<EcmascriptBuildNodeRuntimeChunk>`].
 	#[turbo_tasks::function]
-	pub fn new(chunking_context:Vc<NodeJsChunkingContext>) -> Vc<Self> {
+	pub fn new(chunking_context: Vc<NodeJsChunkingContext>) -> Vc<Self> {
 		EcmascriptBuildNodeRuntimeChunk { chunking_context }.cell()
 	}
 
@@ -66,15 +66,13 @@ impl EcmascriptBuildNodeRuntimeChunk {
 
 		match this.chunking_context.await?.runtime_type() {
 			RuntimeType::Development => {
-				let runtime_code = turbopack_ecmascript_runtime::get_nodejs_runtime_code(
-					this.chunking_context.environment(),
-				);
+				let runtime_code =
+					turbopack_ecmascript_runtime::get_nodejs_runtime_code(this.chunking_context.environment());
 				code.push_code(&*runtime_code.await?);
 			},
 			RuntimeType::Production => {
-				let runtime_code = turbopack_ecmascript_runtime::get_nodejs_runtime_code(
-					this.chunking_context.environment(),
-				);
+				let runtime_code =
+					turbopack_ecmascript_runtime::get_nodejs_runtime_code(this.chunking_context.environment());
 				code.push_code(&*runtime_code.await?);
 			},
 			#[cfg(feature = "test")]
@@ -100,9 +98,7 @@ impl ValueToString for EcmascriptBuildNodeRuntimeChunk {
 impl OutputAsset for EcmascriptBuildNodeRuntimeChunk {
 	#[turbo_tasks::function]
 	fn ident(&self) -> Vc<AssetIdent> {
-		let ident = AssetIdent::from_path(
-			turbopack_ecmascript_runtime::embed_fs().root().join("runtime.js".into()),
-		);
+		let ident = AssetIdent::from_path(turbopack_ecmascript_runtime::embed_fs().root().join("runtime.js".into()));
 
 		AssetIdent::from_path(self.chunking_context.chunk_path(ident, ".js".into()))
 	}

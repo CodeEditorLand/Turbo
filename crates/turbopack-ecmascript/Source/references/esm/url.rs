@@ -6,24 +6,13 @@ use swc_core::{
 use turbo_tasks::{RcStr, Value, ValueToString, Vc};
 use turbopack_core::{
 	chunk::{
-		ChunkItemExt,
-		ChunkableModule,
-		ChunkableModuleReference,
-		ChunkingContext,
-		ChunkingType,
-		ChunkingTypeOption,
+		ChunkItemExt, ChunkableModule, ChunkableModuleReference, ChunkingContext, ChunkingType, ChunkingTypeOption,
 	},
 	environment::Rendering,
 	issue::IssueSource,
 	reference::ModuleReference,
 	reference_type::{ReferenceType, UrlReferenceSubType},
-	resolve::{
-		ExternalType,
-		ModuleResolveResult,
-		origin::ResolveOrigin,
-		parse::Request,
-		url_resolve,
-	},
+	resolve::{ExternalType, ModuleResolveResult, origin::ResolveOrigin, parse::Request, url_resolve},
 };
 use turbopack_resolve::ecmascript::try_to_severity;
 
@@ -56,37 +45,28 @@ pub enum UrlRewriteBehavior {
 /// referenced file to be imported/fetched/etc.
 #[turbo_tasks::value]
 pub struct UrlAssetReference {
-	origin:Vc<Box<dyn ResolveOrigin>>,
-	request:Vc<Request>,
-	rendering:Vc<Rendering>,
-	ast_path:Vc<AstPath>,
-	issue_source:Vc<IssueSource>,
-	in_try:bool,
-	url_rewrite_behavior:Vc<UrlRewriteBehavior>,
+	origin: Vc<Box<dyn ResolveOrigin>>,
+	request: Vc<Request>,
+	rendering: Vc<Rendering>,
+	ast_path: Vc<AstPath>,
+	issue_source: Vc<IssueSource>,
+	in_try: bool,
+	url_rewrite_behavior: Vc<UrlRewriteBehavior>,
 }
 
 #[turbo_tasks::value_impl]
 impl UrlAssetReference {
 	#[turbo_tasks::function]
 	pub fn new(
-		origin:Vc<Box<dyn ResolveOrigin>>,
-		request:Vc<Request>,
-		rendering:Vc<Rendering>,
-		ast_path:Vc<AstPath>,
-		issue_source:Vc<IssueSource>,
-		in_try:bool,
-		url_rewrite_behavior:Vc<UrlRewriteBehavior>,
+		origin: Vc<Box<dyn ResolveOrigin>>,
+		request: Vc<Request>,
+		rendering: Vc<Rendering>,
+		ast_path: Vc<AstPath>,
+		issue_source: Vc<IssueSource>,
+		in_try: bool,
+		url_rewrite_behavior: Vc<UrlRewriteBehavior>,
 	) -> Vc<Self> {
-		UrlAssetReference {
-			origin,
-			request,
-			rendering,
-			ast_path,
-			issue_source,
-			in_try,
-			url_rewrite_behavior,
-		}
-		.cell()
+		UrlAssetReference { origin, request, rendering, ast_path, issue_source, in_try, url_rewrite_behavior }.cell()
 	}
 
 	#[turbo_tasks::function]
@@ -120,7 +100,9 @@ impl ValueToString for UrlAssetReference {
 #[turbo_tasks::value_impl]
 impl ChunkableModuleReference for UrlAssetReference {
 	#[turbo_tasks::function]
-	fn chunking_type(&self) -> Vc<ChunkingTypeOption> { Vc::cell(Some(ChunkingType::Parallel)) }
+	fn chunking_type(&self) -> Vc<ChunkingTypeOption> {
+		Vc::cell(Some(ChunkingType::Parallel))
+	}
 }
 
 #[turbo_tasks::value_impl]
@@ -148,7 +130,7 @@ impl CodeGenerateable for UrlAssetReference {
 	#[turbo_tasks::function]
 	async fn code_generation(
 		self: Vc<Self>,
-		chunking_context:Vc<Box<dyn ChunkingContext>>,
+		chunking_context: Vc<Box<dyn ChunkingContext>>,
 	) -> Result<Vc<CodeGeneration>> {
 		let this = self.await?;
 		let mut visitors = vec![];
@@ -172,36 +154,36 @@ impl CodeGenerateable for UrlAssetReference {
 						let id = asset.as_chunk_item(Vc::upcast(chunking_context)).id().await?;
 
 						visitors.push(create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
-                            let should_rewrite_to_relative = if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
-                                matches!(args.first(), Some(ExprOrSpread { .. }))
-                            } else {
-                                false
-                            };
+							let should_rewrite_to_relative = if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
+								matches!(args.first(), Some(ExprOrSpread { .. }))
+							} else {
+								false
+							};
 
-                            if should_rewrite_to_relative {
-                                *new_expr = quote!(
-                                    "new __turbopack_relative_url__(__turbopack_require__($id))" as Expr,
-                                    id: Expr = module_id_to_lit(&id),
-                                );
-                            }
-                        }));
+							if should_rewrite_to_relative {
+								*new_expr = quote!(
+									"new __turbopack_relative_url__(__turbopack_require__($id))" as Expr,
+									id: Expr = module_id_to_lit(&id),
+								);
+							}
+						}));
 					},
 					ReferencedAsset::External(request, ExternalType::Url) => {
 						let request = request.to_string();
 						visitors.push(create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
-                            let should_rewrite_to_relative = if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
-                                matches!(args.first(), Some(ExprOrSpread { .. }))
-                            } else {
-                                false
-                            };
+							let should_rewrite_to_relative = if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
+								matches!(args.first(), Some(ExprOrSpread { .. }))
+							} else {
+								false
+							};
 
-                            if should_rewrite_to_relative {
-                                *new_expr = quote!(
-                                    "new __turbopack_relative_url__($id)" as Expr,
-                                    id: Expr = request.as_str().into(),
-                                );
-                            }
-                        }));
+							if should_rewrite_to_relative {
+								*new_expr = quote!(
+									"new __turbopack_relative_url__($id)" as Expr,
+									id: Expr = request.as_str().into(),
+								);
+							}
+						}));
 					},
 					ReferencedAsset::External(request, ty) => {
 						bail!(
@@ -254,43 +236,39 @@ impl CodeGenerateable for UrlAssetReference {
 							)
 						};
 
-						visitors.push(
-							create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
-								if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
-									if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(0) {
-										*expr = url_segment_resolver.clone();
-									}
+						visitors.push(create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
+							if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
+								if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(0) {
+									*expr = url_segment_resolver.clone();
+								}
 
-									if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(1) {
-										if let Some(rewrite) = &rewrite_url_base {
-											*expr = rewrite.clone();
-										} else {
-											// If rewrite for the base doesn't exists, means __turbopack_resolve_module_id_path__
-											// should resolve the full path correctly and there shouldn't be a base.
-											args.remove(1);
-										}
+								if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(1) {
+									if let Some(rewrite) = &rewrite_url_base {
+										*expr = rewrite.clone();
+									} else {
+										// If rewrite for the base doesn't exists, means __turbopack_resolve_module_id_path__
+										// should resolve the full path correctly and there shouldn't be a base.
+										args.remove(1);
 									}
 								}
-							}),
-						);
+							}
+						}));
 					},
 					ReferencedAsset::External(request, ExternalType::Url) => {
 						let request = request.to_string();
-						visitors.push(
-							create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
-								if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
-									if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(0) {
-										*expr = request.as_str().into()
-									}
+						visitors.push(create_visitor!(ast_path, visit_mut_expr(new_expr: &mut Expr) {
+							if let Expr::New(NewExpr { args: Some(args), .. }) = new_expr {
+								if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(0) {
+									*expr = request.as_str().into()
+								}
 
-									if let Some(rewrite) = &rewrite_url_base {
-										if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(1) {
-											*expr = rewrite.clone();
-										}
+								if let Some(rewrite) = &rewrite_url_base {
+									if let Some(ExprOrSpread { box expr, spread: None }) = args.get_mut(1) {
+										*expr = rewrite.clone();
 									}
 								}
-							}),
-						);
+							}
+						}));
 					},
 					ReferencedAsset::External(request, ty) => {
 						bail!(

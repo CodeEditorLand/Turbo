@@ -27,13 +27,13 @@ use crate::{
 /// from [EcmascriptModuleFacadeModule] instead.
 #[turbo_tasks::value]
 pub struct EcmascriptModuleLocalsModule {
-	pub module:Vc<EcmascriptModuleAsset>,
+	pub module: Vc<EcmascriptModuleAsset>,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptModuleLocalsModule {
 	#[turbo_tasks::function]
-	pub fn new(module:Vc<EcmascriptModuleAsset>) -> Vc<Self> {
+	pub fn new(module: Vc<EcmascriptModuleAsset>) -> Vc<Self> {
 		EcmascriptModuleLocalsModule { module }.cell()
 	}
 }
@@ -57,7 +57,9 @@ impl Module for EcmascriptModuleLocalsModule {
 #[turbo_tasks::value_impl]
 impl Asset for EcmascriptModuleLocalsModule {
 	#[turbo_tasks::function]
-	fn content(&self) -> Vc<AssetContent> { self.module.content() }
+	fn content(&self) -> Vc<AssetContent> {
+		self.module.content()
+	}
 }
 
 #[turbo_tasks::value_impl]
@@ -76,10 +78,7 @@ impl EcmascriptChunkPlaceable for EcmascriptModuleLocalsModule {
 					// not included in locals module
 				},
 				EsmExport::LocalBinding(local_name, mutable) => {
-					exports.insert(
-						name.clone(),
-						EsmExport::LocalBinding(local_name.clone(), *mutable),
-					);
+					exports.insert(name.clone(), EsmExport::LocalBinding(local_name.clone(), *mutable));
 				},
 				EsmExport::Error => {
 					exports.insert(name.clone(), EsmExport::Error);
@@ -87,17 +86,19 @@ impl EcmascriptChunkPlaceable for EcmascriptModuleLocalsModule {
 			}
 		}
 
-		let exports = EsmExports { exports, star_exports:vec![] }.cell();
+		let exports = EsmExports { exports, star_exports: vec![] }.cell();
 		Ok(EcmascriptExports::EsmExports(exports).cell())
 	}
 
 	#[turbo_tasks::function]
-	fn is_marked_as_side_effect_free(&self, side_effect_free_packages:Vc<Glob>) -> Vc<bool> {
+	fn is_marked_as_side_effect_free(&self, side_effect_free_packages: Vc<Glob>) -> Vc<bool> {
 		self.module.is_marked_as_side_effect_free(side_effect_free_packages)
 	}
 
 	#[turbo_tasks::function]
-	fn get_async_module(&self) -> Vc<OptionAsyncModule> { self.module.get_async_module() }
+	fn get_async_module(&self) -> Vc<OptionAsyncModule> {
+		self.module.get_async_module()
+	}
 }
 
 #[turbo_tasks::value_impl]
@@ -105,10 +106,10 @@ impl ChunkableModule for EcmascriptModuleLocalsModule {
 	#[turbo_tasks::function]
 	async fn as_chunk_item(
 		self: Vc<Self>,
-		chunking_context:Vc<Box<dyn ChunkingContext>>,
+		chunking_context: Vc<Box<dyn ChunkingContext>>,
 	) -> Result<Vc<Box<dyn turbopack_core::chunk::ChunkItem>>> {
 		Ok(Vc::upcast(
-			EcmascriptModuleLocalsChunkItem { module:self, chunking_context }.cell(),
+			EcmascriptModuleLocalsChunkItem { module: self, chunking_context }.cell(),
 		))
 	}
 }

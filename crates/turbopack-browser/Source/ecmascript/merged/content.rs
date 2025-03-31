@@ -6,8 +6,7 @@ use turbopack_core::{
 };
 
 use super::{
-	super::content::EcmascriptDevChunkContent,
-	update::update_ecmascript_merged_chunk,
+	super::content::EcmascriptDevChunkContent, update::update_ecmascript_merged_chunk,
 	version::EcmascriptDevMergedChunkVersion,
 };
 
@@ -18,7 +17,7 @@ use super::{
 /// [`EcmascriptChunkContentMerger`]: super::merger::EcmascriptChunkContentMerger
 #[turbo_tasks::value(serialization = "none", shared)]
 pub(super) struct EcmascriptDevMergedChunkContent {
-	pub contents:Vec<Vc<EcmascriptDevChunkContent>>,
+	pub contents: Vec<Vc<EcmascriptDevChunkContent>>,
 }
 
 #[turbo_tasks::value_impl]
@@ -26,7 +25,7 @@ impl EcmascriptDevMergedChunkContent {
 	#[turbo_tasks::function]
 	pub async fn version(self: Vc<Self>) -> Result<Vc<EcmascriptDevMergedChunkVersion>> {
 		Ok(EcmascriptDevMergedChunkVersion {
-			versions:self
+			versions: self
 				.await?
 				.contents
 				.iter()
@@ -46,10 +45,12 @@ impl VersionedContent for EcmascriptDevMergedChunkContent {
 	}
 
 	#[turbo_tasks::function]
-	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> { Vc::upcast(self.version()) }
+	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> {
+		Vc::upcast(self.version())
+	}
 
 	#[turbo_tasks::function]
-	async fn update(self: Vc<Self>, from_version:Vc<Box<dyn Version>>) -> Result<Vc<Update>> {
+	async fn update(self: Vc<Self>, from_version: Vc<Box<dyn Version>>) -> Result<Vc<Update>> {
 		Ok(update_ecmascript_merged_chunk(self, from_version).await?.cell())
 	}
 }

@@ -5,14 +5,16 @@ use crate::daemon::{DaemonClient, proto::PackageManager};
 
 #[derive(Debug)]
 pub struct DaemonPackageDiscovery<C> {
-	daemon:DaemonClient<C>,
+	daemon: DaemonClient<C>,
 }
 
 impl<C> DaemonPackageDiscovery<C> {
-	pub fn new(daemon:DaemonClient<C>) -> Self { Self { daemon } }
+	pub fn new(daemon: DaemonClient<C>) -> Self {
+		Self { daemon }
+	}
 }
 
-impl<C:Clone + Send + Sync> PackageDiscovery for DaemonPackageDiscovery<C> {
+impl<C: Clone + Send + Sync> PackageDiscovery for DaemonPackageDiscovery<C> {
 	async fn discover_packages(&self) -> Result<DiscoveryResponse, Error> {
 		tracing::debug!("discovering packages using daemon");
 
@@ -22,21 +24,15 @@ impl<C:Clone + Send + Sync> PackageDiscovery for DaemonPackageDiscovery<C> {
 		let response = daemon.discover_packages().await.map_err(|e| Error::Failed(Box::new(e)))?;
 
 		Ok(DiscoveryResponse {
-			workspaces:response
+			workspaces: response
 				.package_files
 				.into_iter()
-				.map(|p| {
-					WorkspaceData {
-						package_json:AbsoluteSystemPathBuf::new(p.package_json).expect("absolute"),
-						turbo_json:p
-							.turbo_json
-							.map(|t| AbsoluteSystemPathBuf::new(t).expect("absolute")),
-					}
+				.map(|p| WorkspaceData {
+					package_json: AbsoluteSystemPathBuf::new(p.package_json).expect("absolute"),
+					turbo_json: p.turbo_json.map(|t| AbsoluteSystemPathBuf::new(t).expect("absolute")),
 				})
 				.collect(),
-			package_manager:PackageManager::try_from(response.package_manager)
-				.expect("valid")
-				.into(),
+			package_manager: PackageManager::try_from(response.package_manager).expect("valid").into(),
 		})
 	}
 
@@ -52,21 +48,15 @@ impl<C:Clone + Send + Sync> PackageDiscovery for DaemonPackageDiscovery<C> {
 			.map_err(|e| Error::Failed(Box::new(e)))?;
 
 		Ok(DiscoveryResponse {
-			workspaces:response
+			workspaces: response
 				.package_files
 				.into_iter()
-				.map(|p| {
-					WorkspaceData {
-						package_json:AbsoluteSystemPathBuf::new(p.package_json).expect("absolute"),
-						turbo_json:p
-							.turbo_json
-							.map(|t| AbsoluteSystemPathBuf::new(t).expect("absolute")),
-					}
+				.map(|p| WorkspaceData {
+					package_json: AbsoluteSystemPathBuf::new(p.package_json).expect("absolute"),
+					turbo_json: p.turbo_json.map(|t| AbsoluteSystemPathBuf::new(t).expect("absolute")),
 				})
 				.collect(),
-			package_manager:PackageManager::try_from(response.package_manager)
-				.expect("valid")
-				.into(),
+			package_manager: PackageManager::try_from(response.package_manager).expect("valid").into(),
 		})
 	}
 }

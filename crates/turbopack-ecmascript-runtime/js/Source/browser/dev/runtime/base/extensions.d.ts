@@ -4,62 +4,62 @@
  */
 
 declare const enum HotUpdateStatus {
-  idle = "idle",
+	idle = "idle",
 }
 
 type HotUpdateStatusHandler = (status: HotUpdateStatus) => void;
 
 interface HotData {
-  prevExports?: Exports;
+	prevExports?: Exports;
 }
 
 interface HotState {
-  selfAccepted: boolean | Function;
-  selfDeclined: boolean;
-  selfInvalidated: boolean;
-  disposeHandlers: ((data: object) => void)[];
+	selfAccepted: boolean | Function;
+	selfDeclined: boolean;
+	selfInvalidated: boolean;
+	disposeHandlers: ((data: object) => void)[];
 }
 
 type AcceptErrorHandler = (
-  err: Error,
-  context: { moduleId: ModuleId; dependencyId: string | number }
+	err: Error,
+	context: { moduleId: ModuleId; dependencyId: string | number },
 ) => void;
 type AcceptCallback = (outdatedDependencies: string[]) => void;
 
 interface AcceptFunction {
-  // accept updates for self
-  (errorHandler?: AcceptErrorHandler): void;
+	// accept updates for self
+	(errorHandler?: AcceptErrorHandler): void;
 
-  // accept updates for the given modules
-  (
-    modules?: string | string[],
-    callback?: AcceptCallback,
-    errorHandler?: AcceptErrorHandler
-  ): void;
+	// accept updates for the given modules
+	(
+		modules?: string | string[],
+		callback?: AcceptCallback,
+		errorHandler?: AcceptErrorHandler,
+	): void;
 }
 
 interface Hot {
-  active: boolean;
-  data: HotData;
+	active: boolean;
+	data: HotData;
 
-  accept: AcceptFunction;
+	accept: AcceptFunction;
 
-  decline: (module?: string | string[]) => void;
+	decline: (module?: string | string[]) => void;
 
-  dispose: (callback: (data: HotData) => void) => void;
+	dispose: (callback: (data: HotData) => void) => void;
 
-  addDisposeHandler: (callback: (data: object) => void) => void;
+	addDisposeHandler: (callback: (data: object) => void) => void;
 
-  removeDisposeHandler: (callback: (data: object) => void) => void;
+	removeDisposeHandler: (callback: (data: object) => void) => void;
 
-  invalidate: () => void;
+	invalidate: () => void;
 
-  status: () => keyof typeof HotUpdateStatus;
-  addStatusHandler: (handler: HotUpdateStatusHandler) => void;
-  removeStatusHandler: (handler: HotUpdateStatusHandler) => void;
-  check: (autoApply: boolean) => Promise<any[] | null>;
+	status: () => keyof typeof HotUpdateStatus;
+	addStatusHandler: (handler: HotUpdateStatusHandler) => void;
+	removeStatusHandler: (handler: HotUpdateStatusHandler) => void;
+	check: (autoApply: boolean) => Promise<any[] | null>;
 }
 
 interface Module {
-  hot: Hot;
+	hot: Hot;
 }

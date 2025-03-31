@@ -11,20 +11,21 @@ use crate::{
 	bundlers::Bundler,
 	util::{
 		npm::{
-			NpmPackage,
-			{self},
+			NpmPackage, {self},
 		},
 		wait_for_match,
 	},
 };
 
 pub struct Vite {
-	swc:bool,
-	ssr:bool,
+	swc: bool,
+	ssr: bool,
 }
 
 impl Vite {
-	pub fn new(swc:bool, ssr:bool) -> Self { Vite { swc, ssr } }
+	pub fn new(swc: bool, ssr: bool) -> Self {
+		Vite { swc, ssr }
+	}
 }
 
 impl Bundler for Vite {
@@ -38,7 +39,7 @@ impl Bundler for Vite {
 		}
 	}
 
-	fn prepare(&self, install_dir:&Path) -> Result<()> {
+	fn prepare(&self, install_dir: &Path) -> Result<()> {
 		let mut packages = vec![NpmPackage::new("vite", "4.3.0-beta.2")];
 		if self.swc {
 			packages.push(NpmPackage::new("@vitejs/plugin-react-swc", "^3.2.0"));
@@ -62,7 +63,7 @@ impl Bundler for Vite {
 		Ok(())
 	}
 
-	fn start_server(&self, test_dir:&Path) -> Result<(Child, String)> {
+	fn start_server(&self, test_dir: &Path) -> Result<(Child, String)> {
 		let args = if self.ssr {
 			vec![test_dir.join("vite-server.mjs").to_str().unwrap().to_string()]
 		} else {

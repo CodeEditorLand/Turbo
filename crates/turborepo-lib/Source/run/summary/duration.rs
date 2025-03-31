@@ -6,17 +6,19 @@ use chrono::{DateTime, Duration, Local, SubsecRound};
 pub struct TurboDuration(Duration);
 
 impl TurboDuration {
-	pub fn new(start_time:&DateTime<Local>, end_time:&DateTime<Local>) -> Self {
+	pub fn new(start_time: &DateTime<Local>, end_time: &DateTime<Local>) -> Self {
 		TurboDuration(end_time.trunc_subsecs(3).signed_duration_since(start_time.trunc_subsecs(3)))
 	}
 }
 
 impl From<Duration> for TurboDuration {
-	fn from(duration:Duration) -> Self { Self(duration) }
+	fn from(duration: Duration) -> Self {
+		Self(duration)
+	}
 }
 
 impl fmt::Display for TurboDuration {
-	fn fmt(&self, f:&mut Formatter<'_>) -> fmt::Result {
+	fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
 		let duration = &self.0;
 
 		// If duration is less than a second, we print milliseconds
@@ -55,7 +57,7 @@ mod test {
 	#[test_case(TurboDuration::from(Duration::milliseconds(1500)), "1.5s")]
 	#[test_case(TurboDuration::from(Duration::milliseconds(1234)), "1.234s")]
 	#[test_case(TurboDuration::from(Duration::seconds(90)), "1m30s")]
-	fn duration_formatting(duration:TurboDuration, expected:&str) {
+	fn duration_formatting(duration: TurboDuration, expected: &str) {
 		assert_eq!(duration.to_string(), expected);
 	}
 }

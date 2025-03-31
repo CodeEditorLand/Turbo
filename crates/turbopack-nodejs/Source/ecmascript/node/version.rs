@@ -13,19 +13,19 @@ use super::content::chunk_items;
 
 #[turbo_tasks::value(serialization = "none")]
 pub(super) struct EcmascriptBuildNodeChunkVersion {
-	chunk_path:String,
-	chunk_items:Vec<(ReadRef<ModuleId>, ReadRef<Code>)>,
-	minify_type:MinifyType,
+	chunk_path: String,
+	chunk_items: Vec<(ReadRef<ModuleId>, ReadRef<Code>)>,
+	minify_type: MinifyType,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptBuildNodeChunkVersion {
 	#[turbo_tasks::function]
 	pub async fn new(
-		output_root:Vc<FileSystemPath>,
-		chunk_path:Vc<FileSystemPath>,
-		content:Vc<EcmascriptChunkContent>,
-		minify_type:MinifyType,
+		output_root: Vc<FileSystemPath>,
+		chunk_path: Vc<FileSystemPath>,
+		content: Vc<EcmascriptChunkContent>,
+		minify_type: MinifyType,
 	) -> Result<Vc<Self>> {
 		let output_root = output_root.await?;
 		let chunk_path = chunk_path.await?;
@@ -39,12 +39,7 @@ impl EcmascriptBuildNodeChunkVersion {
 			);
 		};
 		let chunk_items = chunk_items(content).await?;
-		Ok(EcmascriptBuildNodeChunkVersion {
-			chunk_path:chunk_path.to_string(),
-			chunk_items,
-			minify_type,
-		}
-		.cell())
+		Ok(EcmascriptBuildNodeChunkVersion { chunk_path: chunk_path.to_string(), chunk_items, minify_type }.cell())
 	}
 }
 

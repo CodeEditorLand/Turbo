@@ -1,13 +1,14 @@
 import type { PackageManager } from "@turbo/utils";
+
 import type { ManagerHandler } from "../types";
-import { pnpm } from "./pnpm";
-import { npm } from "./npm";
-import { yarn } from "./yarn";
 import { bun } from "./bun";
+import { npm } from "./npm";
+import { pnpm } from "./pnpm";
+import { yarn } from "./yarn";
 
 export const MANAGERS: Record<PackageManager, ManagerHandler> = {
-  pnpm,
-  yarn,
-  npm,
-  bun,
+	pnpm,
+	yarn,
+	npm,
+	bun,
 };

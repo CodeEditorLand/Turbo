@@ -12,8 +12,7 @@ use turbopack_core::chunk::ChunkingContext;
 
 use crate::{
 	code_gen::{CodeGenerateable, CodeGeneration},
-	create_visitor,
-	magic_identifier,
+	create_visitor, magic_identifier,
 	references::{AstPath, as_abs_path, esm::base::insert_hoisted_stmt},
 };
 
@@ -25,29 +24,23 @@ use crate::{
 #[turbo_tasks::value(shared)]
 #[derive(Hash, Debug)]
 pub struct ImportMetaBinding {
-	path:Vc<FileSystemPath>,
+	path: Vc<FileSystemPath>,
 }
 
 #[turbo_tasks::value_impl]
 impl ImportMetaBinding {
 	#[turbo_tasks::function]
-	pub fn new(path:Vc<FileSystemPath>) -> Vc<Self> { ImportMetaBinding { path }.cell() }
+	pub fn new(path: Vc<FileSystemPath>) -> Vc<Self> {
+		ImportMetaBinding { path }.cell()
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for ImportMetaBinding {
 	#[turbo_tasks::function]
-	async fn code_generation(
-		&self,
-		_context:Vc<Box<dyn ChunkingContext>>,
-	) -> Result<Vc<CodeGeneration>> {
+	async fn code_generation(&self, _context: Vc<Box<dyn ChunkingContext>>) -> Result<Vc<CodeGeneration>> {
 		let path = as_abs_path(self.path).await?.as_str().map_or_else(
-			|| {
-				quote!(
-					"(() => { throw new Error('could not convert import.meta.url to filepath') })()"
-						as Expr
-				)
-			},
+			|| quote!("(() => { throw new Error('could not convert import.meta.url to filepath') })()" as Expr),
 			|path| {
 				let formatted = encode_path(path).trim_start_matches("/ROOT/").to_string();
 				quote!(
@@ -68,7 +61,7 @@ impl CodeGenerateable for ImportMetaBinding {
 			insert_hoisted_stmt(program, meta);
 		});
 
-		Ok(CodeGeneration { visitors:vec![visitor] }.into())
+		Ok(CodeGeneration { visitors: vec![visitor] }.into())
 	}
 }
 
@@ -80,34 +73,33 @@ impl CodeGenerateable for ImportMetaBinding {
 #[turbo_tasks::value(shared)]
 #[derive(Hash, Debug)]
 pub struct ImportMetaRef {
-	ast_path:Vc<AstPath>,
+	ast_path: Vc<AstPath>,
 }
 
 #[turbo_tasks::value_impl]
 impl ImportMetaRef {
 	#[turbo_tasks::function]
-	pub fn new(ast_path:Vc<AstPath>) -> Vc<Self> { ImportMetaRef { ast_path }.cell() }
+	pub fn new(ast_path: Vc<AstPath>) -> Vc<Self> {
+		ImportMetaRef { ast_path }.cell()
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for ImportMetaRef {
 	#[turbo_tasks::function]
-	async fn code_generation(
-		&self,
-		_context:Vc<Box<dyn ChunkingContext>>,
-	) -> Result<Vc<CodeGeneration>> {
+	async fn code_generation(&self, _context: Vc<Box<dyn ChunkingContext>>) -> Result<Vc<CodeGeneration>> {
 		let ast_path = &self.ast_path.await?;
 		let visitor = create_visitor!(ast_path, visit_mut_expr(expr: &mut Expr) {
 			*expr = Expr::Ident(meta_ident());
 		});
 
-		Ok(CodeGeneration { visitors:vec![visitor] }.into())
+		Ok(CodeGeneration { visitors: vec![visitor] }.into())
 	}
 }
 
 /// URL encodes special chars that would appear in the "pathname" portion.
 /// https://github.com/nodejs/node/blob/3bed5f11e039153eff5cbfd9513b8f55fd53fc43/lib/internal/url.js#L1513-L1526
-fn encode_path(path:&'_ str) -> Cow<'_, str> {
+fn encode_path(path: &'_ str) -> Cow<'_, str> {
 	let mut encoded = String::new();
 	let mut start = 0;
 	for (i, c) in path.chars().enumerate() {
@@ -136,7 +128,9 @@ fn encode_path(path:&'_ str) -> Cow<'_, str> {
 	Cow::Owned(encoded)
 }
 
-fn meta_ident() -> Ident { Ident::new(magic_identifier::mangle("import.meta").into(), DUMMY_SP) }
+fn meta_ident() -> Ident {
+	Ident::new(magic_identifier::mangle("import.meta").into(), DUMMY_SP)
+}
 
 #[cfg(test)]
 mod test {

@@ -14,13 +14,13 @@ use super::chunk::SingleItemCssChunk;
 /// Represents the source map of a single item CSS chunk.
 #[turbo_tasks::value]
 pub struct SingleItemCssChunkSourceMapAsset {
-	chunk:Vc<SingleItemCssChunk>,
+	chunk: Vc<SingleItemCssChunk>,
 }
 
 #[turbo_tasks::value_impl]
 impl SingleItemCssChunkSourceMapAsset {
 	#[turbo_tasks::function]
-	pub fn new(chunk:Vc<SingleItemCssChunk>) -> Vc<Self> {
+	pub fn new(chunk: Vc<SingleItemCssChunk>) -> Vc<Self> {
 		SingleItemCssChunkSourceMapAsset { chunk }.cell()
 	}
 }

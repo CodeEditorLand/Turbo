@@ -23,32 +23,32 @@ use crate::NodeJsChunkingContext;
 
 #[turbo_tasks::value]
 pub(super) struct EcmascriptBuildNodeChunkContent {
-	pub(super) content:Vc<EcmascriptChunkContent>,
-	pub(super) chunking_context:Vc<NodeJsChunkingContext>,
-	pub(super) chunk:Vc<EcmascriptBuildNodeChunk>,
+	pub(super) content: Vc<EcmascriptChunkContent>,
+	pub(super) chunking_context: Vc<NodeJsChunkingContext>,
+	pub(super) chunk: Vc<EcmascriptBuildNodeChunk>,
 }
 
 #[turbo_tasks::value_impl]
 impl EcmascriptBuildNodeChunkContent {
 	#[turbo_tasks::function]
 	pub(crate) async fn new(
-		chunking_context:Vc<NodeJsChunkingContext>,
-		chunk:Vc<EcmascriptBuildNodeChunk>,
-		content:Vc<EcmascriptChunkContent>,
+		chunking_context: Vc<NodeJsChunkingContext>,
+		chunk: Vc<EcmascriptBuildNodeChunk>,
+		content: Vc<EcmascriptChunkContent>,
 	) -> Result<Vc<Self>> {
 		Ok(EcmascriptBuildNodeChunkContent { content, chunking_context, chunk }.cell())
 	}
 }
 
 pub(super) async fn chunk_items(
-	content:Vc<EcmascriptChunkContent>,
+	content: Vc<EcmascriptChunkContent>,
 ) -> Result<Vec<(ReadRef<ModuleId>, ReadRef<Code>)>> {
 	content
 		.await?
 		.chunk_items
 		.iter()
-		.map(|&(chunk_item, async_module_info)| {
-			async move { Ok((chunk_item.id().await?, chunk_item.code(async_module_info).await?)) }
+		.map(|&(chunk_item, async_module_info)| async move {
+			Ok((chunk_item.id().await?, chunk_item.code(async_module_info).await?))
 		})
 		.try_join()
 		.await
@@ -122,5 +122,7 @@ impl VersionedContent for EcmascriptBuildNodeChunkContent {
 	}
 
 	#[turbo_tasks::function]
-	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> { Vc::upcast(self.own_version()) }
+	fn version(self: Vc<Self>) -> Vc<Box<dyn Version>> {
+		Vc::upcast(self.own_version())
+	}
 }

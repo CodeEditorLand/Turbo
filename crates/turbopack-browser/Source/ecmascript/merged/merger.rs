@@ -14,25 +14,23 @@ pub(crate) struct EcmascriptDevChunkContentMerger;
 impl EcmascriptDevChunkContentMerger {
 	/// Creates a new [`EcmascriptDevChunkContentMerger`].
 	#[turbo_tasks::function]
-	pub fn new() -> Vc<Self> { Self::cell(EcmascriptDevChunkContentMerger) }
+	pub fn new() -> Vc<Self> {
+		Self::cell(EcmascriptDevChunkContentMerger)
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl VersionedContentMerger for EcmascriptDevChunkContentMerger {
 	#[turbo_tasks::function]
-	async fn merge(&self, contents:Vc<VersionedContents>) -> Result<Vc<Box<dyn VersionedContent>>> {
+	async fn merge(&self, contents: Vc<VersionedContents>) -> Result<Vc<Box<dyn VersionedContent>>> {
 		let contents = contents
 			.await?
 			.iter()
-			.map(|content| {
-				async move {
-					if let Some(content) =
-						Vc::try_resolve_downcast_type::<EcmascriptDevChunkContent>(*content).await?
-					{
-						Ok(content)
-					} else {
-						bail!("expected Vc<EcmascriptDevChunkContent>")
-					}
+			.map(|content| async move {
+				if let Some(content) = Vc::try_resolve_downcast_type::<EcmascriptDevChunkContent>(*content).await? {
+					Ok(content)
+				} else {
+					bail!("expected Vc<EcmascriptDevChunkContent>")
 				}
 			})
 			.try_join()

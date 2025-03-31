@@ -3,19 +3,8 @@ use swc_core::{
 	common::{Span, SyntaxContext},
 	ecma::{
 		ast::{
-			ComputedPropName,
-			Expr,
-			Ident,
-			KeyValueProp,
-			Lit,
-			MemberExpr,
-			MemberProp,
-			Number,
-			Prop,
-			PropName,
-			SeqExpr,
-			SimpleAssignTarget,
-			Str,
+			ComputedPropName, Expr, Ident, KeyValueProp, Lit, MemberExpr, MemberProp, Number, Prop, PropName, SeqExpr,
+			SimpleAssignTarget, Str,
 		},
 		visit::fields::{CalleeField, PropField},
 	},
@@ -33,19 +22,15 @@ use crate::{
 #[turbo_tasks::value(shared)]
 #[derive(Hash, Debug)]
 pub struct EsmBinding {
-	pub reference:Vc<EsmAssetReference>,
-	pub export:Option<RcStr>,
-	pub ast_path:Vc<AstPath>,
+	pub reference: Vc<EsmAssetReference>,
+	pub export: Option<RcStr>,
+	pub ast_path: Vc<AstPath>,
 }
 
 #[turbo_tasks::value_impl]
 impl EsmBinding {
 	#[turbo_tasks::function]
-	pub fn new(
-		reference:Vc<EsmAssetReference>,
-		export:Option<RcStr>,
-		ast_path:Vc<AstPath>,
-	) -> Vc<Self> {
+	pub fn new(reference: Vc<EsmAssetReference>, export: Option<RcStr>, ast_path: Vc<AstPath>) -> Vc<Self> {
 		EsmBinding { reference, export, ast_path }.cell()
 	}
 }
@@ -53,33 +38,26 @@ impl EsmBinding {
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for EsmBinding {
 	#[turbo_tasks::function]
-	async fn code_generation(
-		self: Vc<Self>,
-		_context:Vc<Box<dyn ChunkingContext>>,
-	) -> Result<Vc<CodeGeneration>> {
+	async fn code_generation(self: Vc<Self>, _context: Vc<Box<dyn ChunkingContext>>) -> Result<Vc<CodeGeneration>> {
 		let this = self.await?;
 		let mut visitors = Vec::new();
 		let imported_module = this.reference.get_referenced_asset();
 
-		fn make_expr(imported_module:&str, export:Option<&str>, span:Span, in_call:bool) -> Expr {
+		fn make_expr(imported_module: &str, export: Option<&str>, span: Span, in_call: bool) -> Expr {
 			let span = span.with_ctxt(SyntaxContext::empty());
 			if let Some(export) = export {
 				let mut expr = Expr::Member(MemberExpr {
 					span,
-					obj:Box::new(Expr::Ident(Ident::new(imported_module.into(), span))),
-					prop:MemberProp::Computed(ComputedPropName {
+					obj: Box::new(Expr::Ident(Ident::new(imported_module.into(), span))),
+					prop: MemberProp::Computed(ComputedPropName {
 						span,
-						expr:Box::new(Expr::Lit(Lit::Str(Str {
-							span,
-							value:export.into(),
-							raw:None,
-						}))),
+						expr: Box::new(Expr::Lit(Lit::Str(Str { span, value: export.into(), raw: None }))),
 					}),
 				});
 				if in_call {
 					expr = Expr::Seq(SeqExpr {
-						exprs:vec![
-							Box::new(Expr::Lit(Lit::Num(Number { span, value:0.0, raw:None }))),
+						exprs: vec![
+							Box::new(Expr::Lit(Lit::Num(Number { span, value: 0.0, raw: None }))),
 							Box::new(expr),
 						],
 						span,
@@ -100,19 +78,17 @@ impl CodeGenerateable for EsmBinding {
 				// normal key-value pairs.
 				Some(swc_core::ecma::visit::AstParentKind::Prop(PropField::Shorthand)) => {
 					ast_path.pop();
-					visitors.push(
-						create_visitor!(exact ast_path, visit_mut_prop(prop: &mut Prop) {
-							if let Prop::Shorthand(ident) = prop {
-								// TODO: Merge with the above condition when https://rust-lang.github.io/rfcs/2497-if-let-chains.html lands.
-								if let Some(imported_ident) = imported_module.as_deref() {
-									*prop = Prop::KeyValue(KeyValueProp {
-										key: PropName::Ident(ident.clone()),
-										value: Box::new(make_expr(imported_ident, this.export.as_deref(), ident.span, false))
-									});
-								}
+					visitors.push(create_visitor!(exact ast_path, visit_mut_prop(prop: &mut Prop) {
+						if let Prop::Shorthand(ident) = prop {
+							// TODO: Merge with the above condition when https://rust-lang.github.io/rfcs/2497-if-let-chains.html lands.
+							if let Some(imported_ident) = imported_module.as_deref() {
+								*prop = Prop::KeyValue(KeyValueProp {
+									key: PropName::Ident(ident.clone()),
+									value: Box::new(make_expr(imported_ident, this.export.as_deref(), ident.span, false))
+								});
 							}
-						}),
-					);
+						}
+					}));
 					break;
 				},
 				// Any other expression can be replaced with the import accessor.
@@ -123,17 +99,15 @@ impl CodeGenerateable for EsmBinding {
 						Some(swc_core::ecma::visit::AstParentKind::Callee(CalleeField::Expr))
 					);
 
-					visitors.push(
-						create_visitor!(exact ast_path, visit_mut_expr(expr: &mut Expr) {
-							if let Some(ident) = imported_module.as_deref() {
-								use swc_core::common::Spanned;
-								*expr = make_expr(ident, this.export.as_deref(), expr.span(), in_call);
-							}
-							// If there's no identifier for the imported module,
-							// resolution failed and will insert code that throws
-							// before this expression is reached. Leave behind the original identifier.
-						}),
-					);
+					visitors.push(create_visitor!(exact ast_path, visit_mut_expr(expr: &mut Expr) {
+						if let Some(ident) = imported_module.as_deref() {
+							use swc_core::common::Spanned;
+							*expr = make_expr(ident, this.export.as_deref(), expr.span(), in_call);
+						}
+						// If there's no identifier for the imported module,
+						// resolution failed and will insert code that throws
+						// before this expression is reached. Leave behind the original identifier.
+					}));
 					break;
 				},
 				Some(swc_core::ecma::visit::AstParentKind::BindingIdent(

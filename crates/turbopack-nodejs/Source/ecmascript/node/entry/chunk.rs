@@ -21,11 +21,11 @@ use crate::NodeJsChunkingContext;
 /// runtime entries.
 #[turbo_tasks::value(shared)]
 pub(crate) struct EcmascriptBuildNodeEntryChunk {
-	path:Vc<FileSystemPath>,
-	chunking_context:Vc<NodeJsChunkingContext>,
-	other_chunks:Vc<OutputAssets>,
-	evaluatable_assets:Vc<EvaluatableAssets>,
-	exported_module:Vc<Box<dyn EcmascriptChunkPlaceable>>,
+	path: Vc<FileSystemPath>,
+	chunking_context: Vc<NodeJsChunkingContext>,
+	other_chunks: Vc<OutputAssets>,
+	evaluatable_assets: Vc<EvaluatableAssets>,
+	exported_module: Vc<Box<dyn EcmascriptChunkPlaceable>>,
 }
 
 #[turbo_tasks::value_impl]
@@ -33,20 +33,14 @@ impl EcmascriptBuildNodeEntryChunk {
 	/// Creates a new [`Vc<EcmascriptBuildNodeEntryChunk>`].
 	#[turbo_tasks::function]
 	pub fn new(
-		path:Vc<FileSystemPath>,
-		chunking_context:Vc<NodeJsChunkingContext>,
-		other_chunks:Vc<OutputAssets>,
-		evaluatable_assets:Vc<EvaluatableAssets>,
-		exported_module:Vc<Box<dyn EcmascriptChunkPlaceable>>,
+		path: Vc<FileSystemPath>,
+		chunking_context: Vc<NodeJsChunkingContext>,
+		other_chunks: Vc<OutputAssets>,
+		evaluatable_assets: Vc<EvaluatableAssets>,
+		exported_module: Vc<Box<dyn EcmascriptChunkPlaceable>>,
 	) -> Vc<Self> {
-		EcmascriptBuildNodeEntryChunk {
-			path,
-			chunking_context,
-			other_chunks,
-			evaluatable_assets,
-			exported_module,
-		}
-		.cell()
+		EcmascriptBuildNodeEntryChunk { path, chunking_context, other_chunks, evaluatable_assets, exported_module }
+			.cell()
 	}
 
 	#[turbo_tasks::function]
@@ -57,16 +51,15 @@ impl EcmascriptBuildNodeEntryChunk {
 		let chunk_path = self.ident().path().await?;
 		let chunk_directory = self.ident().path().parent().await?;
 		let runtime_path = self.runtime_chunk().ident().path().await?;
-		let runtime_relative_path =
-			if let Some(path) = chunk_directory.get_relative_path_to(&runtime_path) {
-				path
-			} else {
-				bail!(
-					"cannot find a relative path from the chunk ({}) to the runtime chunk ({})",
-					chunk_path.to_string(),
-					runtime_path.to_string(),
-				);
-			};
+		let runtime_relative_path = if let Some(path) = chunk_directory.get_relative_path_to(&runtime_path) {
+			path
+		} else {
+			bail!(
+				"cannot find a relative path from the chunk ({}) to the runtime chunk ({})",
+				chunk_path.to_string(),
+				runtime_path.to_string(),
+			);
+		};
 		let chunk_public_path = if let Some(path) = output_root.get_path_to(&chunk_path) {
 			path
 		} else {
@@ -108,11 +101,9 @@ impl EcmascriptBuildNodeEntryChunk {
 		let evaluatable_assets = this.evaluatable_assets.await?;
 		for evaluatable_asset in &*evaluatable_assets {
 			if let Some(placeable) =
-				Vc::try_resolve_sidecast::<Box<dyn EcmascriptChunkPlaceable>>(*evaluatable_asset)
-					.await?
+				Vc::try_resolve_sidecast::<Box<dyn EcmascriptChunkPlaceable>>(*evaluatable_asset).await?
 			{
-				let runtime_module_id =
-					placeable.as_chunk_item(Vc::upcast(this.chunking_context)).id().await?;
+				let runtime_module_id = placeable.as_chunk_item(Vc::upcast(this.chunking_context)).id().await?;
 
 				writedoc!(
 					code,
@@ -157,15 +148,21 @@ impl ValueToString for EcmascriptBuildNodeEntryChunk {
 }
 
 #[turbo_tasks::function]
-fn modifier() -> Vc<RcStr> { Vc::cell("ecmascript build node evaluate chunk".into()) }
+fn modifier() -> Vc<RcStr> {
+	Vc::cell("ecmascript build node evaluate chunk".into())
+}
 
 #[turbo_tasks::function]
-fn chunk_reference_description() -> Vc<RcStr> { Vc::cell("chunk".into()) }
+fn chunk_reference_description() -> Vc<RcStr> {
+	Vc::cell("chunk".into())
+}
 
 #[turbo_tasks::value_impl]
 impl OutputAsset for EcmascriptBuildNodeEntryChunk {
 	#[turbo_tasks::function]
-	fn ident(&self) -> Vc<AssetIdent> { AssetIdent::from_path(self.path) }
+	fn ident(&self) -> Vc<AssetIdent> {
+		AssetIdent::from_path(self.path)
+	}
 
 	#[turbo_tasks::function]
 	async fn references(self: Vc<Self>) -> Result<Vc<OutputAssets>> {

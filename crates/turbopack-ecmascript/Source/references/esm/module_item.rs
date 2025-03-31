@@ -4,17 +4,8 @@ use anyhow::Result;
 use swc_core::{
 	common::DUMMY_SP,
 	ecma::ast::{
-		ClassDecl,
-		Decl,
-		DefaultDecl,
-		ExportDecl,
-		ExportDefaultDecl,
-		ExportDefaultExpr,
-		FnDecl,
-		Ident,
-		ModuleDecl,
-		ModuleItem,
-		Stmt,
+		ClassDecl, Decl, DefaultDecl, ExportDecl, ExportDefaultDecl, ExportDefaultExpr, FnDecl, Ident, ModuleDecl,
+		ModuleItem, Stmt,
 	},
 	quote,
 };
@@ -23,8 +14,7 @@ use turbopack_core::chunk::ChunkingContext;
 
 use crate::{
 	code_gen::{CodeGenerateable, CodeGeneration},
-	create_visitor,
-	magic_identifier,
+	create_visitor, magic_identifier,
 	references::AstPath,
 };
 
@@ -34,22 +24,21 @@ use crate::{
 #[turbo_tasks::value]
 #[derive(Hash, Debug)]
 pub struct EsmModuleItem {
-	pub path:Vc<AstPath>,
+	pub path: Vc<AstPath>,
 }
 
 #[turbo_tasks::value_impl]
 impl EsmModuleItem {
 	#[turbo_tasks::function]
-	pub fn new(path:Vc<AstPath>) -> Vc<Self> { Self::cell(EsmModuleItem { path }) }
+	pub fn new(path: Vc<AstPath>) -> Vc<Self> {
+		Self::cell(EsmModuleItem { path })
+	}
 }
 
 #[turbo_tasks::value_impl]
 impl CodeGenerateable for EsmModuleItem {
 	#[turbo_tasks::function]
-	async fn code_generation(
-		&self,
-		_context:Vc<Box<dyn ChunkingContext>>,
-	) -> Result<Vc<CodeGeneration>> {
+	async fn code_generation(&self, _context: Vc<Box<dyn ChunkingContext>>) -> Result<Vc<CodeGeneration>> {
 		let mut visitors = Vec::new();
 
 		let path = &self.path.await?;

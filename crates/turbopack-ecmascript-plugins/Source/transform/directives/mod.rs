@@ -21,7 +21,7 @@ macro_rules! has_directive {
 	};
 }
 
-fn is_client_module(program:&Program) -> bool {
+fn is_client_module(program: &Program) -> bool {
 	match program {
 		Program::Module(m) => {
 			has_directive!(m.body.iter().map(|item| item.as_stmt()), "use client")
@@ -30,7 +30,7 @@ fn is_client_module(program:&Program) -> bool {
 	}
 }
 
-fn is_server_module(program:&Program) -> bool {
+fn is_server_module(program: &Program) -> bool {
 	match program {
 		Program::Module(m) => {
 			has_directive!(m.body.iter().map(|item| item.as_stmt()), "use server")

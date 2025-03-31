@@ -13,8 +13,7 @@ use crate::{
 	bundlers::Bundler,
 	util::{
 		npm::{
-			NpmPackage,
-			{self},
+			NpmPackage, {self},
 		},
 		wait_for_match,
 	},
@@ -30,35 +29,37 @@ pub enum NextJsVersion {
 
 #[derive(Debug)]
 pub struct NextJs {
-	version:NextJsVersion,
-	name:String,
-	path:String,
-	turbo:bool,
-	render_type:RenderType,
+	version: NextJsVersion,
+	name: String,
+	path: String,
+	turbo: bool,
+	render_type: RenderType,
 }
 
 impl NextJs {
-	pub fn new(
-		version:NextJsVersion,
-		name:&str,
-		path:&str,
-		turbo:bool,
-		render_type:RenderType,
-	) -> Self {
-		Self { name:name.to_owned(), path:path.to_owned(), render_type, turbo, version }
+	pub fn new(version: NextJsVersion, name: &str, path: &str, turbo: bool, render_type: RenderType) -> Self {
+		Self { name: name.to_owned(), path: path.to_owned(), render_type, turbo, version }
 	}
 }
 
 impl Bundler for NextJs {
-	fn get_name(&self) -> &str { &self.name }
+	fn get_name(&self) -> &str {
+		&self.name
+	}
 
-	fn get_path(&self) -> &str { &self.path }
+	fn get_path(&self) -> &str {
+		&self.path
+	}
 
-	fn render_type(&self) -> RenderType { self.render_type }
+	fn render_type(&self) -> RenderType {
+		self.render_type
+	}
 
-	fn react_version(&self) -> &str { self.version.react_version() }
+	fn react_version(&self) -> &str {
+		self.version.react_version()
+	}
 
-	fn prepare(&self, install_dir:&Path) -> Result<()> {
+	fn prepare(&self, install_dir: &Path) -> Result<()> {
 		npm::install(install_dir, &[NpmPackage::new("next", self.version.version())])
 			.context("failed to install `next` module")?;
 
@@ -68,7 +69,7 @@ impl Bundler for NextJs {
 		Ok(())
 	}
 
-	fn start_server(&self, test_dir:&Path) -> Result<(Child, String)> {
+	fn start_server(&self, test_dir: &Path) -> Result<(Child, String)> {
 		// Using `node_modules/.bin/next` would sometimes error with `Error: Cannot find
 		// module '../build/output/log'`
 		let mut proc = Command::new("node");
@@ -87,8 +88,7 @@ impl Bundler for NextJs {
 				NextJsVersion::V12 => {
 					// Next.js 12 has a bug where requests for port 0 are ignored and it falls
 					// back to the default 3000. Use portpicker instead.
-					portpicker::pick_unused_port()
-						.ok_or_else(|| anyhow!("failed to pick unused port"))?
+					portpicker::pick_unused_port().ok_or_else(|| anyhow!("failed to pick unused port"))?
 				},
 				_ => 0,
 			}
@@ -114,7 +114,7 @@ impl Bundler for NextJs {
 		Ok((proc, format!("{addr}/page")))
 	}
 
-	fn max_update_timeout(&self, module_count:usize) -> std::time::Duration {
+	fn max_update_timeout(&self, module_count: usize) -> std::time::Duration {
 		match (self.render_type, self.turbo) {
 			(RenderType::ServerSidePrerendered, true) => Duration::from_millis(500),
 			// Arbitrary default timeout that seems to work well for Next.js Webpack
@@ -146,5 +146,7 @@ impl NextJsVersion {
 	}
 
 	/// Returns whether this version of Next.js supports the appDir option.
-	pub fn app_dir(&self) -> bool { matches!(self, NextJsVersion::V13 | NextJsVersion::Canary) }
+	pub fn app_dir(&self) -> bool {
+		matches!(self, NextJsVersion::V13 | NextJsVersion::Canary)
+	}
 }

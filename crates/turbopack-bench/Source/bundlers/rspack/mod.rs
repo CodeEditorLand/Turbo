@@ -11,8 +11,7 @@ use crate::{
 	bundlers::Bundler,
 	util::{
 		npm::{
-			NpmPackage,
-			{self},
+			NpmPackage, {self},
 		},
 		wait_for_match,
 	},
@@ -20,9 +19,11 @@ use crate::{
 
 pub struct Rspack;
 impl Bundler for Rspack {
-	fn get_name(&self) -> &str { "Rspack CSR" }
+	fn get_name(&self) -> &str {
+		"Rspack CSR"
+	}
 
-	fn prepare(&self, install_dir:&Path) -> Result<()> {
+	fn prepare(&self, install_dir: &Path) -> Result<()> {
 		npm::install(
 			install_dir,
 			&[
@@ -37,7 +38,7 @@ impl Bundler for Rspack {
 		Ok(())
 	}
 
-	fn start_server(&self, test_dir:&Path) -> Result<(Child, String)> {
+	fn start_server(&self, test_dir: &Path) -> Result<(Child, String)> {
 		let mut proc = Command::new("node")
 			.args([
 				(test_dir

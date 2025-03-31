@@ -1,44 +1,44 @@
-import picocolors from "picocolors";
-import isGitClean from "is-git-clean";
 import { logger } from "@turbo/utils";
+import isGitClean from "is-git-clean";
+import picocolors from "picocolors";
 
 export function checkGitStatus({
-  directory,
-  force,
+	directory,
+	force,
 }: {
-  directory?: string;
-  force: boolean;
+	directory?: string;
+	force: boolean;
 }) {
-  let clean = false;
-  let errorMessage = "Unable to determine if git directory is clean";
-  try {
-    clean = isGitClean.sync(directory || process.cwd());
-    errorMessage = "Git directory is not clean";
-  } catch (err: unknown) {
-    const errWithDetails = err as { stderr?: string };
-    if (errWithDetails.stderr?.includes("not a git repository")) {
-      clean = true;
-    }
-  }
+	let clean = false;
+	let errorMessage = "Unable to determine if git directory is clean";
+	try {
+		clean = isGitClean.sync(directory || process.cwd());
+		errorMessage = "Git directory is not clean";
+	} catch (err: unknown) {
+		const errWithDetails = err as { stderr?: string };
+		if (errWithDetails.stderr?.includes("not a git repository")) {
+			clean = true;
+		}
+	}
 
-  if (!clean) {
-    if (force) {
-      logger.log(
-        `${picocolors.yellow(
-          "WARNING"
-        )}: ${errorMessage}. Forcibly continuing...`
-      );
-    } else {
-      logger.log("Thank you for using @turbo/codemod!");
-      logger.log(
-        picocolors.yellow(
-          "\nBut before we continue, please stash or commit your git changes."
-        )
-      );
-      logger.log(
-        "\nYou may use the --force flag to override this safety check."
-      );
-      process.exit(1);
-    }
-  }
+	if (!clean) {
+		if (force) {
+			logger.log(
+				`${picocolors.yellow(
+					"WARNING",
+				)}: ${errorMessage}. Forcibly continuing...`,
+			);
+		} else {
+			logger.log("Thank you for using @turbo/codemod!");
+			logger.log(
+				picocolors.yellow(
+					"\nBut before we continue, please stash or commit your git changes.",
+				),
+			);
+			logger.log(
+				"\nYou may use the --force flag to override this safety check.",
+			);
+			process.exit(1);
+		}
+	}
 }

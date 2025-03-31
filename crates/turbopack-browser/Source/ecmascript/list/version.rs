@@ -13,10 +13,10 @@ type VersionTraitRef = TraitRef<Box<dyn Version>>;
 pub(super) struct EcmascriptDevChunkListVersion {
 	/// A map from chunk path to its version.
 	#[turbo_tasks(trace_ignore)]
-	pub by_path:IndexMap<String, VersionTraitRef>,
+	pub by_path: IndexMap<String, VersionTraitRef>,
 	/// A map from chunk merger to the version of the merged contents of chunks.
 	#[turbo_tasks(trace_ignore)]
-	pub by_merger:IndexMap<Vc<Box<dyn VersionedContentMerger>>, VersionTraitRef>,
+	pub by_merger: IndexMap<Vc<Box<dyn VersionedContentMerger>>, VersionTraitRef>,
 }
 
 #[turbo_tasks::value_impl]
@@ -27,11 +27,9 @@ impl Version for EcmascriptDevChunkListVersion {
 			let mut by_path = self
 				.by_path
 				.iter()
-				.map(|(path, version)| {
-					async move {
-						let id = TraitRef::cell(version.clone()).id().await?.clone_value();
-						Ok((path, id))
-					}
+				.map(|(path, version)| async move {
+					let id = TraitRef::cell(version.clone()).id().await?.clone_value();
+					Ok((path, id))
 				})
 				.try_join()
 				.await?;
@@ -42,9 +40,7 @@ impl Version for EcmascriptDevChunkListVersion {
 			let mut by_merger = self
 				.by_merger
 				.iter()
-				.map(|(_merger, version)| {
-					async move { Ok(TraitRef::cell(version.clone()).id().await?.clone_value()) }
-				})
+				.map(|(_merger, version)| async move { Ok(TraitRef::cell(version.clone()).id().await?.clone_value()) })
 				.try_join()
 				.await?;
 			by_merger.sort();

@@ -5,13 +5,7 @@ use indexmap::IndexMap;
 use serde::Serialize;
 use turbo_tasks::{IntoTraitRef, TraitRef, Vc};
 use turbopack_core::version::{
-	MergeableVersionedContent,
-	PartialUpdate,
-	TotalUpdate,
-	Update,
-	Version,
-	VersionedContent,
-	VersionedContentMerger,
+	MergeableVersionedContent, PartialUpdate, TotalUpdate, Update, Version, VersionedContent, VersionedContentMerger,
 };
 
 use super::{content::EcmascriptDevChunkListContent, version::EcmascriptDevChunkListVersion};
@@ -23,10 +17,10 @@ use super::{content::EcmascriptDevChunkListContent, version::EcmascriptDevChunkL
 struct ChunkListUpdate<'a> {
 	/// A map from chunk path to a corresponding update of that chunk.
 	#[serde(skip_serializing_if = "IndexMap::is_empty")]
-	chunks:IndexMap<&'a str, ChunkUpdate>,
+	chunks: IndexMap<&'a str, ChunkUpdate>,
 	/// List of merged updates since the last version.
 	#[serde(skip_serializing_if = "Vec::is_empty")]
-	merged:Vec<Arc<serde_json::Value>>,
+	merged: Vec<Arc<serde_json::Value>>,
 }
 
 /// Update of a chunk from one version to another.
@@ -37,7 +31,7 @@ enum ChunkUpdate {
 	/// The chunk was updated and must be reloaded.
 	Total,
 	/// The chunk was updated and can be merged with the previous version.
-	Partial { instruction:Arc<serde_json::Value> },
+	Partial { instruction: Arc<serde_json::Value> },
 	/// The chunk was added.
 	Added,
 	/// The chunk was deleted.
@@ -55,21 +49,20 @@ impl<'a> ChunkListUpdate<'a> {
 /// Computes the update of a chunk list from one version to another.
 #[turbo_tasks::function]
 pub(super) async fn update_chunk_list(
-	content:Vc<EcmascriptDevChunkListContent>,
-	from_version:Vc<Box<dyn Version>>,
+	content: Vc<EcmascriptDevChunkListContent>,
+	from_version: Vc<Box<dyn Version>>,
 ) -> Result<Vc<Update>> {
 	let to_version = content.version();
-	let from_version = if let Some(from) =
-		Vc::try_resolve_downcast_type::<EcmascriptDevChunkListVersion>(from_version).await?
-	{
-		from
-	} else {
-		// It's likely `from_version` is `NotFoundVersion`.
-		return Ok(Update::Total(TotalUpdate {
-			to:Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
-		})
-		.cell());
-	};
+	let from_version =
+		if let Some(from) = Vc::try_resolve_downcast_type::<EcmascriptDevChunkListVersion>(from_version).await? {
+			from
+		} else {
+			// It's likely `from_version` is `NotFoundVersion`.
+			return Ok(Update::Total(TotalUpdate {
+				to: Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
+			})
+			.cell());
+		};
 
 	let to = to_version.await?;
 	let from = from_version.await?;
@@ -95,9 +88,7 @@ pub(super) async fn update_chunk_list(
 	let mut by_path = IndexMap::<_, _>::new();
 
 	for (chunk_path, chunk_content) in &content.chunks_contents {
-		if let Some(mergeable) =
-			Vc::try_resolve_sidecast::<Box<dyn MergeableVersionedContent>>(*chunk_content).await?
-		{
+		if let Some(mergeable) = Vc::try_resolve_sidecast::<Box<dyn MergeableVersionedContent>>(*chunk_content).await? {
 			let merger = mergeable.get_merger().resolve().await?;
 			by_merger.entry(merger).or_default().push(*chunk_content);
 		} else {
@@ -109,8 +100,7 @@ pub(super) async fn update_chunk_list(
 
 	for (chunk_path, from_chunk_version) in &from.by_path {
 		if let Some(chunk_content) = by_path.remove(chunk_path) {
-			let chunk_update =
-				chunk_content.update(TraitRef::cell(from_chunk_version.clone())).await?;
+			let chunk_update = chunk_content.update(TraitRef::cell(from_chunk_version.clone())).await?;
 
 			match &*chunk_update {
 				Update::Total(_) => {
@@ -119,7 +109,7 @@ pub(super) async fn update_chunk_list(
 				Update::Partial(partial) => {
 					chunks.insert(
 						chunk_path.as_ref(),
-						ChunkUpdate::Partial { instruction:partial.instruction.clone() },
+						ChunkUpdate::Partial { instruction: partial.instruction.clone() },
 					);
 				},
 				Update::None => {},
@@ -147,7 +137,7 @@ pub(super) async fn update_chunk_list(
 				// the update.
 				Update::Total(_) => {
 					return Ok(Update::Total(TotalUpdate {
-						to:Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
+						to: Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
 					})
 					.cell());
 				},
@@ -164,8 +154,8 @@ pub(super) async fn update_chunk_list(
 		Update::None
 	} else {
 		Update::Partial(PartialUpdate {
-			to:Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
-			instruction:Arc::new(serde_json::to_value(&update)?),
+			to: Vc::upcast::<Box<dyn Version>>(to_version).into_trait_ref().await?,
+			instruction: Arc::new(serde_json::to_value(&update)?),
 		})
 	};
 
