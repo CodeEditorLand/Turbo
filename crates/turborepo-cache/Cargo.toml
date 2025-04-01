@@ -1,29 +1,3 @@
-[package]
-name = "turborepo-cache"
-version = "0.1.0"
-license = "MIT"
-edition = "2024"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-[features]
-native-tls = ["turborepo-api-client/native-tls"]
-rustls-tls = ["turborepo-api-client/rustls-tls"]
-
-
-[dev-dependencies]
-anyhow = { workspace = true, features = ["backtrace"] }
-futures = { workspace = true }
-insta = { workspace = true }
-libc = "0.2.146"
-port_scanner = { workspace = true }
-tempfile = { workspace = true }
-test-case = { workspace = true }
-turborepo-vercel-api = { workspace = true }
-turborepo-vercel-api-mock = { workspace = true }
-
-[lints]
-workspace = true
-
 [dependencies]
 base64 = "0.21.0"
 camino = { workspace = true }
@@ -75,6 +49,6 @@ workspace = true
 
 [package]
 edition = "2024"
-license-file = "LICENSE"
+license = "MIT"
 name = "turborepo-cache"
 version = "0.1.0"

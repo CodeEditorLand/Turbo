@@ -1,10 +1,13 @@
-[package]
-name = "turborepo-fixed-map"
-version = "0.1.0"
-edition = "2024"
-license = "MIT"
-
 [dependencies]
+
+[lib]
+path = "Source/lib.rs"
 
 [lints]
 workspace = true
+
+[package]
+edition = "2024"
+license = "MIT"
+name = "turborepo-fixed-map"
+version = "0.1.0"

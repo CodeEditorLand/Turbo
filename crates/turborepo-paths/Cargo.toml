@@ -1,8 +1,17 @@
-[package]
-name = "turbopath"
-version = "0.1.0"
-license = "MIT"
-edition = "2024"
+[dependencies]
+biome_deserialize = { workspace = true, optional = true }
+biome_deserialize_macros = { workspace = true, optional = true }
+biome_diagnostics = { workspace = true, optional = true }
+biome_json_parser = { workspace = true, optional = true }
+camino = { workspace = true }
+dunce = { workspace = true }
+fs-err = "2.9.0"
+miette = { workspace = true }
+path-clean = "1.0.1"
+serde = { workspace = true }
+thiserror = { workspace = true }
+turborepo-unescape = { workspace = true, optional = true }
+wax = { workspace = true }
 
 [dev-dependencies]
 anyhow = { workspace = true }
@@ -27,6 +36,6 @@ workspace = true
 
 [package]
 edition = "2024"
-license-file = "LICENSE"
+license = "MIT"
 name = "turbopath"
 version = "0.1.0"

@@ -1,9 +1,3 @@
-[package]
-name = "turborepo-signals"
-version = "0.1.0"
-edition = "2024"
-license = "MIT"
-
 [dependencies]
 futures = { workspace = true }
 thiserror = { workspace = true }
@@ -11,5 +5,14 @@ tokio = { workspace = true, features = ["full", "time"] }
 
 [dev-dependencies]
 
+[lib]
+path = "Source/lib.rs"
+
 [lints]
 workspace = true
+
+[package]
+edition = "2024"
+license = "MIT"
+name = "turborepo-signals"
+version = "0.1.0"

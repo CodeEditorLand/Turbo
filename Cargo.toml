@@ -32,39 +32,6 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
-async-recursion = "1.0.2"
-miette = { version = "7.5.0", features = ["fancy"] }
-markdown = "1.0.0-alpha.18"
-
-turbo-trace = { path = "crates/turbo-trace" }
-turbo-updater = { path = "crates/turborepo-updater" }
-turbopath = { path = "crates/turborepo-paths" }
-turborepo = { path = "crates/turborepo" }
-turborepo-analytics = { path = "crates/turborepo-analytics" }
-turborepo-api-client = { path = "crates/turborepo-api-client" }
-turborepo-cache = { path = "crates/turborepo-cache" }
-turborepo-ci = { path = "crates/turborepo-ci" }
-turborepo-env = { path = "crates/turborepo-env" }
-turborepo-errors = { path = "crates/turborepo-errors" }
-turborepo-fixed-map = { path = "crates/turborepo-fixed-map" }
-turborepo-frameworks = { path = "crates/turborepo-frameworks" }
-turborepo-fs = { path = "crates/turborepo-fs" }
-turborepo-lib = { path = "crates/turborepo-lib", default-features = false }
-turborepo-lockfiles = { path = "crates/turborepo-lockfiles" }
-turborepo-microfrontends = { path = "crates/turborepo-microfrontends" }
-turborepo-process = { path = "crates/turborepo-process" }
-turborepo-repository = { path = "crates/turborepo-repository" }
-turborepo-ui = { path = "crates/turborepo-ui" }
-turborepo-unescape = { path = "crates/turborepo-unescape" }
-turborepo-scm = { path = "crates/turborepo-scm" }
-turborepo-signals = { path = "crates/turborepo-signals" }
-wax = { path = "crates/turborepo-wax" }
-turborepo-vercel-api = { path = "crates/turborepo-vercel-api" }
-turborepo-vercel-api-mock = { path = "crates/turborepo-vercel-api-mock" }
-turborepo-vt100 = { path = "crates/turborepo-vt100" }
-
-reqwest = { version = "0.12.9", default-features = false }
-
 anyhow = "1.0.69"
 assert_cmd = "2.0.8"
 async-compression = { version = "0.3.13", default-features = false, features = [
@@ -83,8 +50,8 @@ biome_deserialize = { version = "0.6.0", features = ["serde"] }
 biome_deserialize_macros = { version = "0.6.0" }
 biome_diagnostics = { version = "0.5.7" }
 biome_formatter = { version = "0.5.7" }
-biome_json_parser = { version = "0.5.7" }
 biome_json_formatter = { version = "0.5.7" }
+biome_json_parser = { version = "0.5.7" }
 biome_json_syntax = { version = "0.5.7" }
 bytes = "1.1.0"
 camino = { version = "1.1.4", features = ["serde1"] }
@@ -113,7 +80,7 @@ itertools = "0.10.5"
 lazy_static = "1.4.0"
 markdown = "1.0.0-alpha.18"
 merge = "0.1.0"
-miette = { version = "5.10.0", features = ["fancy"] }
+miette = { version = "7.5.0", features = ["fancy"] }
 mime = "0.3.16"
 notify = "6.1.1"
 num_cpus = "1.15.0"
@@ -174,12 +141,16 @@ turborepo-cache = { path = "crates/turborepo-cache" }
 turborepo-ci = { path = "crates/turborepo-ci" }
 turborepo-env = { path = "crates/turborepo-env" }
 turborepo-errors = { path = "crates/turborepo-errors" }
+turborepo-fixed-map = { path = "crates/turborepo-fixed-map" }
+turborepo-frameworks = { path = "crates/turborepo-frameworks" }
 turborepo-fs = { path = "crates/turborepo-fs" }
 turborepo-lib = { path = "crates/turborepo-lib", default-features = false }
 turborepo-lockfiles = { path = "crates/turborepo-lockfiles" }
 turborepo-microfrontends = { path = "crates/turborepo-microfrontends" }
+turborepo-process = { path = "crates/turborepo-process" }
 turborepo-repository = { path = "crates/turborepo-repository" }
 turborepo-scm = { path = "crates/turborepo-scm" }
+turborepo-signals = { path = "crates/turborepo-signals" }
 turborepo-ui = { path = "crates/turborepo-ui" }
 turborepo-unescape = { path = "crates/turborepo-unescape" }
 turborepo-vercel-api = { path = "crates/turborepo-vercel-api" }
