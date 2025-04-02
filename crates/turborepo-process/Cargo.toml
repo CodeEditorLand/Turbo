@@ -23,14 +23,14 @@ path = "Source/lib.rs"
 workspace = true
 
 [package]
-edition = "2021"
+edition = "2024"
 license = "MIT"
 name = "turborepo-process"
 version = "0.1.0"
 
 [target]
 
-[target.'cfg(target_os = "windows")']
+[target."cfg(target_os = \"windows\")"]
 
-[target.'cfg(target_os = "windows")'.dev-dependencies]
+[target."cfg(target_os = \"windows\")".dev-dependencies]
 windows-sys = { version = "0.59", features = ["Win32_System_Threading"] }
