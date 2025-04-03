@@ -36,7 +36,7 @@
 		"@repo/database": "*",
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@types/node": "22.13.14"
+		"@types/node": "22.14.0"
 	},
 	"publishConfig": {
 		"access": "public"

@@ -37,7 +37,7 @@
 		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.14"
+		"@types/node": "22.14.0"
 	},
 	"publishConfig": {
 		"access": "public"

@@ -44,7 +44,7 @@
 		"@turbo/types": "workspace:*",
 		"@turbo/utils": "workspace:*",
 		"@types/estree": "1.0.7",
-		"@types/node": "22.13.14",
+		"@types/node": "22.14.0",
 		"json5": "2.2.3",
 		"tsup": "8.4.0"
 	},

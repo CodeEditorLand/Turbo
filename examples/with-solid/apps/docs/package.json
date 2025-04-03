@@ -32,7 +32,7 @@
 	},
 	"dependencies": {
 		"@repo/ui": "workspace:*",
-		"@tailwindcss/vite": "^4.0.17"
+		"@tailwindcss/vite": "^4.1.2"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.1",

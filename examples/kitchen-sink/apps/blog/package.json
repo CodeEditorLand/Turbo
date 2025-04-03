@@ -30,9 +30,9 @@
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
-		"@remix-run/node": "2.16.3",
-		"@remix-run/react": "2.16.3",
-		"@remix-run/server-runtime": "2.16.3",
+		"@remix-run/node": "2.16.4",
+		"@remix-run/react": "2.16.4",
+		"@remix-run/server-runtime": "2.16.4",
 		"@repo/ui": "workspace:*",
 		"@vercel/analytics": "1.5.0",
 		"@vercel/remix": "2.15.3",
@@ -41,7 +41,7 @@
 	"devDependencies": {
 		"@codeeditorland/tsconfig-paths": "4.2.1",
 		"@playform/build": "0.2.1",
-		"@remix-run/dev": "2.16.3",
+		"@remix-run/dev": "2.16.4",
 		"@repo/eslint-config": "workspace:*",
 		"autoprefixer": "10.4.21"
 	},

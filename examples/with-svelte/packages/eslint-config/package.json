@@ -28,8 +28,8 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@playform/build": "0.2.1",
-		"eslint-config-turbo": "2.4.4",
-		"eslint-plugin-svelte": "3.4.0",
+		"eslint-config-turbo": "2.5.0",
+		"eslint-plugin-svelte": "3.5.0",
 		"globals": "16.0.0"
 	},
 	"publishConfig": {

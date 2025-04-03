@@ -35,7 +35,7 @@
 	"devDependencies": {
 		"@playform/build": "0.2.1",
 		"@types/loader-runner": "2.2.8",
-		"@types/node": "22.13.14"
+		"@types/node": "22.14.0"
 	},
 	"publishConfig": {
 		"access": "public"

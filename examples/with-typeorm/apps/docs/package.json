@@ -32,13 +32,13 @@
 		"@repo/typeorm-service": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"next": "15.2.4",
-		"typeorm": "0.3.21"
+		"typeorm": "0.3.22"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.14"
+		"@types/node": "22.14.0"
 	},
 	"publishConfig": {
 		"access": "public"

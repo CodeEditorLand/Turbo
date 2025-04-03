@@ -37,7 +37,7 @@
 		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.14",
+		"@types/node": "22.14.0",
 		"gatsby-plugin-compile-es6-packages": "2.1.1"
 	},
 	"publishConfig": {

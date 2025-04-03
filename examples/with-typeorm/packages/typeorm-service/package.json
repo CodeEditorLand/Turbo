@@ -33,13 +33,13 @@
 	"dependencies": {
 		"reflect-metadata": "0.2.2",
 		"sql.js": "1.13.0",
-		"typeorm": "0.3.21"
+		"typeorm": "0.3.22"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.1",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.13.14",
+		"@types/node": "22.14.0",
 		"unplugin-swc": "1.5.1"
 	},
 	"publishConfig": {

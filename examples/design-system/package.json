@@ -36,7 +36,7 @@
 	"devDependencies": {
 		"@changesets/cli": "2.28.1",
 		"@playform/build": "0.2.1",
-		"turbo": "2.4.4"
+		"turbo": "2.5.0"
 	},
 	"publishConfig": {
 		"access": "public"

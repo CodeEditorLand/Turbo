@@ -59,7 +59,7 @@
 		"@types/gradient-string": "1.1.6",
 		"@types/inquirer": "9.0.7",
 		"@types/js-yaml": "4.0.9",
-		"@types/node": "22.13.14",
+		"@types/node": "22.14.0",
 		"@types/semver": "7.7.0",
 		"tsup": "8.4.0"
 	},
