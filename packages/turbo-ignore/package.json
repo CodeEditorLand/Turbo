@@ -36,7 +36,7 @@
 		"json5": "2.2.3"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/telemetry": "workspace:*",
 		"@turbo/test-utils": "workspace:*",

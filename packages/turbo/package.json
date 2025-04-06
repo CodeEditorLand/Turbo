@@ -37,7 +37,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.1"
+		"@playform/build": "0.2.2"
 	},
 	"optionalDependencies": {
 		"turbo-darwin-64": "2.5.0",

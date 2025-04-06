@@ -40,7 +40,7 @@
 	},
 	"devDependencies": {
 		"@codeeditorland/tsconfig-paths": "4.2.1",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@remix-run/dev": "2.16.4",
 		"@repo/eslint-config": "workspace:*",
 		"autoprefixer": "10.4.21"

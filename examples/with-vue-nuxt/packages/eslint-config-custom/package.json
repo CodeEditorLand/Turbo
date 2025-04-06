@@ -28,7 +28,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@nuxtjs/eslint-config-typescript": "12.1.0",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@vercel/style-guide": "6.0.0",
 		"@vue/eslint-config-typescript": "14.5.0",
 		"eslint-config-turbo": "2.5.0"

@@ -52,7 +52,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@taplo/cli": "0.7.0",
 		"lint-staged": "15.5.0",
 		"semver": "7.7.1"

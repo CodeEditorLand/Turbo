@@ -29,7 +29,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"turbo": "2.5.0"
 	},
 	"publishConfig": {

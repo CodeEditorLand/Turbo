@@ -34,7 +34,7 @@
 		"@vercel/webpack-nft": "workspace:*"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@turbo/eslint-config": "workspace:*",
 		"next": "15.2.4"
 	},

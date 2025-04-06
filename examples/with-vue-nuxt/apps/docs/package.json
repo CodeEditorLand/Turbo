@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"@nuxtjs/eslint-config-typescript": "12.1.0",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"eslint-config-custom": "workspace:*",
 		"nuxt": "3.16.2",
 		"tsconfig": "workspace:*"

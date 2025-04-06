@@ -82,7 +82,7 @@
 		"jsonc-parser": "3.3.1"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "22.14.0",
 		"esbuild": "0.25.2"

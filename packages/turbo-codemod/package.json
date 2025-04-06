@@ -40,7 +40,7 @@
 		"find-up": "7.0.0",
 		"fs-extra": "11.3.0",
 		"gradient-string": "3.0.0",
-		"inquirer": "12.5.0",
+		"inquirer": "12.5.2",
 		"inquirer-file-tree-selection-prompt": "2.0.5",
 		"is-git-clean": "1.1.0",
 		"json5": "2.2.3",
@@ -50,7 +50,7 @@
 		"update-check": "1.5.4"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/gen": "workspace:*",
 		"@turbo/test-utils": "workspace:*",

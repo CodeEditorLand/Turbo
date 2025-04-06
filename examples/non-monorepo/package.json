@@ -34,7 +34,7 @@
 		"turb": "0.1.2"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@types/node": "22"
 	},
 	"publishConfig": {

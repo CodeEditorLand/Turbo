@@ -39,7 +39,7 @@
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
 		"@acme/tsconfig": "workspace:*",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"tsup": "8.4.0"
 	},
 	"publishConfig": {

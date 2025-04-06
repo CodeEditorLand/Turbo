@@ -34,7 +34,7 @@
 		"@tailwindcss/vite": "4.1.2"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@repo/eslint-config": "workspace:*"
 	},
 	"publishConfig": {

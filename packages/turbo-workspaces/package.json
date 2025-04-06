@@ -42,7 +42,7 @@
 		"fast-glob": "3.3.3",
 		"fs-extra": "11.3.0",
 		"gradient-string": "3.0.0",
-		"inquirer": "12.5.0",
+		"inquirer": "12.5.2",
 		"js-yaml": "4.1.0",
 		"ora": "8.2.0",
 		"picocolors": "1.1.1",
@@ -50,7 +50,7 @@
 		"update-check": "1.5.4"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",

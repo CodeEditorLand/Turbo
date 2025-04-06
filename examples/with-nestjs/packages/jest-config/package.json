@@ -28,7 +28,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@jest/types": "29.6.3",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"next": "15.2.4"
 	},
 	"publishConfig": {

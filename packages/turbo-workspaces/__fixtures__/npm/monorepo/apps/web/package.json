@@ -29,7 +29,7 @@
 		"ui": "*"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"tsconfig": "*"
 	},
 	"publishConfig": {

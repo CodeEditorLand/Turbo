@@ -33,7 +33,7 @@
 		"@acme/ui": "workspace:*"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@storybook/addon-actions": "8.6.12",

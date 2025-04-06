@@ -34,7 +34,7 @@
 		"react-native-web": "0.20.0"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@repo/typescript-config": "*",
 		"@types/node": "22.14.0",
 		"babel-plugin-react-native-web": "0.20.0"
