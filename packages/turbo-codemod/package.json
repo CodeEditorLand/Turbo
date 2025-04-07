@@ -50,7 +50,7 @@
 		"update-check": "1.5.4"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/gen": "workspace:*",
 		"@turbo/test-utils": "workspace:*",

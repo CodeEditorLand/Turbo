@@ -35,7 +35,7 @@
 		"typeorm": "0.3.22"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "22.14.0"

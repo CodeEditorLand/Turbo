@@ -27,7 +27,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@vercel/style-guide": "6.0.0",
 		"eslint-config-turbo": "2.5.0"
 	},

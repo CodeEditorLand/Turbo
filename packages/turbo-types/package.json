@@ -37,11 +37,11 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "22",
-		"ts-json-schema-generator": "2.3.0",
+		"ts-json-schema-generator": "2.4.0",
 		"tsx": "4.19.3"
 	},
 	"publishConfig": {

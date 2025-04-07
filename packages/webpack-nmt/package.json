@@ -34,7 +34,7 @@
 		"@vercel/experimental-nft": "workspace:*"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*"
 	},
 	"publishConfig": {

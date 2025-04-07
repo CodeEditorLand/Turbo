@@ -54,7 +54,7 @@
 		"tree-kill": "1.2.2"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
 		"@types/inquirer": "9.0.7",
 		"@types/minimist": "1.2.5",

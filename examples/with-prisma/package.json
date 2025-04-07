@@ -40,7 +40,7 @@
 		"@prisma/client": "latest"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"prisma": "latest",
 		"tsx": "4.19.3",
 		"turbo": "2.5.0"

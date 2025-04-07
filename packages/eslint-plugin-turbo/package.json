@@ -37,7 +37,7 @@
 		"dotenv": "16.4.7"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",

@@ -47,14 +47,14 @@
 		"faker": "6.6.6",
 		"fs-extra": "11.3.0",
 		"ndjson": "2.0.0",
-		"ngraph.generators": "20.1.0",
+		"ngraph.generators": "21.0.0",
 		"node-fetch": "3.3.2",
 		"sharp": "0.34.0",
 		"shelljs": "0.9.2",
 		"vega": "6.1.2"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/fs-extra": "11.0.4",

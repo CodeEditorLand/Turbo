@@ -28,7 +28,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"turbo": "2.5.0"
 	},

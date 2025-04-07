@@ -35,7 +35,7 @@
 		"next": "15.2.4"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"@repo/api": "workspace:*",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",

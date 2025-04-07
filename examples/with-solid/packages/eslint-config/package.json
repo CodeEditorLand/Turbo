@@ -31,7 +31,7 @@
 		"globals": "16.0.0"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.2",
+		"@playform/build": "0.2.3",
 		"eslint-config-turbo": "2.5.0",
 		"eslint-plugin-eslint-plugin": "6.4.0",
 		"eslint-plugin-solid": "0.14.5"
