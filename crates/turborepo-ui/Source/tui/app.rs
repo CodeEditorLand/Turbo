@@ -59,10 +59,17 @@ pub struct App<W> {
     showing_help_popup: bool,
     done: bool,
     preferences: PreferenceLoader,
+    scrollback_len: u64,
 }
 
 impl<W> App<W> {
-    pub fn new(rows: u16, cols: u16, tasks: Vec<String>, preferences: PreferenceLoader) -> Self {
+    pub fn new(
+        rows: u16,
+        cols: u16,
+        tasks: Vec<String>,
+        preferences: PreferenceLoader,
+        scrollback_len: u64,
+    ) -> Self {
         debug!("tasks: {tasks:?}");
         let size = SizeInfo::new(rows, cols, tasks.iter().map(|s| s.as_str()));
 
@@ -97,7 +104,7 @@ impl<W> App<W> {
                 .map(|task_name| {
                     (
                         task_name.to_owned(),
-                        TerminalOutput::new(pane_rows, pane_cols, None),
+                        TerminalOutput::new(pane_rows, pane_cols, None, scrollback_len),
                     )
                 })
                 .collect(),
@@ -107,6 +114,7 @@ impl<W> App<W> {
             showing_help_popup: false,
             is_task_selection_pinned: preferences.active_task().is_some(),
             preferences,
+            scrollback_len,
         }
     }
 
@@ -198,6 +206,15 @@ impl<W> App<W> {
     #[tracing::instrument(skip_all)]
     pub fn scroll_terminal_output(&mut self, direction: Direction) -> Result<(), Error> {
         self.get_full_task_mut()?.scroll(direction)?;
+        Ok(())
+    }
+
+    pub fn scroll_terminal_output_by_page(&mut self, direction: Direction) -> Result<(), Error> {
+        let pane_rows = self.size.pane_rows();
+        let task = self.get_full_task_mut()?;
+        // Scroll by the height of the terminal pane
+        task.scroll_by(direction, usize::from(pane_rows))?;
+
         Ok(())
     }
 
@@ -404,7 +421,12 @@ impl<W> App<W> {
         // Make sure all tasks have a terminal output
         for task in &tasks {
             self.tasks.entry(task.clone()).or_insert_with(|| {
-                TerminalOutput::new(self.size.pane_rows(), self.size.pane_cols(), None)
+                TerminalOutput::new(
+                    self.size.pane_rows(),
+                    self.size.pane_cols(),
+                    None,
+                    self.scrollback_len,
+                )
             });
         }
         // Trim the terminal output to only tasks that exist in new list
@@ -440,7 +462,12 @@ impl<W> App<W> {
         // Make sure all tasks have a terminal output
         for task in &tasks {
             self.tasks.entry(task.clone()).or_insert_with(|| {
-                TerminalOutput::new(self.size.pane_rows(), self.size.pane_cols(), None)
+                TerminalOutput::new(
+                    self.size.pane_rows(),
+                    self.size.pane_cols(),
+                    None,
+                    self.scrollback_len,
+                )
             });
         }
 
@@ -550,6 +577,18 @@ impl<W> App<W> {
             term.resize(pane_rows, pane_cols);
         })
     }
+
+    pub fn jump_to_logs_top(&mut self) -> Result<(), Error> {
+        let task = self.get_full_task_mut()?;
+        task.parser.screen_mut().set_scrollback(usize::MAX);
+        Ok(())
+    }
+
+    pub fn jump_to_logs_bottom(&mut self) -> Result<(), Error> {
+        let task = self.get_full_task_mut()?;
+        task.parser.screen_mut().set_scrollback(0);
+        Ok(())
+    }
 }
 
 impl<W: Write> App<W> {
@@ -604,13 +643,14 @@ pub async fn run_app(
     receiver: AppReceiver,
     color_config: ColorConfig,
     repo_root: &AbsoluteSystemPathBuf,
+    scrollback_len: u64,
 ) -> Result<(), Error> {
     let mut terminal = startup(color_config)?;
     let size = terminal.size()?;
     let preferences = PreferenceLoader::new(repo_root);
 
     let mut app: App<Box<dyn io::Write + Send>> =
-        App::new(size.height, size.width, tasks, preferences);
+        App::new(size.height, size.width, tasks, preferences, scrollback_len);
     let (crossterm_tx, crossterm_rx) = mpsc::channel(1024);
     input::start_crossterm_stream(crossterm_tx);
 
@@ -817,6 +857,22 @@ fn update(
             app.is_task_selection_pinned = true;
             app.scroll_terminal_output(Direction::Down)?;
         }
+        Event::PageUp => {
+            app.is_task_selection_pinned = true;
+            app.scroll_terminal_output_by_page(Direction::Up)?;
+        }
+        Event::PageDown => {
+            app.is_task_selection_pinned = true;
+            app.scroll_terminal_output_by_page(Direction::Down)?;
+        }
+        Event::JumpToLogsTop => {
+            app.is_task_selection_pinned = true;
+            app.jump_to_logs_top()?;
+        }
+        Event::JumpToLogsBottom => {
+            app.is_task_selection_pinned = true;
+            app.jump_to_logs_bottom()?;
+        }
         Event::EnterInteractive => {
             app.is_task_selection_pinned = true;
             app.interact()?;
@@ -934,6 +990,7 @@ mod test {
             100,
             vec!["foo".to_string(), "bar".to_string(), "baz".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         assert_eq!(
             app.task_list_scroll.selected(),
@@ -981,6 +1038,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.task_list_scroll.selected(), Some(1), "selected b");
@@ -1008,6 +1066,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         app.next();
@@ -1079,6 +1138,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         app.next();
@@ -1130,6 +1190,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.task_list_scroll.selected(), Some(1), "selected b");
@@ -1172,6 +1233,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         assert!(!app.is_focusing_pane(), "app starts focused on table");
         app.insert_stdin("a", Some(Vec::new()))?;
@@ -1203,6 +1265,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.task_list_scroll.selected(), Some(1), "selected b");
@@ -1229,6 +1292,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         assert_eq!(app.task_list_scroll.selected(), Some(0), "selected a");
         assert_eq!(app.tasks_by_status.task_name(0)?, "a", "selected a");
@@ -1264,6 +1328,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.task_list_scroll.selected(), Some(1), "selected b");
@@ -1300,6 +1365,7 @@ mod test {
             24,
             vec!["a".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         let pane_rows = app.size.pane_rows();
         let pane_cols = app.size.pane_cols();
@@ -1340,6 +1406,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         app.update_tasks(Vec::new())?;
@@ -1359,6 +1426,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         app.restart_tasks(vec!["d".to_string()])?;
@@ -1380,6 +1448,7 @@ mod test {
             100,
             vec!["a".to_string(), "b".to_string(), "c".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.enter_search()?;
         assert!(matches!(app.section_focus, LayoutSections::Search { .. }));
@@ -1406,6 +1475,7 @@ mod test {
             100,
             vec!["a".to_string(), "ab".to_string(), "abc".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.enter_search()?;
         app.search_enter_char('a')?;
@@ -1434,6 +1504,7 @@ mod test {
             100,
             vec!["a".to_string(), "ab".to_string(), "abc".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.enter_search()?;
         app.search_enter_char('b')?;
@@ -1466,6 +1537,7 @@ mod test {
             100,
             vec!["a".to_string(), "abc".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.active_task()?, "abc");
@@ -1490,6 +1562,7 @@ mod test {
             100,
             vec!["a".to_string(), "abc".to_string(), "b".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.next();
         assert_eq!(app.active_task()?, "abc");
@@ -1514,6 +1587,7 @@ mod test {
             100,
             vec!["a".to_string(), "ab".to_string(), "abc".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.enter_search()?;
         app.search_enter_char('b')?;
@@ -1535,6 +1609,7 @@ mod test {
             100,
             vec!["a".to_string(), "ab".to_string(), "abc".to_string()],
             PreferenceLoader::new(&repo_root),
+            2048,
         );
         app.enter_search()?;
         app.search_enter_char('b')?;

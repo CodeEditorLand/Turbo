@@ -1,53 +1,28 @@
 {
-	"name": "turbo",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "./bin/turbo",
-	"bin": {
-		"turbo": "./bin/turbo"
-	},
-	"files": [
-		"bin",
-		"schema.json"
-	],
-	"scripts": {
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"postversion": "node bump-version.js"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3"
-	},
-	"optionalDependencies": {
-		"turbo-darwin-64": "2.5.0",
-		"turbo-darwin-arm64": "2.5.0",
-		"turbo-linux-64": "2.5.0",
-		"turbo-linux-arm64": "2.5.0",
-		"turbo-windows-64": "2.5.0",
-		"turbo-windows-arm64": "2.5.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "turbo",
+  "version": "2.5.1-canary.0",
+  "description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
+  "repository": "https://github.com/vercel/turborepo",
+  "bugs": "https://github.com/vercel/turborepo/issues",
+  "homepage": "https://turbo.build/repo",
+  "license": "MIT",
+  "main": "./bin/turbo",
+  "scripts": {
+    "postversion": "node bump-version.js"
+  },
+  "bin": {
+    "turbo": "./bin/turbo"
+  },
+  "files": [
+    "bin",
+    "schema.json"
+  ],
+  "optionalDependencies": {
+    "turbo-darwin-64": "2.5.1-canary.0",
+    "turbo-darwin-arm64": "2.5.1-canary.0",
+    "turbo-linux-64": "2.5.1-canary.0",
+    "turbo-linux-arm64": "2.5.1-canary.0",
+    "turbo-windows-64": "2.5.1-canary.0",
+    "turbo-windows-arm64": "2.5.1-canary.0"
+  }
 }

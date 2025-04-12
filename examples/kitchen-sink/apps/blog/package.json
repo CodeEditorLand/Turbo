@@ -1,51 +1,40 @@
 {
-	"name": "blog",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"sideEffects": false,
-	"type": "module",
-	"scripts": {
-		"build": "remix vite:build",
-		"check-types": "tsc --noEmit",
-		"dev": "remix vite:dev",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {
-		"@remix-run/node": "2.16.4",
-		"@remix-run/react": "2.16.4",
-		"@remix-run/server-runtime": "2.16.4",
-		"@repo/ui": "workspace:*",
-		"@vercel/analytics": "1.5.0",
-		"@vercel/remix": "2.15.3",
-		"isbot": "5.1.25"
-	},
-	"devDependencies": {
-		"@codeeditorland/tsconfig-paths": "4.2.1",
-		"@playform/build": "0.2.3",
-		"@remix-run/dev": "2.16.4",
-		"@repo/eslint-config": "workspace:*",
-		"autoprefixer": "10.4.21"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "blog",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix vite:build",
+    "dev": "remix vite:dev",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint app/ --max-warnings 0"
+  },
+  "dependencies": {
+    "@remix-run/node": "^2.15.2",
+    "@remix-run/react": "^2.15.2",
+    "@remix-run/server-runtime": "^2.15.2",
+    "@repo/ui": "workspace:*",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/remix": "2.15.2",
+    "isbot": "^5.1.23",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.15.2",
+    "@repo/eslint-config": "workspace:*",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.24.0",
+    "typescript": "5.8.2",
+    "vite": "^5.4.14",
+    "vite-tsconfig-paths": "4.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

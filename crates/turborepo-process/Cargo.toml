@@ -1,3 +1,13 @@
+[package]
+name = "turborepo-process"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dev-dependencies]
+test-case = { workspace = true }
+tracing-test = { version = "0.2.4", features = ["no-env-filter"] }
+
 [dependencies]
 atty = { workspace = true }
 console = { workspace = true }

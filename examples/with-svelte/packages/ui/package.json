@@ -1,44 +1,21 @@
 {
-	"name": "@repo/ui",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"exports": {
-		".": {
-			"svelte": "./index.ts",
-			"types": "./index.ts"
-		}
-	},
-	"main": "index.ts",
-	"module": "index.ts",
-	"scripts": {
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@repo/eslint-config": "workspace:*"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@repo/ui",
+  "version": "0.0.0",
+  "type": "module",
+  "module": "index.ts",
+  "main": "index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "svelte": "./index.ts"
+    }
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "svelte": "^5.25.3",
+    "eslint": "^9.24.0"
+  }
 }
