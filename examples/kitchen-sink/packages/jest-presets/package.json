@@ -1,17 +1,40 @@
 {
-  "name": "@repo/jest-presets",
-  "version": "0.0.0",
-  "private": true,
-  "license": "MIT",
-  "files": [
-    "browser/jest-preset.ts",
-    "node/jest-preset.ts"
-  ],
-  "dependencies": {
-    "jest": "^29.7.0",
-    "ts-jest": "^29.3.0"
-  },
-  "devDependencies": {
-    "jest-environment-jsdom": "^29.7.0"
-  }
+	"name": "@repo/jest-presets",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"files": [
+		"browser/jest-preset.ts",
+		"node/jest-preset.ts"
+	],
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"jest-environment-jsdom": "^29.7.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

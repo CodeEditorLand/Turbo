@@ -41,6 +41,7 @@
 		"**/*.tsx",
 		".next/types/**/*.ts",
 		"scripts/sync-algolia.mts",
+		"src",
 		"src"
 	]
 }

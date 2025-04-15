@@ -1,9 +1,37 @@
 {
-  "name": "my-turborepo",
-  "description": "A barebones Turborepo example for working with Task Graphs.",
-  "private": true,
-  "packageManager": "pnpm@8.15.6",
-  "devDependencies": {
-    "turbo": "^2.5.0"
-  }
+	"name": "my-turborepo",
+	"version": "0.0.1",
+	"private": false,
+	"description": "A barebones Turborepo example for working with Task Graphs.",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"turbo": "^2.5.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

@@ -1,17 +1,38 @@
 {
-  "name": "@repo/eslint-config",
-  "version": "0.0.0",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.24.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-config-turbo": "^2.5.0",
-    "eslint-plugin-svelte": "^2.46.1",
-    "globals": "^15.15.0",
-    "typescript-eslint": "^8.29.0"
-  }
+	"name": "@repo/eslint-config",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"eslint-config-turbo": "^2.5.0",
+		"eslint-plugin-svelte": "^2.46.1",
+		"globals": "^15.15.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

@@ -13,6 +13,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"tsup.config.ts",
+		"src",
 		"src"
 	]
 }

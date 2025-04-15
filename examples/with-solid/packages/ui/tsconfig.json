@@ -10,6 +10,7 @@
 	"extends": "@playform/build/tsconfig",
 	"files": [],
 	"include": [
+		"src",
 		"src"
 	],
 	"references": [

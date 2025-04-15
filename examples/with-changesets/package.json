@@ -1,24 +1,43 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo run build --filter=@acme/docs^... && changeset publish"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.1",
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "turbo": "^2.5.0"
-  },
-  "packageManager": "pnpm@8.15.6",
-  "engines": {
-    "node": ">=18"
-  },
-  "name": "with-changesets"
+	"name": "with-changesets",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "turbo run build",
+		"changeset": "changeset",
+		"clean": "turbo run clean && rm -rf node_modules",
+		"dev": "turbo run dev",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"release": "turbo run build --filter=@acme/docs^... && changeset publish",
+		"version-packages": "changeset version"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@changesets/cli": "^2.27.1",
+		"@playform/build": "0.2.3",
+		"turbo": "^2.5.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

@@ -15,6 +15,7 @@
 	"include": [
 		"src",
 		"types.d.ts",
+		"src",
 		"src"
 	]
 }
