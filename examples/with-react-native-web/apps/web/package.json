@@ -30,13 +30,13 @@
 	},
 	"dependencies": {
 		"@repo/ui": "*",
-		"next": "15.2.4",
+		"next": "15.3.0",
 		"react-native-web": "0.20.0"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@repo/typescript-config": "*",
-		"@types/node": "22.14.0",
+		"@types/node": "22.14.1",
 		"babel-plugin-react-native-web": "0.20.0"
 	},
 	"publishConfig": {

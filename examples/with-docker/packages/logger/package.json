@@ -42,7 +42,7 @@
 		"@repo/eslint-config": "*",
 		"@repo/jest-presets": "*",
 		"@repo/typescript-config": "*",
-		"@types/node": "22.14.0"
+		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
 		"access": "public"

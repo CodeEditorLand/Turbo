@@ -28,9 +28,9 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@playform/build": "0.2.3",
-		"eslint-config-turbo": "^2.5.0",
-		"eslint-plugin-svelte": "^2.46.1",
-		"globals": "^15.15.0"
+		"eslint-config-turbo": "2.5.0",
+		"eslint-plugin-svelte": "3.5.1",
+		"globals": "16.0.0"
 	},
 	"publishConfig": {
 		"access": "public"

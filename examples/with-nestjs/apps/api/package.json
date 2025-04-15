@@ -34,22 +34,22 @@
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
-		"@nestjs/common": "11.0.13",
-		"@nestjs/core": "11.0.13",
-		"@nestjs/platform-express": "11.0.13",
+		"@nestjs/common": "11.0.17",
+		"@nestjs/core": "11.0.17",
+		"@nestjs/platform-express": "11.0.17",
 		"@repo/api": "workspace:*",
 		"reflect-metadata": "0.2.2",
 		"rxjs": "7.8.2"
 	},
 	"devDependencies": {
 		"@nestjs/cli": "11.0.6",
-		"@nestjs/schematics": "11.0.3",
-		"@nestjs/testing": "11.0.13",
+		"@nestjs/schematics": "11.0.5",
+		"@nestjs/testing": "11.0.17",
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.14.0",
+		"@types/node": "22.14.1",
 		"@types/supertest": "6.0.3",
 		"source-map-support": "0.5.21",
 		"supertest": "7.1.0",

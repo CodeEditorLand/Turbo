@@ -32,13 +32,13 @@
 	"dependencies": {
 		"@repo/logger": "workspace:*",
 		"@repo/ui": "workspace:*",
-		"next": "^15.2.1"
+		"next": "15.3.0"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^22.14.0"
+		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
 		"access": "public"

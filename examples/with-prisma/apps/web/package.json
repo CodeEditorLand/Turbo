@@ -29,14 +29,14 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"next": "15.2.4"
+		"next": "15.3.0"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@repo/database": "*",
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@types/node": "22.14.0"
+		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
 		"access": "public"

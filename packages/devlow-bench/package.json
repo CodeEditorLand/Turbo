@@ -44,7 +44,7 @@
 		"prerelease": "pnpm run build:ts"
 	},
 	"dependencies": {
-		"@datadog/datadog-api-client": "1.33.1",
+		"@datadog/datadog-api-client": "1.34.1",
 		"chalk": "5.4.1",
 		"inquirer": "12.5.2",
 		"minimist": "1.2.8",
@@ -58,7 +58,7 @@
 		"@turbo/eslint-config": "workspace:*",
 		"@types/inquirer": "9.0.7",
 		"@types/minimist": "1.2.5",
-		"@types/node": "22.14.0",
+		"@types/node": "22.14.1",
 		"@types/split2": "4.2.3"
 	},
 	"publishConfig": {

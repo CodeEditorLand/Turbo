@@ -31,7 +31,7 @@
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
-		"@tailwindcss/vite": "4.1.3"
+		"@tailwindcss/vite": "4.1.4"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.3",

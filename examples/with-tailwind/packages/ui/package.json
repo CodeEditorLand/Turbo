@@ -44,8 +44,8 @@
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tailwind-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"autoprefixer": "^10.4.20",
-		"postcss": "^8.5.3"
+		"autoprefixer": "10.4.21",
+		"postcss": "8.5.3"
 	},
 	"publishConfig": {
 		"access": "public"

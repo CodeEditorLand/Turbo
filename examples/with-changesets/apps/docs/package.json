@@ -32,13 +32,13 @@
 	"dependencies": {
 		"@acme/core": "workspace:*",
 		"@acme/utils": "workspace:*",
-		"next": "15.2.4"
+		"next": "15.3.0"
 	},
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
 		"@acme/tsconfig": "workspace:*",
 		"@playform/build": "0.2.3",
-		"@types/node": "22.14.0"
+		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
 		"access": "public"

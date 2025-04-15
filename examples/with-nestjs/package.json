@@ -34,7 +34,7 @@
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"turbo": "^2.5.0"
+		"turbo": "2.5.0"
 	},
 	"publishConfig": {
 		"access": "public"

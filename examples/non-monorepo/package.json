@@ -30,12 +30,12 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"next": "15.2.4",
-		"turb": "^0.1.2"
+		"next": "15.3.0",
+		"turb": "0.1.2"
 	},
 	"devDependencies": {
 		"@playform/build": "0.2.3",
-		"@types/node": "^22.14.0"
+		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
 		"access": "public"
