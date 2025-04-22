@@ -34,9 +34,9 @@
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
-		"@nestjs/common": "11.0.17",
-		"@nestjs/core": "11.0.17",
-		"@nestjs/platform-express": "11.0.17",
+		"@nestjs/common": "11.0.20",
+		"@nestjs/core": "11.0.20",
+		"@nestjs/platform-express": "11.0.20",
 		"@repo/api": "workspace:*",
 		"reflect-metadata": "0.2.2",
 		"rxjs": "7.8.2"
@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"@nestjs/cli": "11.0.6",
 		"@nestjs/schematics": "11.0.5",
-		"@nestjs/testing": "11.0.17",
+		"@nestjs/testing": "11.0.20",
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",

@@ -63,7 +63,7 @@
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "22",
-		"bunchee": "6.5.0"
+		"bunchee": "6.5.1"
 	},
 	"publishConfig": {
 		"access": "public"

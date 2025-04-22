@@ -33,7 +33,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@changesets/cli": "2.29.0",
+		"@changesets/cli": "2.29.2",
 		"@playform/build": "0.2.3",
 		"turbo": "2.5.0"
 	},

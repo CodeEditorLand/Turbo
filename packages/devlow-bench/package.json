@@ -49,7 +49,7 @@
 		"inquirer": "12.5.2",
 		"minimist": "1.2.8",
 		"pidusage-tree": "2.0.5",
-		"playwright-chromium": "1.51.1",
+		"playwright-chromium": "1.52.0",
 		"split2": "4.2.0",
 		"tree-kill": "1.2.2"
 	},
