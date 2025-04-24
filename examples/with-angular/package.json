@@ -30,7 +30,7 @@
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
-		"turbo": "2.5.0"
+		"turbo": "2.5.1"
 	},
 	"publishConfig": {
 		"access": "public"

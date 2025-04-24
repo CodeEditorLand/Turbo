@@ -43,7 +43,7 @@
 		"@playform/build": "0.2.3",
 		"prisma": "latest",
 		"tsx": "4.19.3",
-		"turbo": "2.5.0"
+		"turbo": "2.5.1"
 	},
 	"publishConfig": {
 		"access": "public"

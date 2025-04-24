@@ -48,9 +48,9 @@
 		"@types/morgan": "1.9.9",
 		"@types/node": "22.14.1",
 		"@types/supertest": "6.0.3",
-		"esbuild": "0.25.2",
+		"esbuild": "0.25.3",
 		"esbuild-register": "3.6.0",
-		"nodemon": "3.1.9",
+		"nodemon": "3.1.10",
 		"supertest": "7.1.0"
 	},
 	"publishConfig": {

@@ -39,7 +39,7 @@
 		"@codeeditorlandst/coverage-istanbul": "3.0.7",
 		"@playform/build": "0.2.3",
 		"@repo/typescript-config": "workspace:*",
-		"glob": "11.0.1",
+		"glob": "11.0.2",
 		"jsdom": "26.1.0",
 		"nyc": "17.1.0"
 	},

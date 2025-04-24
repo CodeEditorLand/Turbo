@@ -35,7 +35,7 @@
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
-		"@turbo/gen": "2.5.0",
+		"@turbo/gen": "2.5.1",
 		"@types/node": "22.14.1"
 	},
 	"publishConfig": {
