@@ -39,7 +39,7 @@
 		"@playform/build": "0.2.3",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.14.1",
+		"@types/node": "22.15.2",
 		"unplugin-swc": "1.5.2"
 	},
 	"publishConfig": {

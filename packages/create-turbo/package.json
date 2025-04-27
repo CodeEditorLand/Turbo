@@ -37,7 +37,7 @@
 	"dependencies": {
 		"commander": "13.1.0",
 		"fs-extra": "11.3.0",
-		"inquirer": "12.5.2",
+		"inquirer": "12.6.0",
 		"picocolors": "1.1.1",
 		"proxy-agent": "6.5.0",
 		"semver": "7.7.1",
@@ -53,7 +53,7 @@
 		"@turbo/workspaces": "workspace:*",
 		"@types/fs-extra": "11.0.4",
 		"@types/inquirer": "9.0.7",
-		"@types/node": "22.14.1",
+		"@types/node": "22.15.2",
 		"@types/semver": "7.7.0",
 		"tsup": "8.4.0"
 	},

@@ -31,7 +31,7 @@
 		"@playform/build": "0.2.3",
 		"@vercel/style-guide": "6.0.0",
 		"@vue/eslint-config-typescript": "14.5.0",
-		"eslint-config-turbo": "2.5.1"
+		"eslint-config-turbo": "2.5.2"
 	},
 	"publishConfig": {
 		"access": "public"

@@ -37,7 +37,7 @@
 		"@playform/build": "0.2.3",
 		"@rushstack/eslint-patch": "1.11.0",
 		"@tsconfig/node18": "18.2.4",
-		"@types/node": "22.14.1",
+		"@types/node": "22.15.2",
 		"eslint-config-custom": "workspace:*",
 		"npm-run-all2": "7.0.2",
 		"tsconfig": "workspace:*"
