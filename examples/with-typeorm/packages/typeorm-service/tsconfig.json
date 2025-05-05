@@ -17,6 +17,7 @@
 		"__test__",
 		"vitest.config.ts",
 		"src",
+		"src",
 		"src"
 	]
 }

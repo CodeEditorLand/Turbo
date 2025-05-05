@@ -14,6 +14,7 @@
 		"**/*.tsx",
 		"tsup.config.ts",
 		"src",
+		"src",
 		"src"
 	]
 }
