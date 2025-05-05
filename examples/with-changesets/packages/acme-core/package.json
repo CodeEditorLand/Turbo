@@ -1,39 +1,11 @@
 {
-	"name": "@acme/core",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"sideEffects": false,
-	"type": "module",
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist/**"
-	],
-	"scripts": {
-		"build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-		"dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {},
 	"devDependencies": {
@@ -42,7 +14,35 @@
 		"@playform/build": "0.2.3",
 		"tsup": "^8.0.2"
 	},
+	"files": [
+		"dist/**"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"name": "@acme/core",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+		"dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"version": "0.0.1"
 }

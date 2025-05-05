@@ -1,35 +1,11 @@
 {
-	"name": "native",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"main": "index.js",
-	"scripts": {
-		"android": "expo start --android",
-		"dev": "expo start --web",
-		"eject": "expo eject",
-		"ios": "expo start --ios",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"web": "expo start --web"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@repo/ui": "*",
@@ -47,7 +23,31 @@
 		"@expo/webpack-config": "^19.0.0",
 		"@playform/build": "0.2.3"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "index.js",
+	"name": "native",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"android": "expo start --android",
+		"dev": "expo start --web",
+		"eject": "expo eject",
+		"ios": "expo start --ios",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"web": "expo start --web"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

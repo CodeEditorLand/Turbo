@@ -1,41 +1,14 @@
 {
-	"name": "@turbo/types",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Turborepo types",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "src/index.ts",
-	"types": "src/index.ts",
-	"files": [
-		"src",
-		"schemas"
-	],
-	"scripts": {
-		"build": "tsc && pnpm generate-schema",
-		"copy-schema": "cp schemas/schema.json ../turbo/schema.json",
-		"generate-schema": "tsx scripts/generate-schema.ts",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
 	"dependencies": {},
+	"description": "Turborepo types",
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
@@ -44,7 +17,34 @@
 		"ts-json-schema-generator": "2.3.0",
 		"tsx": "4.19.1"
 	},
+	"files": [
+		"src",
+		"schemas"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "src/index.ts",
+	"name": "@turbo/types",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "tsc && pnpm generate-schema",
+		"copy-schema": "cp schemas/schema.json ../turbo/schema.json",
+		"generate-schema": "tsx scripts/generate-schema.ts",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"types": "src/index.ts",
+	"version": "0.0.1"
 }

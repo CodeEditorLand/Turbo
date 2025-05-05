@@ -1,44 +1,11 @@
 {
-	"name": "turborepo-docs",
-	"version": "0.0.1",
-	"private": false,
-	"description": "The documentation for Turborepo.",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"imports": {
-		"#*": "./*"
-	},
-	"scripts": {
-		"build": "next build",
-		"check-spelling": "spellchecker --files '**/*.mdx' --files '!content/blog/*.mdx' --files '!content/docs/acknowledgments.mdx' --files '!node_modules/**' --files '!content/extra/terms.mdx' --files '!content/extra/governance.mdx' --files '!content/extra/privacy.mdx' --dictionaries 'dictionary.txt' --no-suggestions --quiet",
-		"check-types": "fumadocs-mdx && tsc --noEmit",
-		"collect-examples-data": "node --experimental-strip-types  ./scripts/collect-examples-data.ts",
-		"dev": "next dev --turbopack",
-		"generate-openapi": "node --experimental-strip-types  ./scripts/generate-docs.ts",
-		"index-docs": "node --experimental-strip-types ./scripts/sync-algolia.ts",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"rss": "node --experimental-strip-types scripts/generate-rss.ts",
-		"schema": "node --experimental-strip-types  scripts/copy-json-schema.ts",
-		"start": "next start",
-		"write-private-files": "node --experimental-strip-types  ./scripts/write-private-files.ts"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@heroicons/react": "1.0.6",
@@ -77,6 +44,7 @@
 		"tailwind-merge": "^3.2.0",
 		"zod": "^3.24.2"
 	},
+	"description": "The documentation for Turborepo.",
 	"devDependencies": {
 		"@next/env": "15.4.0-canary.12",
 		"@playform/build": "0.2.3",
@@ -95,7 +63,39 @@
 		"rss": "^1.2.2",
 		"spellchecker-cli": "^6.2.0"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"imports": {
+		"#*": "./*"
+	},
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "turborepo-docs",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "next build",
+		"check-spelling": "spellchecker --files '**/*.mdx' --files '!content/blog/*.mdx' --files '!content/docs/acknowledgments.mdx' --files '!node_modules/**' --files '!content/extra/terms.mdx' --files '!content/extra/governance.mdx' --files '!content/extra/privacy.mdx' --dictionaries 'dictionary.txt' --no-suggestions --quiet",
+		"check-types": "fumadocs-mdx && tsc --noEmit",
+		"collect-examples-data": "node --experimental-strip-types  ./scripts/collect-examples-data.ts",
+		"dev": "next dev --turbopack",
+		"generate-openapi": "node --experimental-strip-types  ./scripts/generate-docs.ts",
+		"index-docs": "node --experimental-strip-types ./scripts/sync-algolia.ts",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"rss": "node --experimental-strip-types scripts/generate-rss.ts",
+		"schema": "node --experimental-strip-types  scripts/copy-json-schema.ts",
+		"start": "next start",
+		"write-private-files": "node --experimental-strip-types  ./scripts/write-private-files.ts"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

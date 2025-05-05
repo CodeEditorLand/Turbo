@@ -1,27 +1,19 @@
 {
-	"name": "@repo/math",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	"dependencies": {},
+	"devDependencies": {
+		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
+		"@playform/build": "0.2.3",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/vitest-config": "workspace:*"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
 	"exports": {
 		"./add": {
 			"default": "./dist/add.js",
@@ -32,19 +24,27 @@
 			"types": "./src/subtract.ts"
 		}
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "@repo/math",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"dependencies": {},
-	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
-		"@playform/build": "0.2.3",
-		"@repo/typescript-config": "workspace:*",
-		"@repo/vitest-config": "workspace:*"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"version": "0.0.1"
 }

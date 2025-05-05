@@ -1,37 +1,11 @@
 {
-	"name": "api",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"scripts": {
-		"build": "nest build",
-		"dev": "nest start --watch",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"start": "nest start",
-		"start:debug": "nest start --debug --watch",
-		"start:prod": "node dist/main",
-		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-		"test:e2e": "jest --config ./test/jest-e2e.json",
-		"test:watch": "jest --watch"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@nestjs/common": "^10.0.0",
@@ -56,7 +30,33 @@
 		"ts-loader": "^9.4.3",
 		"tsconfig-paths": "^4.2.0"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "api",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "nest build",
+		"dev": "nest start --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"start": "nest start",
+		"start:debug": "nest start --debug --watch",
+		"start:prod": "node dist/main",
+		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+		"test:e2e": "jest --config ./test/jest-e2e.json",
+		"test:watch": "jest --watch"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

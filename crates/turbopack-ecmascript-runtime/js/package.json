@@ -1,31 +1,40 @@
 {
-	"name": "@vercel/turbopack-ecmascript-runtime",
-	"version": "0.0.1",
-	"private": false,
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"dependencies": {
+		"@types/node": "22.15.2"
+	},
 	"description": "Turbopack EcmaScript runtime code and utilities",
+	"devDependencies": {
+		"@next/react-refresh-utils": "15.3.1",
+		"@playform/build": "0.2.3",
+		"npm-run-all": "4.1.5"
+	},
+	"exports": {
+		".": "./src/main.js",
+		"./*": "./src/*.ts"
+	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
 	"keywords": [
 		"codeeditorland",
 		"land",
 		"playform"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "@vercel/turbopack-ecmascript-runtime",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"exports": {
-		".": "./src/main.js",
-		"./*": "./src/*.ts"
 	},
 	"scripts": {
 		"check:browser-dev-client": "tsc -p src/browser/dev/hmr-client",
@@ -35,15 +44,6 @@
 		"check:nodejs": "tsc -p src/nodejs",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"dependencies": {
-		"@types/node": "22.15.2"
-	},
-	"devDependencies": {
-		"@next/react-refresh-utils": "15.3.1",
-		"@playform/build": "0.2.3",
-		"npm-run-all": "4.1.5"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"version": "0.0.1"
 }

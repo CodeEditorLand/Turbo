@@ -21,6 +21,7 @@
 		".next/types/**/*.ts",
 		"src",
 		"src",
+		"src",
 		"src"
 	]
 }

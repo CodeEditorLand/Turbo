@@ -1,41 +1,27 @@
 {
-	"name": "turbo-monorepo",
-	"version": "0.0.1",
-	"private": false,
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@taplo/cli": "^0.5.2",
+		"@types/node": "^22.15.1",
+		"lint-staged": "^13.1.0",
+		"semver": "^7.3.8"
+	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
 	"keywords": [
 		"codeeditorland",
 		"land",
 		"playform"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
 	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"scripts": {
-		"build": "pnpm -- turbo run build",
-		"build:ts": "tsc -b tsconfig.project.json",
-		"build:turbo": "pnpm run --filter=cli build",
-		"check:toml": "taplo format --check",
-		"docs:dev": "turbo run dev --filter=turborepo-docs",
-		"prepare": "husky install",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"rustdoc": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going || true",
-		"rustdoc:open": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going --open",
-		"test:integration": "pnpm --filter turborepo-tests-integration exec prysk",
-		"turbo": "pnpm run build:turbo && node turbow.js",
-		"turbo-prebuilt": "node turbow.js"
-	},
 	"lint-staged": {
 		"*.rs": [
 			"cargo fmt --"
@@ -50,15 +36,29 @@
 			"prettier --write"
 		]
 	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@taplo/cli": "^0.5.2",
-		"@types/node": "^22.15.1",
-		"lint-staged": "^13.1.0",
-		"semver": "^7.3.8"
-	},
+	"name": "turbo-monorepo",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "pnpm -- turbo run build",
+		"build:ts": "tsc -b tsconfig.project.json",
+		"build:turbo": "pnpm run --filter=cli build",
+		"check:toml": "taplo format --check",
+		"docs:dev": "turbo run dev --filter=turborepo-docs",
+		"prepare": "husky install",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"rustdoc": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going || true",
+		"rustdoc:open": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going --open",
+		"test:integration": "pnpm --filter turborepo-tests-integration exec prysk",
+		"turbo": "pnpm run build:turbo && node turbow.js",
+		"turbo-prebuilt": "node turbow.js"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

@@ -1,41 +1,41 @@
 {
-	"name": "app-a",
-	"version": "0.0.1",
-	"private": false,
-	"description": "An application that uses other Internal Packages",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"scripts": {
-		"build": "mkdir -p dist && echo \"Your application output!\" > dist/app-output.txt && echo \"Application A is built!\"",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"type-check": "echo \"Types checked!\""
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"pkg-a": "workspace:*",
 		"tooling-config": "workspace:*"
 	},
+	"description": "An application that uses other Internal Packages",
 	"devDependencies": {
 		"@playform/build": "0.2.3"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "app-a",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "mkdir -p dist && echo \"Your application output!\" > dist/app-output.txt && echo \"Application A is built!\"",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"type-check": "echo \"Types checked!\""
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

@@ -1,36 +1,14 @@
 {
-	"name": "@turbo/utils",
-	"version": "0.0.1",
-	"private": false,
-	"description": "",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "src/index.ts",
-	"module": "src/index.ts",
-	"types": "src/index.ts",
-	"scripts": {
-		"check-types": "tsc --noEmit",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
 	"dependencies": {},
+	"description": "",
 	"devDependencies": {
 		"@manypkg/find-root": "^1.1.0",
 		"@playform/build": "0.2.3",
@@ -56,7 +34,29 @@
 		"picocolors": "1.0.1",
 		"tar": "6.1.13"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "src/index.ts",
+	"module": "src/index.ts",
+	"name": "@turbo/utils",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"check-types": "tsc --noEmit",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"types": "src/index.ts",
+	"version": "0.0.1"
 }

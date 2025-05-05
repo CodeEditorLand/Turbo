@@ -1,28 +1,23 @@
 {
-	"name": "eslint-config-turbo",
-	"version": "0.0.1",
-	"private": false,
-	"description": "ESLint config for Turborepo",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	"dependencies": {
+		"eslint-plugin-turbo": "workspace:*"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
+	"description": "ESLint config for Turborepo",
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@turbo/eslint-config": "workspace:*",
+		"@turbo/tsconfig": "workspace:*",
+		"@types/node": "^20",
+		"bunchee": "^6.3.4"
 	},
-	"type": "module",
 	"exports": {
 		".": {
 			"import": {
@@ -45,27 +40,32 @@
 			}
 		}
 	},
-	"main": "./dist/cjs/index.js",
-	"module": "./dist/es/index.mjs",
-	"types": "./dist/cjs/index.d.ts",
 	"files": [
 		"dist"
 	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/es/index.mjs",
+	"name": "eslint-config-turbo",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
 	"scripts": {
 		"build": "bunchee",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"dependencies": {
-		"eslint-plugin-turbo": "workspace:*"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@turbo/eslint-config": "workspace:*",
-		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "^20",
-		"bunchee": "^6.3.4"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"types": "./dist/cjs/index.d.ts",
+	"version": "0.0.1"
 }

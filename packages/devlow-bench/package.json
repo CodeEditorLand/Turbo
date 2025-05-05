@@ -1,47 +1,12 @@
 {
-	"name": "@vercel/devlow-bench",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Benchmarking tool for the developer workflow",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"exports": {
-		".": "./dist/index.js",
-		"./browser": "./dist/browser.js",
-		"./file": "./dist/file.js",
-		"./interfaces/compose": "./dist/interfaces/compose.js",
-		"./interfaces/console": "./dist/interfaces/console.js",
-		"./interfaces/interactive": "./dist/interfaces/interactive.js",
-		"./interfaces/json": "./dist/interfaces/json.js",
-		"./shell": "./dist/shell.js"
-	},
-	"main": "dist/index.js",
 	"bin": "dist/cli.js",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build:ts": "tsc",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"prerelease": "pnpm run build:ts"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@datadog/datadog-api-client": "1.34.1",
@@ -53,6 +18,7 @@
 		"split2": "4.2.0",
 		"tree-kill": "1.2.2"
 	},
+	"description": "Benchmarking tool for the developer workflow",
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
@@ -61,7 +27,41 @@
 		"@types/node": "22.15.2",
 		"@types/split2": "4.2.3"
 	},
+	"exports": {
+		".": "./dist/index.js",
+		"./browser": "./dist/browser.js",
+		"./file": "./dist/file.js",
+		"./interfaces/compose": "./dist/interfaces/compose.js",
+		"./interfaces/console": "./dist/interfaces/console.js",
+		"./interfaces/interactive": "./dist/interfaces/interactive.js",
+		"./interfaces/json": "./dist/interfaces/json.js",
+		"./shell": "./dist/shell.js"
+	},
+	"files": [
+		"dist"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "dist/index.js",
+	"name": "@vercel/devlow-bench",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build:ts": "tsc",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"prerelease": "pnpm run build:ts"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

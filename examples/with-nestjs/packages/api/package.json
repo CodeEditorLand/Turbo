@@ -1,53 +1,11 @@
 {
-	"name": "@repo/api",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.js"
-		},
-		"./*": {
-			"import": "./dist/*.js",
-			"require": "./dist/*.js"
-		}
-	},
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"*": [
-				"src/*"
-			]
-		}
-	},
-	"files": [
-		"./dist/**"
-	],
-	"scripts": {
-		"build": "tsc -b -v",
-		"dev": "pnpm build --watch",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@nestjs/mapped-types": "*"
@@ -59,7 +17,49 @@
 		"@types/node": "^20.3.1",
 		"ts-loader": "^9.4.3"
 	},
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
+		},
+		"./*": {
+			"import": "./dist/*.js",
+			"require": "./dist/*.js"
+		}
+	},
+	"files": [
+		"./dist/**"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./dist/index.js",
+	"name": "@repo/api",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "tsc -b -v",
+		"dev": "pnpm build --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"*": [
+				"src/*"
+			]
+		}
+	},
+	"version": "0.0.1"
 }

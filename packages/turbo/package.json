@@ -1,44 +1,33 @@
 {
-	"name": "turbo",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bin": {
+		"turbo": "./bin/turbo"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "./bin/turbo",
-	"bin": {
-		"turbo": "./bin/turbo"
+	"dependencies": {},
+	"description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
+	"devDependencies": {
+		"@playform/build": "0.2.3"
 	},
 	"files": [
 		"bin",
 		"schema.json"
 	],
-	"scripts": {
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"postversion": "node bump-version.js"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3"
-	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./bin/turbo",
+	"name": "turbo",
 	"optionalDependencies": {
 		"turbo-darwin-64": "2.5.3-canary.1",
 		"turbo-darwin-arm64": "2.5.3-canary.1",
@@ -47,7 +36,18 @@
 		"turbo-windows-64": "2.5.3-canary.1",
 		"turbo-windows-arm64": "2.5.3-canary.1"
 	},
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"postversion": "node bump-version.js",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

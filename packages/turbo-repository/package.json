@@ -1,35 +1,14 @@
 {
-	"name": "turborepo-repository",
-	"version": "0.0.1",
-	"private": false,
-	"description": "",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "dist/index.js",
-	"scripts": {
-		"build": "bash scripts/build.sh --dts ../js/index.d.ts",
-		"build:release": "bash scripts/build.sh --release",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
 	"dependencies": {},
+	"description": "",
 	"devDependencies": {
 		"@napi-rs/cli": "^2.16.3",
 		"@playform/build": "0.2.3",
@@ -37,9 +16,15 @@
 		"fs-extra": "^11.1.1",
 		"tsx": "4.19.1"
 	},
-	"publishConfig": {
-		"access": "public"
-	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "dist/index.js",
+	"name": "turborepo-repository",
 	"napi": {
 		"name": "@turbo/repository",
 		"triples": {
@@ -53,5 +38,20 @@
 			],
 			"defaults": true
 		}
-	}
+	},
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "bash scripts/build.sh --dts ../js/index.d.ts",
+		"build:release": "bash scripts/build.sh --release",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

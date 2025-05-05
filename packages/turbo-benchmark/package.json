@@ -1,43 +1,11 @@
 {
-	"name": "@turbo/benchmark",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"scripts": {
-		"bench": "pnpm run bench:lerna && pnpm run bench:lage && pnpm run bench:nx && pnpm run bench:turbo",
-		"bench:lage": "echo $PWD && cd ./demo/lage && node_modules/.bin/lage build",
-		"bench:lerna": "cd ./demo/lerna && node_modules/.bin/lerna run build",
-		"bench:nx": "cd ./demo/nx && node_modules/.bin/nx run-many --target=build --all",
-		"bench:turbo": "cd ./demo/turbo && ./turbo run test",
-		"benchmark": "node -r esbuild-register src/index.ts",
-		"check-types": "tsc --noEmit",
-		"clean": "rm -rf ./demo",
-		"demo": "pnpm run demo:lage && pnpm run demo:lerna && pnpm run demo:nx && pnpm run demo:turbo",
-		"demo:lage": "node src/generate.mjs lage",
-		"demo:lerna": "node src/generate.mjs lerna",
-		"demo:nx": "node src/generate.mjs nx",
-		"demo:turbo": "node src/generate.mjs turbo",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"ttft": "node -r esbuild-register src/ttft/index.ts"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@vercel/blob": "^0.22.1",
@@ -62,7 +30,39 @@
 		"@types/node": "^18.17.4",
 		"@types/node-fetch": "^2.6.6"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "@turbo/benchmark",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"bench": "pnpm run bench:lerna && pnpm run bench:lage && pnpm run bench:nx && pnpm run bench:turbo",
+		"bench:lage": "echo $PWD && cd ./demo/lage && node_modules/.bin/lage build",
+		"bench:lerna": "cd ./demo/lerna && node_modules/.bin/lerna run build",
+		"bench:nx": "cd ./demo/nx && node_modules/.bin/nx run-many --target=build --all",
+		"bench:turbo": "cd ./demo/turbo && ./turbo run test",
+		"benchmark": "node -r esbuild-register src/index.ts",
+		"check-types": "tsc --noEmit",
+		"clean": "rm -rf ./demo",
+		"demo": "pnpm run demo:lage && pnpm run demo:lerna && pnpm run demo:nx && pnpm run demo:turbo",
+		"demo:lage": "node src/generate.mjs lage",
+		"demo:lerna": "node src/generate.mjs lerna",
+		"demo:nx": "node src/generate.mjs nx",
+		"demo:turbo": "node src/generate.mjs turbo",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"ttft": "node -r esbuild-register src/ttft/index.ts"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

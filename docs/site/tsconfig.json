@@ -38,6 +38,7 @@
 		"scripts/sync-algolia.mts",
 		"src",
 		"src",
+		"src",
 		"src"
 	]
 }

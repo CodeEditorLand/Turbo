@@ -1,37 +1,12 @@
 {
-	"name": "@turbo/codemod",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Provides Codemod transformations to help upgrade your Turborepo codebase when a feature is deprecated.",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
 	"bin": "dist/cli.js",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"add-transformer": "plop",
-		"build": "tsup",
-		"check-types": "tsc --noEmit",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"axios": "0.27.2",
@@ -49,6 +24,7 @@
 		"semver": "^7.3.7",
 		"update-check": "^1.5.4"
 	},
+	"description": "Provides Codemod transformations to help upgrade your Turborepo codebase when a feature is deprecated.",
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@turbo/eslint-config": "workspace:*",
@@ -70,7 +46,31 @@
 		"semver": "^7.3.5",
 		"tsup": "^6.7.0"
 	},
+	"files": [
+		"dist"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "@turbo/codemod",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"add-transformer": "plop",
+		"build": "tsup",
+		"check-types": "tsc --noEmit",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

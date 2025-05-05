@@ -1,43 +1,20 @@
 {
-	"name": "turbo-vsc",
-	"displayName": "Turborepo LSP",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Tools and instant feedback for your build system",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
+	"activationEvents": [
+		"workspaceContains:**/turbo.json"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "out/main.js",
-	"scripts": {
-		"copy": "pnpm run copy-darwin-arm64 && pnpm run copy-darwin-x64 && pnpm run copy-win32-x64 && pnpm run copy-linux-arm64 && pnpm run copy-linux-x64",
-		"copy-darwin-arm64": "cp out/artifacts/turborepo-lsp-aarch64-apple-darwin/turborepo-lsp out/turborepo-lsp-darwin-arm64 && chmod +x out/turborepo-lsp-darwin-arm64",
-		"copy-darwin-x64": "cp out/artifacts/turborepo-lsp-x86_64-apple-darwin/turborepo-lsp out/turborepo-lsp-darwin-x64 && chmod +x out/turborepo-lsp-darwin-x64",
-		"copy-linux-arm64": "cp out/artifacts/turborepo-lsp-aarch64-unknown-linux-musl/turborepo-lsp out/turborepo-lsp-linux-arm64 && chmod +x out/turborepo-lsp-linux-arm64",
-		"copy-linux-x64": "cp out/artifacts/turborepo-lsp-x86_64-unknown-linux-musl/turborepo-lsp out/turborepo-lsp-linux-x64 && chmod +x out/turborepo-lsp-linux-x64",
-		"copy-win32-x64": "cp out/artifacts/turborepo-lsp-x86_64-pc-windows-msvc/turborepo-lsp.exe out/turborepo-lsp-win32-x64.exe",
-		"esbuild": "npm run esbuild-base -- --sourcemap",
-		"esbuild-base": "esbuild ./src/extension.ts --bundle --main-fields=module,main --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"publish": "pnpm vsce publish --no-dependencies --baseContentUrl https://github.com/vercel/turborepo/raw/HEAD/packages/turbo-vsc",
-		"test-compile": "tsc -p ./"
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "The language server requires a turbo daemon to function correctly.",
+			"supported": "limited"
+		}
 	},
 	"contributes": {
 		"commands": [
@@ -75,27 +52,50 @@
 			"title": "Turborepo LSP"
 		}
 	},
-	"activationEvents": [
-		"workspaceContains:**/turbo.json"
-	],
 	"dependencies": {
 		"jsonc-parser": "^3.2.0"
 	},
+	"description": "Tools and instant feedback for your build system",
 	"devDependencies": {
 		"@playform/build": "0.2.3",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "^20.9.0",
 		"esbuild": "^0.15.0"
 	},
+	"displayName": "Turborepo LSP",
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"icon": "resources/icon.png",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "out/main.js",
+	"name": "turbo-vsc",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
 	},
-	"icon": "resources/icon.png",
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "The language server requires a turbo daemon to function correctly.",
-			"supported": "limited"
-		}
+	"readme": "README.md",
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
 	},
-	"readme": "README.md"
+	"scripts": {
+		"copy": "pnpm run copy-darwin-arm64 && pnpm run copy-darwin-x64 && pnpm run copy-win32-x64 && pnpm run copy-linux-arm64 && pnpm run copy-linux-x64",
+		"copy-darwin-arm64": "cp out/artifacts/turborepo-lsp-aarch64-apple-darwin/turborepo-lsp out/turborepo-lsp-darwin-arm64 && chmod +x out/turborepo-lsp-darwin-arm64",
+		"copy-darwin-x64": "cp out/artifacts/turborepo-lsp-x86_64-apple-darwin/turborepo-lsp out/turborepo-lsp-darwin-x64 && chmod +x out/turborepo-lsp-darwin-x64",
+		"copy-linux-arm64": "cp out/artifacts/turborepo-lsp-aarch64-unknown-linux-musl/turborepo-lsp out/turborepo-lsp-linux-arm64 && chmod +x out/turborepo-lsp-linux-arm64",
+		"copy-linux-x64": "cp out/artifacts/turborepo-lsp-x86_64-unknown-linux-musl/turborepo-lsp out/turborepo-lsp-linux-x64 && chmod +x out/turborepo-lsp-linux-x64",
+		"copy-win32-x64": "cp out/artifacts/turborepo-lsp-x86_64-pc-windows-msvc/turborepo-lsp.exe out/turborepo-lsp-win32-x64.exe",
+		"esbuild": "npm run esbuild-base -- --sourcemap",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --main-fields=module,main --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"publish": "pnpm vsce publish --no-dependencies --baseContentUrl https://github.com/vercel/turborepo/raw/HEAD/packages/turbo-vsc",
+		"test-compile": "tsc -p ./"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

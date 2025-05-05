@@ -18,6 +18,7 @@
 		"vitest.config.ts",
 		"src",
 		"src",
+		"src",
 		"src"
 	]
 }

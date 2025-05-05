@@ -15,6 +15,7 @@
 		"tsup.config.ts",
 		"src",
 		"src",
+		"src",
 		"src"
 	]
 }

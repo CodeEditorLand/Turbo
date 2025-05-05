@@ -1,28 +1,21 @@
 {
-	"name": "@repo/ui",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/jest-presets": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@types/node": "^22.15.3",
+		"bunchee": "^6.4.0"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"sideEffects": false,
-	"type": "module",
 	"exports": {
 		"./counter-button": {
 			"import": {
@@ -49,25 +42,32 @@
 		"dist/**",
 		"dist"
 	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"jest": {
+		"preset": "@repo/jest-presets/browser"
+	},
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "@repo/ui",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
 	"scripts": {
 		"build": "bunchee",
 		"check-types": "tsc --noEmit",
 		"dev": "bunchee --watch",
 		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
-	"jest": {
-		"preset": "@repo/jest-presets/browser"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@repo/eslint-config": "workspace:*",
-		"@repo/jest-presets": "workspace:*",
-		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^22.15.3",
-		"bunchee": "^6.4.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"sideEffects": false,
+	"type": "module",
+	"version": "0.0.1"
 }

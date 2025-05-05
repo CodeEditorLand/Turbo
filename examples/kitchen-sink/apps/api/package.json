@@ -1,36 +1,11 @@
 {
-	"name": "api",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
 		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
 		"url": "HTTPS://Editor.Land"
 	},
-	"type": "module",
-	"scripts": {
-		"build": "tsup",
-		"check-types": "tsc --noEmit",
-		"dev": "tsup --watch --onSuccess \"node dist/index.cjs\"",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"start": "node dist/index.js"
-	},
-	"jest": {
-		"preset": "@repo/jest-presets/node"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
 	},
 	"dependencies": {
 		"@repo/logger": "workspace:*",
@@ -51,7 +26,32 @@
 		"supertest": "^7.1.0",
 		"tsup": "^8.4.0"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"jest": {
+		"preset": "@repo/jest-presets/node"
+	},
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"name": "api",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "tsup",
+		"check-types": "tsc --noEmit",
+		"dev": "tsup --watch --onSuccess \"node dist/index.cjs\"",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"start": "node dist/index.js"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
