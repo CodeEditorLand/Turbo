@@ -12,6 +12,7 @@
 	"include": [
 		"configs",
 		"scripts",
+		"src",
 		"src"
 	]
 }

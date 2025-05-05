@@ -19,6 +19,7 @@
 		"**/*.tsx",
 		".next/types/**/*.ts",
 		"next.config.js",
+		"src",
 		"src"
 	]
 }
