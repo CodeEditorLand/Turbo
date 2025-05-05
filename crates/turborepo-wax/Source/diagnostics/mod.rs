@@ -1,8 +1,8 @@
 mod miette;
 
 use std::{
-	cmp,
-	fmt::{self, Display, Formatter},
+    cmp,
+    fmt::{self, Display, Formatter},
 };
 
 #[cfg(feature = "miette")]
@@ -24,22 +24,22 @@ use ::miette::LabeledSpan;
 /// let expression = "**/*.txt";
 /// let glob = Glob::new(expression).unwrap();
 /// for token in glob.captures() {
-/// 	let (start, n) = token.span();
-/// 	println!("capturing sub-expression: {}", &expression[start..][..n]);
+///     let (start, n) = token.span();
+///     println!("capturing sub-expression: {}", &expression[start..][..n]);
 /// }
 /// ```
 pub type Span = (usize, usize);
 
 pub trait SpanExt {
-	fn union(&self, other:&Self) -> Self;
+    fn union(&self, other: &Self) -> Self;
 }
 
 impl SpanExt for Span {
-	fn union(&self, other:&Self) -> Self {
-		let start = cmp::min(self.0, other.0);
-		let end = cmp::max(self.0 + self.1, other.0 + other.1);
-		(start, end - start)
-	}
+    fn union(&self, other: &Self) -> Self {
+        let start = cmp::min(self.0, other.0);
+        let end = cmp::max(self.0 + self.1, other.0 + other.1);
+        (start, end - start)
+    }
 }
 
 /// Error associated with a [`Span`] within a glob expression.
@@ -54,97 +54,106 @@ impl SpanExt for Span {
 /// [`LocatedError::span`]: crate::LocatedError::span
 /// [`Span`]: crate::Span
 pub trait LocatedError: Display {
-	/// Gets the span within the glob expression with which the error is
-	/// associated.
-	fn span(&self) -> Span;
+    /// Gets the span within the glob expression with which the error is
+    /// associated.
+    fn span(&self) -> Span;
 }
 
 #[derive(Clone, Copy, Debug)]
 pub struct CompositeSpan {
-	label:&'static str,
-	kind:CompositeSpanKind,
+    label: &'static str,
+    kind: CompositeSpanKind,
 }
 
 impl CompositeSpan {
-	pub fn spanned(label:&'static str, span:Span) -> Self {
-		CompositeSpan { label, kind:CompositeSpanKind::Span(span) }
-	}
+    pub fn spanned(label: &'static str, span: Span) -> Self {
+        CompositeSpan {
+            label,
+            kind: CompositeSpanKind::Span(span),
+        }
+    }
 
-	pub fn correlated(label:&'static str, span:Span, correlated:CorrelatedSpan) -> Self {
-		CompositeSpan { label, kind:CompositeSpanKind::Correlated { span, correlated } }
-	}
+    pub fn correlated(label: &'static str, span: Span, correlated: CorrelatedSpan) -> Self {
+        CompositeSpan {
+            label,
+            kind: CompositeSpanKind::Correlated { span, correlated },
+        }
+    }
 
-	#[cfg(feature = "miette")]
-	pub fn labels(&self) -> Vec<LabeledSpan> {
-		let label = Some(self.label.to_string());
-		match self.kind {
-			CompositeSpanKind::Span(ref span) => vec![LabeledSpan::new_with_span(label, *span)],
-			CompositeSpanKind::Correlated { ref span, ref correlated } => {
-				Some(LabeledSpan::new_with_span(label, *span))
-					.into_iter()
-					.chain(correlated.labels())
-					.collect()
-			},
-		}
-	}
+    #[cfg(feature = "miette")]
+    pub fn labels(&self) -> Vec<LabeledSpan> {
+        let label = Some(self.label.to_string());
+        match self.kind {
+            CompositeSpanKind::Span(ref span) => vec![LabeledSpan::new_with_span(label, *span)],
+            CompositeSpanKind::Correlated {
+                ref span,
+                ref correlated,
+            } => Some(LabeledSpan::new_with_span(label, *span))
+                .into_iter()
+                .chain(correlated.labels())
+                .collect(),
+        }
+    }
 }
 
 impl Display for CompositeSpan {
-	fn fmt(&self, f:&mut Formatter) -> fmt::Result { write!(f, "{}", self.label) }
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        write!(f, "{}", self.label)
+    }
 }
 
 impl LocatedError for CompositeSpan {
-	fn span(&self) -> Span {
-		match self.kind {
-			CompositeSpanKind::Span(ref span) | CompositeSpanKind::Correlated { ref span, .. } => {
-				*span
-			},
-		}
-	}
+    fn span(&self) -> Span {
+        match self.kind {
+            CompositeSpanKind::Span(ref span) | CompositeSpanKind::Correlated { ref span, .. } => {
+                *span
+            }
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug)]
 enum CompositeSpanKind {
-	Span(Span),
-	Correlated {
-		span:Span,
-		#[cfg_attr(not(feature = "miette"), allow(dead_code))]
-		correlated:CorrelatedSpan,
-	},
+    Span(Span),
+    Correlated {
+        span: Span,
+        #[cfg_attr(not(feature = "miette"), allow(dead_code))]
+        correlated: CorrelatedSpan,
+    },
 }
 
 #[derive(Clone, Copy, Debug)]
 pub enum CorrelatedSpan {
-	Contiguous(Span),
-	Split(Span, Span),
+    Contiguous(Span),
+    Split(Span, Span),
 }
 
 impl CorrelatedSpan {
-	pub fn split_some(left:Option<Span>, right:Span) -> Self {
-		if let Some(left) = left {
-			CorrelatedSpan::Split(left, right)
-		} else {
-			CorrelatedSpan::Contiguous(right)
-		}
-	}
+    pub fn split_some(left: Option<Span>, right: Span) -> Self {
+        if let Some(left) = left {
+            CorrelatedSpan::Split(left, right)
+        } else {
+            CorrelatedSpan::Contiguous(right)
+        }
+    }
 
-	#[cfg(feature = "miette")]
-	pub fn labels(&self) -> Vec<LabeledSpan> {
-		let label = Some("here".to_string());
-		match self {
-			CorrelatedSpan::Contiguous(ref span) => {
-				vec![LabeledSpan::new_with_span(label, *span)]
-			},
-			CorrelatedSpan::Split(ref left, ref right) => {
-				vec![
-					LabeledSpan::new_with_span(label.clone(), *left),
-					LabeledSpan::new_with_span(label, *right),
-				]
-			},
-		}
-	}
+    #[cfg(feature = "miette")]
+    pub fn labels(&self) -> Vec<LabeledSpan> {
+        let label = Some("here".to_string());
+        match self {
+            CorrelatedSpan::Contiguous(ref span) => {
+                vec![LabeledSpan::new_with_span(label, *span)]
+            }
+            CorrelatedSpan::Split(ref left, ref right) => vec![
+                LabeledSpan::new_with_span(label.clone(), *left),
+                LabeledSpan::new_with_span(label, *right),
+            ],
+        }
+    }
 }
 
 impl From<Span> for CorrelatedSpan {
-	fn from(span:Span) -> Self { CorrelatedSpan::Contiguous(span) }
+    fn from(span: Span) -> Self {
+        CorrelatedSpan::Contiguous(span)
+    }
 }

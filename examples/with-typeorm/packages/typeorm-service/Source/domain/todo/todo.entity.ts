@@ -1,30 +1,30 @@
 import {
-	Column,
-	CreateDateColumn,
-	Entity,
-	PrimaryGeneratedColumn,
-	UpdateDateColumn,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity({
-	name: "todo",
+  name: "todo",
 })
 export class Todo {
-	@PrimaryGeneratedColumn()
-	id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@Column({
-		nullable: false,
-		length: 100,
-	})
-	content: string;
+  @Column({
+    nullable: false,
+    length: 100,
+  })
+  content: string;
 
-	@Column()
-	complete: boolean;
+  @Column()
+  complete: boolean;
 
-	@CreateDateColumn()
-	createdAt: string;
+  @CreateDateColumn()
+  createdAt: string;
 
-	@UpdateDateColumn()
-	updatedAt: string;
+  @UpdateDateColumn()
+  updatedAt: string;
 }

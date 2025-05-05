@@ -1,7 +1,0 @@
-{
-  "$schema": "https://turborepo.com/schema.json",
-  "globalPassThroughEnv": [],
-  "tasks": {
-    "build": {}
-  }
-}

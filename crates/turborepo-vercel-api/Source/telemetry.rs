@@ -10,44 +10,44 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum TelemetryEvent {
-	Task(TelemetryTaskEvent),
-	Command(TelemetryCommandEvent),
-	Repo(TelemetryRepoEvent),
-	Generic(TelemetryGenericEvent),
+    Task(TelemetryTaskEvent),
+    Command(TelemetryCommandEvent),
+    Repo(TelemetryRepoEvent),
+    Generic(TelemetryGenericEvent),
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TelemetryCommandEvent {
-	pub id:String,
-	pub command:String,
-	pub key:String,
-	pub value:String,
-	pub parent_id:Option<String>,
+    pub id: String,
+    pub command: String,
+    pub key: String,
+    pub value: String,
+    pub parent_id: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TelemetryRepoEvent {
-	pub id:String,
-	pub repo:String,
-	pub key:String,
-	pub value:String,
-	pub parent_id:Option<String>,
+    pub id: String,
+    pub repo: String,
+    pub key: String,
+    pub value: String,
+    pub parent_id: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TelemetryTaskEvent {
-	pub id:String,
-	pub package:String,
-	pub task:String,
-	pub key:String,
-	pub value:String,
-	pub parent_id:Option<String>,
+    pub id: String,
+    pub package: String,
+    pub task: String,
+    pub key: String,
+    pub value: String,
+    pub parent_id: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TelemetryGenericEvent {
-	pub id:String,
-	pub key:String,
-	pub value:String,
-	pub parent_id:Option<String>,
+    pub id: String,
+    pub key: String,
+    pub value: String,
+    pub parent_id: Option<String>,
 }

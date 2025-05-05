@@ -1,4 +1,12 @@
 {
-  "extends": "@repo/typescript-config/vite.json",
-  "include": ["src"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"src"
+	]
 }

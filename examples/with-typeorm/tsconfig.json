@@ -1,3 +1,11 @@
 {
-  "extends": "@repo/typescript-config/base.json"
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src"
+	]
 }

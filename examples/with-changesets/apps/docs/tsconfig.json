@@ -1,14 +1,23 @@
 {
-  "exclude": ["node_modules"],
-  "extends": "@acme/tsconfig/nextjs.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": ["src", "next-env.d.ts", ".next/types/**/*.ts"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"incremental": true,
+		"outDir": "Target",
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"rootDir": "src"
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"next-env.d.ts",
+		".next/types/**/*.ts",
+		"src"
+	]
 }

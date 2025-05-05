@@ -1,5 +1,17 @@
 {
-  "extends": "@acme/tsconfig/react-library.json",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"exclude": [
+		"dist",
+		"build",
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		".",
+		"src"
+	]
 }

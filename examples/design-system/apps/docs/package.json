@@ -1,33 +1,50 @@
 {
-  "name": "docs",
-  "version": "0.0.0",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build --docs",
-    "preview-storybook": "serve storybook-static",
-    "clean": "rm -rf .turbo node_modules",
-    "lint": "eslint ./stories/*.stories.tsx --max-warnings 0"
-  },
-  "dependencies": {
-    "@acme/ui": "workspace:*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@storybook/addon-actions": "^8.2.6",
-    "@storybook/addon-essentials": "^8.2.6",
-    "@storybook/addon-links": "^8.2.6",
-    "@storybook/react": "^8.2.6",
-    "@storybook/react-vite": "^8.2.6",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.57.0",
-    "serve": "^14.2.1",
-    "storybook": "^8.2.6",
-    "@repo/typescript-config": "workspace:*",
-    "typescript": "5.5.4",
-    "vite": "^5.1.4"
-  }
+	"name": "docs",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "storybook build --docs",
+		"clean": "rm -rf .turbo node_modules",
+		"dev": "storybook dev -p 6006",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"preview-storybook": "serve storybook-static"
+	},
+	"dependencies": {
+		"@acme/ui": "workspace:*"
+	},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@storybook/addon-actions": "^8.2.6",
+		"@storybook/addon-essentials": "^8.2.6",
+		"@storybook/addon-links": "^8.2.6",
+		"@storybook/react": "^8.2.6",
+		"@storybook/react-vite": "^8.2.6",
+		"serve": "^14.2.1",
+		"storybook": "^8.2.6"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

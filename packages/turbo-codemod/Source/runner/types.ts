@@ -1,40 +1,40 @@
 import type { Change } from "diff";
 
 export interface FileResult {
-	action: "skipped" | "modified" | "unchanged" | "error";
-	error?: Error;
-	additions: number;
-	deletions: number;
+  action: "skipped" | "modified" | "unchanged" | "error";
+  error?: Error;
+  additions: number;
+  deletions: number;
 }
 
 export interface FileTransformArgs extends ModifyFileArgs {
-	rootPath: string;
+  rootPath: string;
 }
 
 export interface ModifyFileArgs {
-	filePath: string;
-	before?: string | object | null;
-	after?: string | object | null;
-	error?: Error;
+  filePath: string;
+  before?: string | object | null;
+  after?: string | object | null;
+  error?: Error;
 }
 
 export interface AbortTransformArgs {
-	reason: string;
-	changes?: Record<string, FileResult>;
+  reason: string;
+  changes?: Record<string, FileResult>;
 }
 
 export interface LogFileArgs {
-	diff?: boolean;
+  diff?: boolean;
 }
 
 export type FileWriter = (filePath: string, contents: string | object) => void;
 
 export type FileDiffer = (
-	before: string | object,
-	after: string | object,
+  before: string | object,
+  after: string | object
 ) => Array<Change>;
 
 export interface TransformerResults {
-	fatalError?: Error;
-	changes: Record<string, FileResult>;
+  fatalError?: Error;
+  changes: Record<string, FileResult>;
 }

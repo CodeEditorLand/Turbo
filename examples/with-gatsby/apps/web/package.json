@@ -1,28 +1,46 @@
 {
-  "name": "web",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "gatsby develop",
-    "build": "gatsby build",
-    "start": "gatsby develop",
-    "check-types": "tsc --noEmit",
-    "lint": "eslint src/ --max-warnings 0"
-  },
-  "dependencies": {
-    "gatsby": "^5.13.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@repo/ui": "workspace:*"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
-    "eslint": "^8.57.0",
-    "gatsby-plugin-compile-es6-packages": "^2.1.1",
-    "typescript": "5.5.4"
-  }
+	"name": "web",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "gatsby build",
+		"check-types": "tsc --noEmit",
+		"dev": "gatsby develop",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"start": "gatsby develop"
+	},
+	"dependencies": {
+		"@repo/ui": "workspace:*",
+		"gatsby": "^5.13.3"
+	},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@types/node": "^20.11.24",
+		"gatsby-plugin-compile-es6-packages": "^2.1.1"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

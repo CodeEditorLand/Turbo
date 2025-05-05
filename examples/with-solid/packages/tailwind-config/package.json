@@ -1,25 +1,43 @@
 {
-  "name": "@repo/tailwind-config",
-  "version": "1.0.0",
-  "description": "This is the tailwind config file for solidJS turborepo",
-  "main": "index.ts",
-  "type": "module",
-  "exports": {
-    "./styles.css": "./styles.css"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@tailwindcss/vite": "^4.0.9",
-    "tailwindcss": "^4.0.9",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.0"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*"
-  }
+	"name": "@repo/tailwind-config",
+	"version": "0.0.1",
+	"private": false,
+	"description": "This is the tailwind config file for solidJS turborepo",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"exports": {
+		"./styles.css": "./styles.css"
+	},
+	"main": "index.ts",
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"dependencies": {
+		"@tailwindcss/vite": "^4.0.9"
+	},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"@repo/eslint-config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

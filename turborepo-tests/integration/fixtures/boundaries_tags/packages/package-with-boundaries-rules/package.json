@@ -1,6 +1,0 @@
-{
-  "name": "@vercel/package-with-boundaries-rules",
-  "dependencies": {
-    "@vercel/not-allowed-dependency": "*"
-  }
-}

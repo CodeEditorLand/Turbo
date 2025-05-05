@@ -1,7 +1,0 @@
-{
-  "name": "app-a",
-  "dependencies": {
-    "microdiff": "^1.4.0",
-    "ui": "workspace:*"
-  }
-}

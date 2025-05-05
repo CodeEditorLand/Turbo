@@ -11,11 +11,11 @@ type PrimitveButtonProps = JSX.IntrinsicElements["button"];
 
 // Div
 type DivElement = HTMLDivElement;
-type PrimitiveDivProps = JSX.IntrinsicElements["div"];
+type PrimitiveDivProps = JSX.IntrinsicElements['div'];
 
 // Span
 type SpanElement = HTMLSpanElement;
-type PrimitiveSpanProps = JSX.IntrinsicElements["span"];
+type PrimitiveSpanProps = JSX.IntrinsicElements['span'];
 
 /**
  ========= ELEMENT ENDS =============
@@ -23,10 +23,10 @@ type PrimitiveSpanProps = JSX.IntrinsicElements["span"];
 
 // exports
 export type {
-	ButtonElement,
-	PrimitveButtonProps,
-	DivElement,
-	PrimitiveDivProps,
-	SpanElement,
-	PrimitiveSpanProps,
+    ButtonElement,
+    PrimitveButtonProps,
+    DivElement,
+    PrimitiveDivProps,
+    SpanElement,
+    PrimitiveSpanProps
 };

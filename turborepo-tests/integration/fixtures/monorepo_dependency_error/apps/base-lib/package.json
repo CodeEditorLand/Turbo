@@ -1,6 +1,0 @@
-{
-  "name": "base-lib",
-  "scripts": {
-    "build": "echo 'working'"
-  }
-}

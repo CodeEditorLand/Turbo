@@ -1,10 +1,26 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
-  "compilerOptions": {
-    "lib": ["dom", "ES2015"],
-    "sourceMap": true,
-    "types": ["jest", "node"]
-  },
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"lib": [
+			"dom",
+			"ES2015"
+		],
+		"outDir": "Target",
+		"rootDir": "src",
+		"sourceMap": true,
+		"types": [
+			"jest",
+			"node"
+		]
+	},
+	"exclude": [
+		"dist",
+		"build",
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		".",
+		"src"
+	]
 }

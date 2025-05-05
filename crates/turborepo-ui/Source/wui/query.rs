@@ -8,12 +8,12 @@ use crate::wui::subscriber::{TaskState, WebUIState};
 
 #[derive(Debug, Clone, Serialize, SimpleObject)]
 struct RunTask {
-	name:String,
-	state:TaskState,
+    name: String,
+    state: TaskState,
 }
 
 struct CurrentRun<'a> {
-	state:&'a SharedState,
+    state: &'a SharedState,
 }
 
 #[Object]
@@ -43,16 +43,20 @@ pub type SharedState = Arc<Mutex<WebUIState>>;
 /// in `turborepo_lib::query`)
 /// This is `None` when we're not actually running a task (e.g. `turbo query`)
 pub struct RunQuery {
-	state:Option<SharedState>,
+    state: Option<SharedState>,
 }
 
 impl RunQuery {
-	pub fn new(state:Option<SharedState>) -> Self { Self { state } }
+    pub fn new(state: Option<SharedState>) -> Self {
+        Self { state }
+    }
 }
 
 #[Object]
 impl RunQuery {
-	async fn current_run(&self) -> Option<CurrentRun> {
-		Some(CurrentRun { state:self.state.as_ref()? })
-	}
+    async fn current_run(&self) -> Option<CurrentRun> {
+        Some(CurrentRun {
+            state: self.state.as_ref()?,
+        })
+    }
 }

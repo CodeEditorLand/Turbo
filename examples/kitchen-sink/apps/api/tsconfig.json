@@ -1,9 +1,18 @@
 {
-  "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "lib": ["ES2015"],
-    "outDir": "./dist"
-  },
-  "exclude": ["node_modules"],
-  "include": ["."]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"lib": [
+			"ES2015"
+		],
+		"outDir": "Target",
+		"rootDir": "src"
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		".",
+		"src"
+	]
 }

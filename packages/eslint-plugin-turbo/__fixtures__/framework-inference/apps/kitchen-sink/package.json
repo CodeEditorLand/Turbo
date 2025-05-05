@@ -1,19 +1,46 @@
 {
-  "name": "nextjs",
-  "dependencies": {
-    "next": "*",
-    "blitz": "*",
-    "react": "*",
-    "left-pad": "*",
-    "event-stream": "*",
-    "gatsby": "*",
-    "is-promise": "*",
-    "@faker-js/faker": "*",
-    "ua-parser-js": "*",
-    "nitropack": "*"
-  },
-  "devDependencies": {
-    "eslint": "8.57.0",
-    "eslint-plugin-turbo": "../../../../"
-  }
+	"name": "nextjs",
+	"version": "0.0.1",
+	"private": false,
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"dependencies": {
+		"@faker-js/faker": "*",
+		"blitz": "*",
+		"event-stream": "*",
+		"gatsby": "*",
+		"is-promise": "*",
+		"left-pad": "*",
+		"next": "*",
+		"nitropack": "*",
+		"ua-parser-js": "*"
+	},
+	"devDependencies": {
+		"@playform/build": "0.2.3",
+		"eslint-plugin-turbo": "../../../../"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

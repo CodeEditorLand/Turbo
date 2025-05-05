@@ -1,4 +1,0 @@
-{
-  "$schema": "https://turborepo.com/schema.json",
-  "globalDependencies": ["C:\\an\\absolute\\path", "some\\file"]
-}

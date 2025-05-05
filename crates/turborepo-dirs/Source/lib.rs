@@ -8,11 +8,13 @@ use turbopath::{AbsoluteSystemPathBuf, PathError};
 /// `TURBO_CONFIG_DIR_PATH` environment variable. If the environment variable
 /// is set, it will return that path instead of `dirs_next::config_dir`.
 pub fn config_dir() -> Result<Option<AbsoluteSystemPathBuf>, PathError> {
-	if let Ok(dir) = std::env::var("TURBO_CONFIG_DIR_PATH") {
-		return AbsoluteSystemPathBuf::new(dir).map(Some);
-	}
+    if let Ok(dir) = std::env::var("TURBO_CONFIG_DIR_PATH") {
+        return AbsoluteSystemPathBuf::new(dir).map(Some);
+    }
 
-	dirs_config_dir().map(AbsoluteSystemPathBuf::try_from).transpose()
+    dirs_config_dir()
+        .map(AbsoluteSystemPathBuf::try_from)
+        .transpose()
 }
 
 /// Returns the path to the user's configuration directory.
@@ -21,11 +23,13 @@ pub fn config_dir() -> Result<Option<AbsoluteSystemPathBuf>, PathError> {
 ///  `VERCEL_CONFIG_DIR_PATH` environment variable. If the environment variable
 /// is set, it will return that path instead of `dirs_next::config_dir`.
 pub fn vercel_config_dir() -> Result<Option<AbsoluteSystemPathBuf>, PathError> {
-	if let Ok(dir) = std::env::var("VERCEL_CONFIG_DIR_PATH") {
-		return AbsoluteSystemPathBuf::new(dir).map(Some);
-	}
+    if let Ok(dir) = std::env::var("VERCEL_CONFIG_DIR_PATH") {
+        return AbsoluteSystemPathBuf::new(dir).map(Some);
+    }
 
-	dirs_config_dir().map(AbsoluteSystemPathBuf::try_from).transpose()
+    dirs_config_dir()
+        .map(AbsoluteSystemPathBuf::try_from)
+        .transpose()
 }
 
 #[derive(Debug, Error)]

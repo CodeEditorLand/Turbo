@@ -1,9 +1,0 @@
-{
-  "name": "yet-another-lib",
-  "scripts": {
-    "build": "echo 'working'"
-  },
-  "dependencies": {
-    "base-lib": "*"
-  }
-}

@@ -1,11 +1,23 @@
 {
-  "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "lib": ["ES2015", "DOM"],
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "types": ["jest", "node"]
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"baseUrl": "./",
+		"lib": [
+			"ES2015",
+			"DOM"
+		],
+		"outDir": "Target",
+		"rootDir": "src",
+		"types": [
+			"jest",
+			"node"
+		]
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"src"
+	]
 }
