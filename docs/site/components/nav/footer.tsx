@@ -1,5 +1,5 @@
-import { VercelLogo } from "@/app/_components/logos";
 import Fumalink from "fumadocs-core/link";
+import { VercelLogo } from "#app/_components/logos.tsx";
 import { ThemeSwitcher } from "./theme-switcher/index";
 
 interface FooterItem {
@@ -25,13 +25,13 @@ const FOOTER_ITEMS = {
   ],
   community: [
     { href: "https://github.com/vercel/turborepo", label: "GitHub" },
-    { href: "https://vercel.community/tag/turborepo", label: "Community" },
-    { href: "https://bsky.app/profile/turbo.build", label: "Bluesky" },
+    { href: "https://community.vercel.com/tag/turborepo", label: "Community" },
+    { href: "https://bsky.app/profile/turborepo.com", label: "Bluesky" },
     { href: "https://x.com/turborepo", label: "X" },
   ],
 };
 
-const NavItems = ({ category }: { category: FooterItem[] }) => {
+const NavItems = ({ category }: { category: Array<FooterItem> }) => {
   return (
     <ul className="flex flex-col gap-y-3 text-gray-900">
       {category.map((item) => {
@@ -50,7 +50,7 @@ const NavItems = ({ category }: { category: FooterItem[] }) => {
 
 export const Footer = () => {
   return (
-    <footer className="w-full border-t border-gray-200 bg-background-200 py-12">
+    <footer className="w-full border-t border-gray-200 bg-background-100 py-12">
       <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-y-12 px-6">
         <div className="flex w-full flex-col items-start justify-between gap-y-12 md:flex-row">
           <VercelLogo className="h-6" />

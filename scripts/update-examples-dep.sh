@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # This script updates the turbo dependency in all examples that are using any package manager.
 

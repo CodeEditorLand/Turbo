@@ -1,12 +1,3 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"outDir": "Target",
-		"rootDir": "src"
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"src"
-	]
+  "extends": "../.nuxt/tsconfig.server.json"
 }

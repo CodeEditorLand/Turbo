@@ -1,39 +1,9 @@
 {
-	"name": "@turbo-internal/top-issues-gh-action",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Notify Turbo team about recent, popular issues. This is meant to be run as a GitHub Action.",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {
-		"@actions/core": "1.11.1",
-		"@actions/github": "6.0.0"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@turbo-internal/top-issues-gh-action",
+  "private": true,
+  "description": "Notify Turbo team about recent, popular issues. This is meant to be run as a GitHub Action.",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "5.1.1"
+  }
 }

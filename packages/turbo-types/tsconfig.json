@@ -1,16 +1,8 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"lib": [
-			"ESNext"
-		],
-		"module": "ESNext",
-		"outDir": "Target",
-		"rootDir": "src"
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"src"
-	]
+  "extends": "@turbo/tsconfig/library.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "module": "ESNext",
+    "lib": ["ESNext"]
+  }
 }

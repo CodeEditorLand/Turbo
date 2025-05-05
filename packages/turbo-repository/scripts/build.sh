@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 user_provided_flags="$@"
 script_provided_flags="\

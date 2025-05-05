@@ -3,11 +3,11 @@ title: Structuring a repository
 description: Start by creating a repository using the conventions of the ecosystem.
 ---
 
-import { Callout } from '#/components/callout';
-import { PackageManagerTabs, Tab, Tabs } from '#/components/tabs';
-import { Step, Steps } from '#/components/steps';
-import { File, Folder, Files } from '#/components/files';
-import { LinkToDocumentation } from '#/components/link-to-documentation';
+import { Callout } from '#components/callout';
+import { PackageManagerTabs, Tab, Tabs } from '#components/tabs';
+import { Step, Steps } from '#components/steps';
+import { File, Folder, Files } from '#components/files';
+import { LinkToDocumentation } from '#components/link-to-documentation';
 
 `turbo` is built on top of [Workspaces](https://vercel.com/docs/vercel-platform/glossary#workspace), a feature of package managers in the JavaScript ecosystem that allows you to group multiple packages in one repository.
 
@@ -259,7 +259,7 @@ The root `package.json` is the base for your workspace. Below is a common exampl
   "devDependencies": {
     "turbo": "latest"
   },
-  "packageManager": "pnpm@10.2.1"
+  "packageManager": "pnpm@9.0.0"
 }
 ```
 

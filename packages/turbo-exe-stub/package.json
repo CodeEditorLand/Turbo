@@ -1,37 +1,8 @@
 {
-	"name": "@turbo/exe-stub",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Stub for turbo.exe",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"scripts": {
-		"build": "bash build.sh",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@turbo/exe-stub",
+  "description": "Stub for turbo.exe",
+  "private": true,
+  "scripts": {
+    "build": "bash build.sh"
+  }
 }

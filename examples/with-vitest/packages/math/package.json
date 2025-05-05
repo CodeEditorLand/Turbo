@@ -1,50 +1,26 @@
 {
-	"name": "@repo/math",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"exports": {
-		"./add": {
-			"default": "./dist/add.js",
-			"types": "./src/add.ts"
-		},
-		"./subtract": {
-			"default": "./dist/subtract.js",
-			"types": "./src/subtract.ts"
-		}
-	},
-	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "3.0.7",
-		"@playform/build": "0.2.3",
-		"@repo/typescript-config": "workspace:*",
-		"@repo/vitest-config": "workspace:*"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@repo/math",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "exports": {
+    "./add": {
+      "types": "./src/add.ts",
+      "default": "./dist/add.js"
+    },
+    "./subtract": {
+      "types": "./src/subtract.ts",
+      "default": "./dist/subtract.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/vitest-config": "workspace:*",
+    "@vitest/coverage-istanbul": "^3.0.7",
+    "typescript": "latest",
+    "vitest": "^3.0.7"
+  }
 }

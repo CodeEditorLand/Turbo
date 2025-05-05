@@ -1,33 +1,19 @@
 {
-	"compilerOptions": {
-		"allowJs": true,
-		"allowSyntheticDefaultImports": true,
-		"baseUrl": "./",
-		"esModuleInterop": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"jsxImportSource": "solid-js",
-		"module": "ESNext",
-		"moduleResolution": "bundler",
-		"noEmit": true,
-		"outDir": "Target",
-		"paths": {
-			"~/*": [
-				"./src/*"
-			]
-		},
-		"rootDir": "src",
-		"strict": true,
-		"target": "ESNext",
-		"types": [
-			"vinxi/types/client",
-			"vitest/globals",
-			"@testing-library/jest-dom"
-		]
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"src"
-	]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "types": ["vinxi/types/client", "vitest/globals", "@testing-library/jest-dom"],
+    "isolatedModules": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
 }

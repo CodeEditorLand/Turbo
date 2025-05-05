@@ -1,14 +1,7 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"jsx": "react-jsx",
-		"outDir": "Target",
-		"rootDir": "src"
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"src",
-		"src"
-	]
+  "extends": "@repo/typescript-config/vite.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
 }

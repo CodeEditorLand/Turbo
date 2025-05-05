@@ -1,47 +1,32 @@
 {
-	"name": "docs",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"scripts": {
-		"build": "next build",
-		"check-types": "tsc --noEmit",
-		"dev": "next dev --turbopack --port 3001",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"start": "next start"
-	},
-	"dependencies": {
-		"@repo/ui": "workspace:*",
-		"next": "^15.3.1"
-	},
-	"devDependencies": {
-		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
-		"@playform/build": "0.2.3",
-		"@repo/eslint-config": "workspace:*",
-		"@repo/typescript-config": "workspace:*",
-		"@repo/vitest-config": "workspace:*",
-		"@types/node": "^22"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "docs",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@repo/ui": "workspace:*",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/vitest-config": "workspace:*",
+    "@vitest/coverage-istanbul": "^3.0.7",
+    "@types/node": "^22",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
+    "eslint": "^9.21.0",
+    "typescript": "5.7.3",
+    "vitest": "^3.0.7"
+  }
 }

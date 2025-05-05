@@ -17,30 +17,11 @@ libc = "0.2.140"
 nix = "0.26.2"
 portable-pty = "0.8.1"
 tokio = { workspace = true, features = ["full", "time"] }
+tracing.workspace = true
 turbopath = { workspace = true }
-
-[dependencies.tracing]
-workspace = true
-
-[dev-dependencies]
-test-case = { workspace = true }
-tracing-test = { version = "0.2.4", features = ["no-env-filter"] }
-
-[lib]
-path = "Source/lib.rs"
 
 [lints]
 workspace = true
 
-[package]
-edition = "2024"
-license = "MIT"
-name = "turborepo-process"
-version = "0.1.0"
-
-[target]
-
-[target."cfg(target_os = \"windows\")"]
-
-[target."cfg(target_os = \"windows\")".dev-dependencies]
+[target.'cfg(target_os = "windows")'.dev-dependencies]
 windows-sys = { version = "0.59", features = ["Win32_System_Threading"] }

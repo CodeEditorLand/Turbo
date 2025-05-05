@@ -1,21 +1,15 @@
 {
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"baseUrl": "./",
-		"esModuleInterop": true,
-		"moduleResolution": "node",
-		"noEmit": true,
-		"noImplicitAny": true,
-		"outDir": "Target",
-		"rootDir": "src",
-		"strict": true,
-		"target": "esnext"
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"types.d.ts",
-		"src",
-		"src"
-	]
+  "compilerOptions": {
+    "noEmit": true,
+    "target": "esnext",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "strict": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src", "types.d.ts"]
 }

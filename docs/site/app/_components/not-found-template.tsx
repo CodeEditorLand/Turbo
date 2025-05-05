@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { gitHubRepoUrl } from "#lib/constants.ts";
 import { Turborepo } from "./turborepo";
-import { gitHubRepoUrl } from "@/lib/constants";
 
 export function NotFoundTemplate({
   content,
@@ -43,7 +43,7 @@ export function NotFoundTemplate({
             <li>
               <Link
                 className="text-center"
-                href="https://vercel.community/tag/turborepo"
+                href="https://community.vercel.com/tag/turborepo"
               >
                 Community
               </Link>

@@ -1,55 +1,33 @@
 {
-	"name": "@repo/database",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"exports": {
-		".": "./src/client.ts"
-	},
-	"scripts": {
-		"db:migrate:deploy": "prisma migrate deploy",
-		"db:migrate:dev": "prisma migrate dev",
-		"db:push": "prisma db push",
-		"db:seed": "tsx src/seed.ts",
-		"predev": "npm run generate",
-		"dev": "tsup src/* --watch",
-		"generate": "prisma generate",
-		"prebuild": "npm run generate",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"studio": "prisma studio"
-	},
-	"dependencies": {
-		"@prisma/client": "latest"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@repo/eslint-config": "*",
-		"@repo/typescript-config": "*",
-		"prisma": "latest",
-		"rimraf": "6.0.1",
-		"tsup": "8.4.0",
-		"tsx": "4.19.3"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@repo/database",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/client.ts"
+  },
+  "scripts": {
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "tsx src/seed.ts",
+    "dev": "tsup src/* --watch",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "lint": "eslint . --max-warnings 0",
+    "prebuild": "npm run generate",
+    "predev": "npm run generate",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "latest"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "eslint": "^8.57.0",
+    "prisma": "latest",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "tsx": "4.19.1",
+    "typescript": "5.5.4"
+  }
 }

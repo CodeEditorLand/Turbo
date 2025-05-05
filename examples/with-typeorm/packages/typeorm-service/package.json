@@ -1,48 +1,31 @@
 {
-	"name": "@repo/typeorm-service",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"exports": {
-		".": "./src/index.ts"
-	},
-	"scripts": {
-		"check-types": "tsc --noEmit",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"test:watch": "vitest"
-	},
-	"dependencies": {
-		"reflect-metadata": "0.2.2",
-		"sql.js": "1.13.0",
-		"typeorm": "0.3.22"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@repo/eslint-config": "workspace:*",
-		"@repo/typescript-config": "workspace:*",
-		"@types/node": "22.15.2",
-		"unplugin-swc": "1.5.2"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@repo/typeorm-service",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src/ --max-warnings 0",
+    "test:watch": "vitest",
+    "test": "vitest run",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "typeorm": "^0.3.20"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2",
+    "sql.js": "^1.10.3",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.11.24",
+    "eslint": "^8.57.0",
+    "typescript": "5.5.4",
+    "unplugin-swc": "^1.4.5",
+    "vitest": "^1.5.0"
+  }
 }

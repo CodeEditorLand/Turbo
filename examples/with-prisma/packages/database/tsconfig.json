@@ -1,19 +1,5 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"outDir": "Target",
-		"rootDir": "src"
-	},
-	"exclude": [
-		"node_modules"
-	],
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		"tsup.config.ts",
-		"src",
-		"src"
-	]
+  "extends": "@repo/typescript-config/base.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tsup.config.ts"],
+  "exclude": ["node_modules"]
 }

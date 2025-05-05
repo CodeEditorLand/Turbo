@@ -1,4 +1,28 @@
+[package]
+name = "turborepo-api-client"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+native-tls = ["reqwest/native-tls"]
+rustls-tls = ["reqwest/rustls-tls-native-roots"]
+
+[dev-dependencies]
+anyhow = { workspace = true }
+http = "1.1.0"
+httpmock = { workspace = true }
+insta = { workspace = true }
+port_scanner = { workspace = true }
+test-case = { workspace = true }
+turborepo-vercel-api-mock = { workspace = true }
+
+[lints]
+workspace = true
+
 [dependencies]
+bytes.workspace = true
 chrono = { workspace = true, features = ["serde"] }
 lazy_static = { workspace = true }
 regex = { workspace = true }
@@ -15,31 +39,3 @@ turbopath = { workspace = true }
 turborepo-ci = { workspace = true }
 turborepo-vercel-api = { workspace = true }
 url = { workspace = true }
-
-[dependencies.bytes]
-workspace = true
-
-[dev-dependencies]
-anyhow = { workspace = true }
-http = "1.1.0"
-httpmock = { workspace = true }
-insta = { workspace = true }
-port_scanner = { workspace = true }
-test-case = { workspace = true }
-turborepo-vercel-api-mock = { workspace = true }
-
-[features]
-native-tls = ["reqwest/native-tls"]
-rustls-tls = ["reqwest/rustls-tls-native-roots"]
-
-[lib]
-path = "Source/lib.rs"
-
-[lints]
-workspace = true
-
-[package]
-edition = "2024"
-license = "MIT"
-name = "turborepo-api-client"
-version = "0.1.0"

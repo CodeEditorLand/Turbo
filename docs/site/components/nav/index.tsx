@@ -1,6 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSearchContext } from "fumadocs-ui/provider";
+import { VercelLogo } from "#app/_components/logos.tsx";
+import { LogoGitHub } from "#components/icons/logo-github.tsx";
+import {
+  TurborepoWordmarkDark,
+  TurborepoWordmarkLight,
+} from "#components/icons/turborepo-wordmark.tsx";
+import { MagnifyingGlass } from "#components/icons/magnifying-glass.tsx";
+import { cn } from "../cn";
+import { ForwardSlash } from "../icons/ForwardSlash";
+import { Button } from "../button";
+import { FeedbackWidget } from "../feedback-widget";
+import { MobileMenuTopLevel } from "../docs-layout/mobile-menu-top-level";
 import {
   NavigationMenu,
   NavigationMenuIndicator,
@@ -8,20 +22,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "./navigation-menu";
-import { cn } from "../cn";
-import { usePathname } from "next/navigation";
-import { VercelLogo } from "@/app/_components/logos";
-import { LogoGitHub } from "#/components/icons/logo-github";
-import { ForwardSlash } from "../icons/ForwardSlash";
-import { Button } from "../button";
-import { FeedbackWidget } from "../feedback-widget";
-import { useSearchContext } from "fumadocs-ui/provider";
-import { MobileMenuTopLevel } from "../docs-layout/mobile-menu-top-level";
-import {
-  TurborepoWordmarkDark,
-  TurborepoWordmarkLight,
-} from "#/components/icons/turborepo-wordmark";
-import { MagnifyingGlass } from "#/components/icons/magnifying-glass";
 
 export const PAGES = [
   {
@@ -40,7 +40,7 @@ export const PAGES = [
     name: "showcase",
   },
   {
-    href: "https://vercel.com/contact/sales?utm_source=turbo.build&utm_medium=referral&utm_campaign=header-enterpriseLink",
+    href: "https://vercel.com/contact/sales?utm_source=turborepo.com&utm_medium=referral&utm_campaign=header-enterpriseLink",
     tooltip: "Enterprise",
     name: "enterprise",
   },
@@ -54,7 +54,7 @@ function HomeLinks() {
         <VercelLogo className="-translate-y-[0.5px] w-[18px] h-[18px]" />
       </Link>
 
-      <ForwardSlash className="w-[16px] h-[16px]" />
+      <ForwardSlash />
 
       <Link className="flex flex-row items-center gap-2" href="/">
         <TurborepoWordmarkDark className="h-[24px] w-auto hidden dark:block" />
@@ -72,7 +72,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-40 flex h-[var(--nav-height)] justify-between border-b bg-background-200 px-4 pr-0 md:pr-4">
+      <div className="sticky top-0 z-40 flex h-[var(--nav-height)] justify-between border-b bg-background-100 px-4 pr-0 md:pr-4">
         <div className="flex w-full select-none flex-row items-center">
           <div className="flex flex-shrink-0 flex-row items-center gap-2">
             <HomeLinks />
@@ -93,7 +93,7 @@ export const Navigation = () => {
                       <Link
                         href={page.href}
                         className={cn(
-                          "text-sm transition-colors duration-100 hover:text-gray-900 data-[active=true]:text-gray-1000"
+                          "text-sm text-gray-900 transition-colors duration-100 hover:text-gray-1000 data-[active=true]:text-gray-1000"
                         )}
                         data-active={pageFromRoute === page.name}
                         scroll={page.href !== "/docs"}
@@ -111,7 +111,9 @@ export const Navigation = () => {
 
         <button
           className="hidden p-4 pr-2 md:pr-4 md:block lg:hidden"
-          onClick={() => setOpenSearch(true)}
+          onClick={() => {
+            setOpenSearch(true);
+          }}
         >
           <MagnifyingGlass />
         </button>
@@ -121,7 +123,7 @@ export const Navigation = () => {
             aria-label="Search…"
             variant="secondary"
             size="sm"
-            className="group flex-row !font-normal !text-gray-800 hover:!text-gray-1000 hidden lg:block"
+            className="group border flex-row !font-normal !text-gray-800 hover:!text-gray-1000 hidden lg:block"
             onClick={() => {
               setOpenSearch(true);
             }}
@@ -131,7 +133,7 @@ export const Navigation = () => {
               <span className="inline-flex items-center justify-center rounded border border-gray-200 font-sans text-sm group-hover:border-gray-alpha-400">
                 <kbd className="flex h-5 min-h-5 w-fit items-center px-1 py-0 text-center font-sans text-xs">
                   {hotKey.map((k, i) => (
-                    <span key={`${i}-${k.key}`}>{k.display}</span>
+                    <span key={`${i}-${k.key.toString()}`}>{k.display}</span>
                   ))}
                 </kbd>
               </span>
@@ -140,15 +142,15 @@ export const Navigation = () => {
 
           <FeedbackWidget />
           <Button
-            variant="secondary"
             asChild
             size="sm"
-            // @ts-expect-error
+            // @ts-expect-error - Button with asChild expects its children to have href but TypeScript doesn't recognize this pattern
             href="https://github.com/vercel/turborepo"
-            className="bg-transparent hover:bg-transparent"
+            className=""
           >
             <a>
               <LogoGitHub className="inline" />
+              <span>GitHub</span>
             </a>
           </Button>
         </div>

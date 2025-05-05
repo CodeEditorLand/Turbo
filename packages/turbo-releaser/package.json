@@ -1,53 +1,32 @@
 {
-	"name": "@turbo/releaser",
-	"version": "0.0.1",
-	"private": false,
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"bin": {
-		"turboreleaser": "cli/index.cjs"
-	},
-	"files": [
-		"dist",
-		"template"
-	],
-	"scripts": {
-		"build": "tsup",
-		"check-types": "tsc --noEmit",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {
-		"commander": "13.1.0",
-		"tar": "7.4.3"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@turbo/eslint-config": "workspace:*",
-		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "22",
-		"@types/tar": "6.1.13",
-		"tsup": "8.4.0",
-		"tsx": "4.19.3"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@turbo/releaser",
+  "private": true,
+  "version": "0.0.1",
+  "bin": {
+    "turboreleaser": "cli/index.cjs"
+  },
+  "files": [
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "check-types": "tsc --noEmit",
+    "test": "node --import tsx --test src/*.test.ts",
+    "lint": "eslint src/",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "tar": "6.1.13"
+  },
+  "devDependencies": {
+    "@turbo/eslint-config": "workspace:*",
+    "@turbo/tsconfig": "workspace:*",
+    "@types/node": "^20",
+    "@types/tar": "^6.1.4",
+    "typescript": "5.5.4",
+    "tsup": "^6.7.0",
+    "tsx": "4.19.1"
+  }
 }

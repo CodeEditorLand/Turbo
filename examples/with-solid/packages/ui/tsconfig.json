@@ -1,21 +1,13 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"esModuleInterop": true,
-		"jsx": "preserve",
-		"jsxImportSource": "solid-js",
-		"outDir": "Target",
-		"rootDir": "src"
-	},
-	"extends": "@playform/build/tsconfig",
-	"files": [],
-	"include": [
-		"src",
-		"src"
-	],
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		}
-	]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
+  }
 }
