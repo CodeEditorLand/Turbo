@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@expo/webpack-config": "^19.0.0",
-		"@playform/build": "0.2.3"
+		"@playform/build": "0.2.4"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
 	"keywords": [

@@ -19,7 +19,7 @@
 		"@nestjs/cli": "^10.0.0",
 		"@nestjs/schematics": "^10.0.0",
 		"@nestjs/testing": "^10.0.0",
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/jest-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",

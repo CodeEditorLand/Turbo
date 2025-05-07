@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@codeeditorlandst/coverage-istanbul": "^3.0.7",
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@repo/vitest-config": "workspace:*",

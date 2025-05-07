@@ -12,7 +12,7 @@
 		"gatsby": "^5.13.3"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "^20.11.24",

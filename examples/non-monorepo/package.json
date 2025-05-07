@@ -12,7 +12,7 @@
 		"turb": "^0.1.2"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@types/node": "^22.15.3"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",

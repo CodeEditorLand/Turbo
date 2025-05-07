@@ -12,7 +12,7 @@
 	},
 	"description": "A workspace to use as a model for a final application that the rest of your dependencies are building towards.",
 	"devDependencies": {
-		"@playform/build": "0.2.3"
+		"@playform/build": "0.2.4"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
 	"keywords": [

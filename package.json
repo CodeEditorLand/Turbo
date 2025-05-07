@@ -9,7 +9,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@taplo/cli": "^0.5.2",
 		"@types/node": "^22.15.1",
 		"lint-staged": "^13.1.0",

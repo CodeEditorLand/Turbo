@@ -26,7 +26,7 @@
 	},
 	"description": "Provides Codemod transformations to help upgrade your Turborepo codebase when a feature is deprecated.",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/gen": "workspace:*",
 		"@turbo/test-utils": "workspace:*",

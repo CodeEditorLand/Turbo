@@ -12,7 +12,7 @@
 	],
 	"dependencies": {},
 	"devDependencies": {
-		"@playform/build": "0.2.3"
+		"@playform/build": "0.2.4"
 	},
 	"files": [
 		"repository.win32-arm64-msvc.node"

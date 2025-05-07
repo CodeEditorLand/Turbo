@@ -12,7 +12,7 @@
 	},
 	"description": "turbopack node runtime",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@types/loader-runner": "2.2.8",
 		"@types/node": "22.15.2"
 	},

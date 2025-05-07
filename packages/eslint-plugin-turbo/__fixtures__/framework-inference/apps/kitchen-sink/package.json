@@ -19,7 +19,7 @@
 		"ua-parser-js": "*"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"eslint-plugin-turbo": "../../../../"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",

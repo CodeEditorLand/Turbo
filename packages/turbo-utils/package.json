@@ -11,7 +11,7 @@
 	"description": "",
 	"devDependencies": {
 		"@manypkg/find-root": "^1.1.0",
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/test-utils": "workspace:*",
 		"@turbo/tsconfig": "workspace:*",

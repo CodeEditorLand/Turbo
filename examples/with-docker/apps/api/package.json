@@ -14,7 +14,7 @@
 		"morgan": "^1.10.0"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "*",
 		"@repo/jest-presets": "*",
 		"@repo/typescript-config": "*",

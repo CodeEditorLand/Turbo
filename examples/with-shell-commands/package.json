@@ -10,7 +10,7 @@
 	"dependencies": {},
 	"description": "A barebones Turborepo example for working with Task Graphs.",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"turbo": "^2.5.2"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",

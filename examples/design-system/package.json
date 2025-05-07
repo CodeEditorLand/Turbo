@@ -10,7 +10,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"turbo": "^2.5.0"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",

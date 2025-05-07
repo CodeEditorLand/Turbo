@@ -57,7 +57,7 @@
 	},
 	"description": "Tools and instant feedback for your build system",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@turbo/tsconfig": "workspace:*",
 		"@types/node": "^20.9.0",
 		"esbuild": "^0.15.0"

@@ -16,7 +16,7 @@
 	},
 	"description": "This is solidJS UI library package.",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tailwind-config": "workspace:*"
 	},

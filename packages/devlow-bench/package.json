@@ -20,7 +20,7 @@
 	},
 	"description": "Benchmarking tool for the developer workflow",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@turbo/eslint-config": "workspace:*",
 		"@types/inquirer": "9.0.7",
 		"@types/minimist": "1.2.5",

@@ -12,7 +12,7 @@
 		"next": "^14.1.1"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "*",
 		"@repo/typescript-config": "*",
 		"@types/node": "^20.11.24"

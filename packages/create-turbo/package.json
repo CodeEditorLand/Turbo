@@ -21,7 +21,7 @@
 	},
 	"description": "Create a new Turborepo",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@turbo/eslint-config": "workspace:*",
 		"@turbo/telemetry": "workspace:*",
 		"@turbo/test-utils": "workspace:*",

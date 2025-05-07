@@ -12,7 +12,7 @@
 	},
 	"description": "This is the eslint config package.",
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"eslint-config-turbo": "^2.4.4",
 		"eslint-plugin-eslint-plugin": "^6.1.0",
 		"eslint-plugin-solid": "^0.14.5"
