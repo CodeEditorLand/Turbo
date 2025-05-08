@@ -1,71 +1,69 @@
 {
-	"author": {
-		"email": "Source/Open@Editor.Land",
-		"name": "Source 🖋️ Open 👐🏻",
-		"url": "HTTPS://Editor.Land"
-	},
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"dependencies": {
-		"eslint-plugin-turbo": "workspace:*"
-	},
-	"description": "ESLint config for Turborepo",
-	"devDependencies": {
-		"@playform/build": "0.2.4",
-		"@turbo/eslint-config": "workspace:*",
-		"@turbo/tsconfig": "workspace:*",
-		"@types/node": "^20",
-		"bunchee": "^6.3.4"
-	},
-	"exports": {
-		".": {
-			"import": {
-				"default": "./dist/es/index.mjs",
-				"types": "./dist/es/index.d.mts"
-			},
-			"require": {
-				"default": "./dist/cjs/index.js",
-				"types": "./dist/cjs/index.d.ts"
-			}
-		},
-		"./flat": {
-			"import": {
-				"default": "./dist/es/flat.mjs",
-				"types": "./dist/es/flat.d.mts"
-			},
-			"require": {
-				"default": "./dist/cjs/flat.js",
-				"types": "./dist/cjs/flat.d.ts"
-			}
-		}
-	},
-	"files": [
-		"dist"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./dist/cjs/index.js",
-	"module": "./dist/es/index.mjs",
-	"name": "eslint-config-turbo",
-	"private": false,
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"scripts": {
-		"build": "bunchee",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"type": "module",
-	"types": "./dist/cjs/index.d.ts",
-	"version": "0.0.1"
+  "name": "eslint-config-turbo",
+  "version": "2.5.3",
+  "description": "ESLint config for Turborepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vercel/turborepo",
+    "directory": "packages/eslint-config-turbo"
+  },
+  "bugs": {
+    "url": "https://github.com/vercel/turborepo/issues"
+  },
+  "scripts": {
+    "build": "bunchee",
+    "lint": "eslint src",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
+  },
+  "keywords": [
+    "turbo",
+    "eslint",
+    "turborepo",
+    "eslintconfig",
+    "eslint-config"
+  ],
+  "main": "./dist/cjs/index.js",
+  "exports": {
+    "./flat": {
+      "import": {
+        "types": "./dist/es/flat.d.mts",
+        "default": "./dist/es/flat.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/flat.d.ts",
+        "default": "./dist/cjs/flat.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.mts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "author": "Vercel",
+  "dependencies": {
+    "eslint-plugin-turbo": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": ">6.6.0",
+    "turbo": ">2.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@turbo/eslint-config": "workspace:*",
+    "@turbo/tsconfig": "workspace:*",
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20",
+    "bunchee": "^6.3.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/es/index.mjs",
+  "types": "./dist/cjs/index.d.ts"
 }

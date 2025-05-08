@@ -1,42 +1,27 @@
 {
-	"author": {
-		"email": "Source/Open@Editor.Land",
-		"name": "Source 🖋️ Open 👐🏻",
-		"url": "HTTPS://Editor.Land"
-	},
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"dependencies": {
-		"@repo/ui": "workspace:*"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.4",
-		"@repo/eslint-config": "workspace:*",
-		"@repo/typescript-config": "workspace:*"
-	},
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"name": "admin",
-	"private": false,
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"scripts": {
-		"build": "vite build",
-		"check-types": "tsc --noEmit",
-		"dev": "vite --host 0.0.0.0 --port 3001 --clearScreen false",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"type": "module",
-	"version": "0.0.1"
+  "name": "admin",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --host 0.0.0.0 --port 3001 --clearScreen false",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src/ --max-warnings 0"
+  },
+  "dependencies": {
+    "@repo/ui": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.26.0",
+    "typescript": "5.8.2",
+    "vite": "^5.4.14"
+  }
 }

@@ -1,64 +1,45 @@
 {
-	"author": {
-		"email": "Source/Open@Editor.Land",
-		"name": "Source 🖋️ Open 👐🏻",
-		"url": "HTTPS://Editor.Land"
-	},
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.4",
-		"@repo/eslint-config": "workspace:*",
-		"@repo/jest-presets": "workspace:*",
-		"@repo/typescript-config": "workspace:*",
-		"@types/node": "^22.15.3",
-		"bunchee": "^6.4.0"
-	},
-	"exports": {
-		".": {
-			"import": {
-				"default": "./dist/es/index.js",
-				"types": "./dist/es/index.d.ts"
-			},
-			"require": {
-				"default": "./dist/cjs/index.cjs",
-				"types": "./dist/cjs/index.d.cts"
-			}
-		}
-	},
-	"files": [
-		"dist"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
-	"jest": {
-		"preset": "@repo/jest-presets/node"
-	},
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"main": "./dist/es/index.js",
-	"module": "./dist/es/index.js",
-	"name": "@repo/logger",
-	"private": false,
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
-	},
-	"scripts": {
-		"build": "bunchee",
-		"check-types": "tsc --noEmit",
-		"dev": "bunchee --watch",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"type": "module",
-	"types": "./dist/es/index.d.ts",
-	"version": "0.0.1"
+  "name": "@repo/logger",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/es/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./dist/es/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.ts",
+        "default": "./dist/es/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "bunchee",
+    "dev": "bunchee --watch",
+    "lint": "eslint src/",
+    "check-types": "tsc --noEmit",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "@repo/jest-presets/node"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/jest-presets": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "bunchee": "^6.4.0",
+    "eslint": "^9.26.0",
+    "jest": "^29.7.0",
+    "typescript": "5.8.2"
+  }
 }
