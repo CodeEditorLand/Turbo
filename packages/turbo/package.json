@@ -1,28 +1,53 @@
 {
-  "name": "turbo",
-  "version": "2.5.4-canary.0",
-  "description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
-  "repository": "https://github.com/vercel/turborepo",
-  "bugs": "https://github.com/vercel/turborepo/issues",
-  "homepage": "https://turborepo.com",
-  "license": "MIT",
-  "main": "./bin/turbo",
-  "scripts": {
-    "postversion": "node bump-version.js"
-  },
-  "bin": {
-    "turbo": "./bin/turbo"
-  },
-  "files": [
-    "bin",
-    "schema.json"
-  ],
-  "optionalDependencies": {
-    "turbo-darwin-64": "2.5.4-canary.0",
-    "turbo-darwin-arm64": "2.5.4-canary.0",
-    "turbo-linux-64": "2.5.4-canary.0",
-    "turbo-linux-arm64": "2.5.4-canary.0",
-    "turbo-windows-64": "2.5.4-canary.0",
-    "turbo-windows-arm64": "2.5.4-canary.0"
-  }
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bin": {
+		"turbo": "./bin/turbo"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"dependencies": {},
+	"description": "Turborepo is a high-performance build system for JavaScript and TypeScript codebases.",
+	"devDependencies": {
+		"@playform/build": "0.2.4"
+	},
+	"files": [
+		"bin",
+		"schema.json"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./bin/turbo",
+	"name": "turbo",
+	"optionalDependencies": {
+		"turbo-darwin-64": "2.5.4-canary.0",
+		"turbo-darwin-arm64": "2.5.4-canary.0",
+		"turbo-linux-64": "2.5.4-canary.0",
+		"turbo-linux-arm64": "2.5.4-canary.0",
+		"turbo-windows-64": "2.5.4-canary.0",
+		"turbo-windows-arm64": "2.5.4-canary.0"
+	},
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"postversion": "node bump-version.js",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

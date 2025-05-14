@@ -12,7 +12,7 @@
 		"@tailwindcss/vite": "^4.0.9"
 	},
 	"devDependencies": {
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/tailwind-config": "workspace:*",
 		"@solidjs/meta": "^0.29.4",

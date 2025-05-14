@@ -1,26 +1,48 @@
 {
-  "name": "@turbo/repository-linux-arm64-gnu",
-  "version": "0.0.1-canary.16",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vercel/turborepo",
-    "directory": "packages/turbo-repository/npm/linux-arm64-gnu"
-  },
-  "os": [
-    "linux"
-  ],
-  "cpu": [
-    "arm64"
-  ],
-  "libc": [
-    "glibc"
-  ],
-  "main": "repository.linux-arm64-gnu.node",
-  "files": [
-    "repository.linux-arm64-gnu.node"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">= 10"
-  }
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"cpu": [
+		"arm64"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.4"
+	},
+	"files": [
+		"repository.linux-arm64-gnu.node"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"libc": [
+		"glibc"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "repository.linux-arm64-gnu.node",
+	"name": "@turbo/repository-linux-arm64-gnu",
+	"os": [
+		"linux"
+	],
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

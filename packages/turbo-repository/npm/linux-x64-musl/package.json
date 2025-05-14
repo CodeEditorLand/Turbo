@@ -1,26 +1,48 @@
 {
-  "name": "@turbo/repository-linux-x64-musl",
-  "version": "0.0.1-canary.16",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vercel/turborepo",
-    "directory": "packages/turbo-repository/npm/linux-x64-musl"
-  },
-  "os": [
-    "linux"
-  ],
-  "cpu": [
-    "x64"
-  ],
-  "libc": [
-    "musl"
-  ],
-  "main": "repository.linux-x64-musl.node",
-  "files": [
-    "repository.linux-x64-musl.node"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">= 10"
-  }
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"cpu": [
+		"x64"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.4"
+	},
+	"files": [
+		"repository.linux-x64-musl.node"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"libc": [
+		"musl"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "repository.linux-x64-musl.node",
+	"name": "@turbo/repository-linux-x64-musl",
+	"os": [
+		"linux"
+	],
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

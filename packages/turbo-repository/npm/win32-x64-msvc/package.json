@@ -1,23 +1,45 @@
 {
-  "name": "@turbo/repository-win32-x64-msvc",
-  "version": "0.0.1-canary.16",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vercel/turborepo",
-    "directory": "packages/turbo-repository/npm/win32-x64-msvc"
-  },
-  "os": [
-    "win32"
-  ],
-  "cpu": [
-    "x64"
-  ],
-  "main": "repository.win32-x64-msvc.node",
-  "files": [
-    "repository.win32-x64-msvc.node"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">= 10"
-  }
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"cpu": [
+		"x64"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@playform/build": "0.2.4"
+	},
+	"files": [
+		"repository.win32-x64-msvc.node"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "repository.win32-x64-msvc.node",
+	"name": "@turbo/repository-win32-x64-msvc",
+	"os": [
+		"win32"
+	],
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }

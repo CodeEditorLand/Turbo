@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@acme/eslint-config": "workspace:*",
 		"@acme/tsconfig": "workspace:*",
-		"@playform/build": "0.2.3",
+		"@playform/build": "0.2.4",
 		"@types/node": "^20.11.24"
 	},
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",

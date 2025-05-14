@@ -1,27 +1,53 @@
 {
-  "name": "@turbo/repository",
-  "version": "0.0.1-canary.16",
-  "description": "",
-  "bugs": "https://github.com/vercel/turborepo/issues",
-  "homepage": "https://turborepo.com",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "mkdir -p dist && cp index.js dist/index.js && cp index.d.ts dist/index.d.ts"
-  },
-  "files": [
-    "dist/index.js",
-    "dist/index.d.ts"
-  ],
-  "types": "dist/index.d.ts",
-  "optionalDependencies": {
-    "@turbo/repository-darwin-x64": "0.0.1-canary.16",
-    "@turbo/repository-darwin-arm64": "0.0.1-canary.16",
-    "@turbo/repository-linux-x64-gnu": "0.0.1-canary.16",
-    "@turbo/repository-linux-arm64-gnu": "0.0.1-canary.16",
-    "@turbo/repository-linux-x64-musl": "0.0.1-canary.16",
-    "@turbo/repository-linux-arm64-musl": "0.0.1-canary.16",
-    "@turbo/repository-win32-x64-msvc": "0.0.1-canary.16",
-    "@turbo/repository-win32-arm64-msvc": "0.0.1-canary.16"
-  }
+	"author": {
+		"email": "Source/Open@Editor.Land",
+		"name": "Source 🖋️ Open 👐🏻",
+		"url": "HTTPS://Editor.Land"
+	},
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/Turbo/issues"
+	},
+	"dependencies": {},
+	"description": "",
+	"devDependencies": {
+		"@playform/build": "0.2.4"
+	},
+	"files": [
+		"dist/index.js",
+		"dist/index.d.ts"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/Turbo#readme",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "dist/index.js",
+	"name": "@turbo/repository",
+	"optionalDependencies": {
+		"@turbo/repository-darwin-arm64": "0.0.1-canary.16",
+		"@turbo/repository-darwin-x64": "0.0.1-canary.16",
+		"@turbo/repository-linux-arm64-gnu": "0.0.1-canary.16",
+		"@turbo/repository-linux-arm64-musl": "0.0.1-canary.16",
+		"@turbo/repository-linux-x64-gnu": "0.0.1-canary.16",
+		"@turbo/repository-linux-x64-musl": "0.0.1-canary.16",
+		"@turbo/repository-win32-arm64-msvc": "0.0.1-canary.16",
+		"@turbo/repository-win32-x64-msvc": "0.0.1-canary.16"
+	},
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/Turbo.git"
+	},
+	"scripts": {
+		"build": "mkdir -p dist && cp index.js dist/index.js && cp index.d.ts dist/index.d.ts",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"version": "0.0.1"
 }
