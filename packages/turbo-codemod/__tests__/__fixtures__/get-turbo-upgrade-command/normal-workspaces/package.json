@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "turbo": "1.0.0"
+    "turbo": "2.5.4"
   },
   "devDependencies": {}
 }

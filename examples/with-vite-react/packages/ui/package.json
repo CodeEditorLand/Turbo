@@ -18,8 +18,8 @@
   "devDependencies": {
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "0.0.1",
+    "@repo/typescript-config": "0.0.1",
     "eslint": "^8.57.0",
     "typescript": "5.5.4"
   }

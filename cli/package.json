@@ -9,6 +9,6 @@
     "release-native": "turboreleaser --version-path ../version.txt"
   },
   "dependencies": {
-    "@turbo/releaser": "workspace:*"
+    "@turbo/releaser": "0.0.1"
   }
 }

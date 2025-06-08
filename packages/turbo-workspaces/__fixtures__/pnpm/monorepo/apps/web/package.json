@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "ui": "workspace:*"
+    "ui": "0.2.4"
   },
   "devDependencies": {
-    "tsconfig": "workspace:*"
+    "tsconfig": "7.0.0"
   }
 }

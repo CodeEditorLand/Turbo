@@ -12,26 +12,26 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
-    "next": "^14.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@repo/ui": "0.0.1",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@next/eslint-plugin-next": "^14.1.1",
-    "@playwright/test": "^1.44.0",
-    "@repo/api": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/jest-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.7",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
+    "@next/eslint-plugin-next": "^15.3.3",
+    "@playwright/test": "^1.52.0",
+    "@repo/api": "0.0.1",
+    "@repo/eslint-config": "0.0.1",
+    "@repo/jest-config": "0.0.1",
+    "@repo/typescript-config": "0.0.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "typescript": "5.5.4"
+    "typescript": "5.8.3"
   }
 }

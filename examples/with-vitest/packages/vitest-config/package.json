@@ -13,7 +13,7 @@
     "view-report": "open coverage/report/index.html"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
+    "@repo/typescript-config": "0.0.1",
     "@vitest/coverage-istanbul": "^3.0.7",
     "@vitest/ui": "3.0.7",
     "glob": "^11.0.1",

@@ -12,9 +12,9 @@
     "preview-storybook": "turbo run preview-storybook"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
-    "prettier": "^3.2.5",
-    "turbo": "^2.5.0"
+    "@changesets/cli": "^2.29.4",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4"
   },
   "packageManager": "pnpm@8.15.6",
   "name": "design-system"

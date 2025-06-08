@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {},
   "devDependencies": {
-    "turbo": "1.0.0"
+    "turbo": "2.5.4"
   },
   "turbo": {
     "$schema": "https://turborepo.com/schema.json",

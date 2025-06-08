@@ -17,8 +17,8 @@
     }
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@repo/vitest-config": "workspace:*",
+    "@repo/typescript-config": "0.0.1",
+    "@repo/vitest-config": "0.0.1",
     "@vitest/coverage-istanbul": "^3.0.7",
     "typescript": "latest",
     "vitest": "^3.0.7"

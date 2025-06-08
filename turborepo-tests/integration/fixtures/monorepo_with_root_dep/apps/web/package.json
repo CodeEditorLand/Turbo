@@ -6,6 +6,6 @@
   },
   "dependencies": {
     "is-number": "^7.0.0",
-    "shared": "workspace:*"
+    "shared": "0.2.0"
   }
 }

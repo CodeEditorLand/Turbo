@@ -4,7 +4,7 @@
     "test": "bash ./node_modules/turborepo-tests-helpers/setup_example_test.sh basic pnpm"
   },
   "dependencies": {
-    "turborepo-tests-helpers": "workspace:*",
-    "turborepo-examples": "workspace:*"
+    "turborepo-tests-helpers": "0.0.1",
+    "turborepo-examples": "0.0.1"
   }
 }

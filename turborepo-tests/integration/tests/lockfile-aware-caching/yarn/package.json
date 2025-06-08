@@ -6,6 +6,6 @@
   "packageManager": "yarn@1.22.19",
   "private": true,
   "dependencies": {
-    "turbo": "^1.5.6"
+    "turbo": "^2.5.4"
   }
 }

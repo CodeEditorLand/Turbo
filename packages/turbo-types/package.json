@@ -22,11 +22,11 @@
     "copy-schema": "cp schemas/schema.json ../turbo/schema.json"
   },
   "devDependencies": {
-    "@turbo/eslint-config": "workspace:*",
-    "@turbo/tsconfig": "workspace:*",
-    "@types/node": "^20",
-    "ts-json-schema-generator": "2.3.0",
-    "tsx": "4.19.1"
+    "@turbo/eslint-config": "0.0.1",
+    "@turbo/tsconfig": "0.0.1",
+    "@types/node": "^22",
+    "ts-json-schema-generator": "2.4.0",
+    "tsx": "4.19.4"
   },
   "files": [
     "src",

@@ -11,10 +11,10 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "eslint": "8.57.0",
+    "eslint": "9.28.0",
     "eslint-config-custom": "*",
-    "prettier": "^3.2.5",
-    "turbo": "2.5.0"
+    "prettier": "^3.5.3",
+    "turbo": "2.5.4"
   },
   "packageManager": "yarn@3.6.3",
   "engines": {

@@ -4,6 +4,6 @@
     "test": ""
   },
   "dependencies": {
-    "@turbo/workspaces": "workspace:*"
+    "@turbo/workspaces": "0.0.1"
   }
 }

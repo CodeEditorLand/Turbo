@@ -10,13 +10,13 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@repo/ui": "0.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "0.0.1",
+    "@repo/typescript-config": "0.0.1",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^3.1.0",

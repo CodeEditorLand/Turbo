@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
-    "@turbo/eslint-config": "workspace:*",
-    "@turbo/tsconfig": "workspace:*",
+    "@turbo/eslint-config": "0.0.1",
+    "@turbo/tsconfig": "0.0.1",
     "@types/fs-extra": "^9.0.13",
     "@types/ndjson": "^2.0.2",
     "@types/node": "^18.17.4",
