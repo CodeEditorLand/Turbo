@@ -22,7 +22,7 @@
     "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
   },
   "dependencies": {
-    "axios": "0.27.2",
+    "axios": "0.31.0",
     "commander": "^9.5.0",
     "diff": "^5.1.0",
     "find-up": "4.1.0",
@@ -58,7 +58,7 @@
     "plop": "^3.1.1",
     "semver": "^7.3.5",
     "ts-jest": "^29.2.5",
-    "tsup": "^6.7.0",
+    "tsup": "^8.5.1",
     "typescript": "5.5.4"
   },
   "files": [
