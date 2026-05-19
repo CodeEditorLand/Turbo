@@ -21,7 +21,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@turbo/workspaces": "2.5.4",
+    "@turbo/workspaces": "2.9.14",
     "commander": "^14.0.0",
     "fs-extra": "^11.3.0",
     "inquirer": "^12.6.3",
